@@ -1,7 +1,7 @@
 import logo from "./assets/logo.png";
 import cart from "./assets/cart.png";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const menuItems = [
@@ -28,27 +28,39 @@ export default function Navbar() {
   return (
     <div className="flex justify-around p-2 shadow-md">
       <div className="flex items-center">
-        <Link to="/">
+        <Link
+          to="/"
+          onClick={() => {
+            setActive(null);
+          }}
+        >
           <img className="h-20" src={logo} />
         </Link>
       </div>
-      <ul className="flex items-center gap-3">
+      <div className="flex items-center gap-3">
         {menuItems.map((item, i) => (
-          <li
-            onClick={() => {
-              setActive(i);
-            }}
-            className="flex flex-col justify-center items-center"
+          <NavLink
             key={i}
+            className="flex flex-col justify-center items-center"
+            to={item.to}
           >
-            <Link to={item.to}>{item.title}</Link>
-
-            {active === i && (
-              <hr className="border-none rounded-sm h-1 bg-orange-900 w-5/6" />
-            )}
-          </li>
+            {({ isActive }) => {
+              //? for the active tab indicator
+              if (isActive && active !== i) {
+                setActive(i);
+              }
+              return (
+                <>
+                  {item.title}
+                  {active === i && (
+                    <hr className="border-none rounded-sm h-1 bg-orange-900 w-5/6" />
+                  )}
+                </>
+              );
+            }}
+          </NavLink>
         ))}
-      </ul>
+      </div>
       <div className="flex items-center gap-2">
         <Link
           to="/login"
