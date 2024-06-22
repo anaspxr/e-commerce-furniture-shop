@@ -17,6 +17,10 @@ function App() {
             path="/furniture"
             element={<Categories category="furniture" />}
           />
+          <Route
+            path="/homedecor"
+            element={<Categories category="homedecor" />}
+          />
           <Route path="/sofas" element={<Categories category="sofas" />} />
           <Route path="/dining" element={<Categories category="dining" />} />
           <Route path="/product" element={<Product />}>
