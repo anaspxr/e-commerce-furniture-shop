@@ -6,7 +6,7 @@ export const furnitureData = [
   {
     id: 1,
     name: "Modern Sofa",
-    price: 799.99,
+    price: 25999,
     discount: 10,
     image: sofa,
     description:
@@ -16,7 +16,7 @@ export const furnitureData = [
   {
     id: 2,
     name: "Classic Armchair",
-    price: 499.99,
+    price: 2499,
     discount: 15,
     image: sofa,
     description:
@@ -26,7 +26,7 @@ export const furnitureData = [
   {
     id: 3,
     name: "Wooden Dining Table",
-    price: 1199.99,
+    price: 18999,
     discount: 20,
     image: dining,
     description:
@@ -36,7 +36,7 @@ export const furnitureData = [
   {
     id: 4,
     name: "Ergonomic Office Chair",
-    price: 299.99,
+    price: 1299,
     discount: 5,
     image: decor,
     description:
@@ -46,7 +46,7 @@ export const furnitureData = [
   {
     id: 5,
     name: "Minimalist Coffee Table",
-    price: 249.99,
+    price: 5499,
     discount: 12,
     image: decor,
     description:
@@ -56,7 +56,7 @@ export const furnitureData = [
   {
     id: 6,
     name: "Luxury Bed Frame",
-    price: 1499.99,
+    price: 14999,
     discount: 25,
     image: sofa,
     description:
@@ -66,7 +66,7 @@ export const furnitureData = [
   {
     id: 7,
     name: "Compact Bookshelf",
-    price: 199.99,
+    price: 21999,
     discount: 10,
     image: decor,
     description:
@@ -76,7 +76,7 @@ export const furnitureData = [
   {
     id: 8,
     name: "Outdoor Patio Set",
-    price: 899.99,
+    price: 17999,
     discount: 20,
     image: decor,
     description:
@@ -86,7 +86,7 @@ export const furnitureData = [
   {
     id: 9,
     name: "Kids Bunk Bed",
-    price: 699.99,
+    price: 13999,
     discount: 18,
     image: dining,
     description:
@@ -96,7 +96,7 @@ export const furnitureData = [
   {
     id: 10,
     name: "Recliner Sofa",
-    price: 999.99,
+    price: 29999,
     discount: 15,
     image: sofa,
     description:
@@ -106,7 +106,7 @@ export const furnitureData = [
   {
     id: 11,
     name: "Decorative Vase",
-    price: 79.99,
+    price: 799,
     discount: 5,
     image: decor,
     description:
@@ -116,7 +116,7 @@ export const furnitureData = [
   {
     id: 12,
     name: "Dining Chair Set",
-    price: 499.99,
+    price: 4999,
     discount: 10,
     image: dining,
     description:

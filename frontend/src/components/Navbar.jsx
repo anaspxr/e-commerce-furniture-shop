@@ -26,7 +26,7 @@ export default function Navbar() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="flex justify-around p-2 shadow-md">
+    <div className="bg-orange-50 flex justify-around p-2 shadow-md">
       <div className="flex items-center">
         <Link
           to="/"
