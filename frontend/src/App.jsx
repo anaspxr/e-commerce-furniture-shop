@@ -12,6 +12,7 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar />
+        <div className="mt-28"></div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
