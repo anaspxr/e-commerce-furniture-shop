@@ -6,7 +6,7 @@ export default function Item(props) {
     <div className="flex flex-col justify-between bg-white overflow-hidden">
       <Link to={`product/${props.id}`}>
         <img
-          className="hover:scale-105 transition duration-300"
+          className="top-0 left-0 transition-transform duration-500 hover:scale-105 w-full h-60 object-cover"
           src={props.image}
           alt={props.name}
         />
