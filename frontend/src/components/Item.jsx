@@ -3,7 +3,7 @@ import Button from "./Button";
 
 export default function Item(props) {
   return (
-    <div className="p-3 bg-orange-50">
+    <div className="flex flex-col justify-between bg-white overflow-hidden">
       <Link to={`product/${props.id}`}>
         <img
           className="hover:scale-105 transition duration-300"
@@ -11,7 +11,7 @@ export default function Item(props) {
           alt={props.name}
         />
       </Link>
-      <div>
+      <div className="p-3">
         <h3 className="text-xl">{props.name}</h3>
         <div>₹{props.price}</div>
         <div>
