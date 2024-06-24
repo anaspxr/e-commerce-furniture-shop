@@ -1,3 +1,4 @@
+import Button from "./Button";
 import heroImage from "./assets/hero.jpg";
 import { Link } from "react-router-dom";
 
@@ -9,8 +10,8 @@ export default function Hero() {
           Welcome To Furnify..!!
         </h1>
         <Link to="/furniture">
-          <div className="mt-10 text-white bg-orange-800 w-fit p-2 rounded-xl hover:bg-opacity-90">
-            Shop Now..!!
+          <div className="mt-10">
+            <Button>Shop Now..!!</Button>
           </div>
         </Link>
       </div>
