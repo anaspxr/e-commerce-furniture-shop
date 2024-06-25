@@ -4,7 +4,7 @@ import Button from "./Button";
 export default function Item(props) {
   return (
     <div className="flex flex-col justify-between bg-white overflow-hidden ">
-      <Link to={`product/${props.id}`}>
+      <Link to={`/products/${props.id}`}>
         <img
           className="top-0 left-0 transition-transform duration-500 hover:scale-105 w-full h-60 object-cover"
           src={props.image}
@@ -12,7 +12,7 @@ export default function Item(props) {
         />
       </Link>
       <div className="p-3">
-        <Link to={`product/${props.id}`} className="text-xl">
+        <Link to={`/products/${props.id}`} className="text-xl">
           {props.name}
         </Link>
         <div>₹{props.price}</div>

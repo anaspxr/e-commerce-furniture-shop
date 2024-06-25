@@ -39,37 +39,29 @@ const menuItems = [
 
 export default function Navbar() {
   const { currentUser } = useContext(UserContext);
-  const [active, setActive] = useState(0);
   const [toggle, setToggle] = useState(false);
 
   return (
     <div className="fixed top-0 w-full bg-orange-50 flex justify-between p-2 shadow-md z-10">
       <div className="flex items-center">
-        <Link
-          to="/"
-          onClick={() => {
-            setActive(null);
-          }}
-        >
+        <Link to="/">
           <img className="md:h-20 h-12" src={logo} />
         </Link>
       </div>
       <div className="md:flex items-center gap-3 hidden">
         {menuItems.map((item, i) => (
           <NavLink
+            end
             key={i}
             className="flex flex-col justify-center items-center"
             to={item.to}
           >
             {({ isActive }) => {
               //? for the active tab indicator
-              if (isActive && active !== i) {
-                setActive(i);
-              }
               return (
                 <>
                   {item.title}
-                  {active === i && (
+                  {isActive && (
                     <hr className="border-none rounded-sm h-1 bg-orange-900 w-5/6" />
                   )}
                 </>
