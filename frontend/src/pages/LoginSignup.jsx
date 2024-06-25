@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas/userScheme";
 import Alerts from "../components/Alerts";
+import { useNavigate } from "react-router-dom";
 export default function LoginSignup() {
   const [newUser, setNewUser] = useState(false);
-
   const [alert, setAlert] = useState(null);
   return (
     <div className="flex justify-center flex-col items-center gap-2">
@@ -19,6 +19,7 @@ export default function LoginSignup() {
 }
 
 function Login({ setAlert, setNewUser }) {
+  const navigate = useNavigate();
   const { values, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: "",
@@ -30,8 +31,14 @@ function Login({ setAlert, setNewUser }) {
         (user) =>
           user.email === values.email && user.password === values.password
       );
+      console.log(userExists);
       if (userExists) {
+        localStorage.setItem("currentUser", JSON.stringify(userExists));
         setAlert({ message: "Login successful", type: "success" });
+        setTimeout(() => {
+          setAlert(null);
+          navigate("/profile");
+        }, 1000);
       } else {
         setAlert({ message: "Invalid credentials", type: "warning" });
       }
@@ -73,7 +80,7 @@ function Login({ setAlert, setNewUser }) {
           }}
           className="text-orange-700 underline cursor-pointer hover:text-orange-500"
         >
-          Sign up now
+          Sign up
         </span>{" "}
       </p>
     </form>

@@ -4,7 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt1, HiX } from "react-icons/hi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Button from "./Button";
-
 const menuItems = [
   {
     title: "Furniture",
@@ -23,7 +22,9 @@ const menuItems = [
     to: "/dining",
   },
 ];
+
 export default function Navbar() {
+  const userExists = JSON.parse(localStorage.getItem("currentUser"));
   const [active, setActive] = useState(0);
   const [toggle, setToggle] = useState(false);
 
@@ -64,9 +65,16 @@ export default function Navbar() {
         ))}
       </div>
       <div className="flex items-center gap-2">
-        <Link to="/login">
-          <Button>Login</Button>
-        </Link>
+        {userExists ? (
+          <Link to="/profile">
+            <Button>Profile</Button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Button>Login</Button>
+          </Link>
+        )}
+
         <Link to="/cart">
           <MdOutlineShoppingCart className="text-4xl text-orange-900 hover:text-orange-700" />
         </Link>

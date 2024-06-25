@@ -6,6 +6,7 @@ import LoginSignup from "./pages/LoginSignup";
 import Categories from "./pages/Categories";
 import Product from "./pages/Product";
 import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </BrowserRouter>
