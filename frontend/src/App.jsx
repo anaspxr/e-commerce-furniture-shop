@@ -8,7 +8,6 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import { UserProvider } from "./contexts/UserContext";
 import Product from "./pages/Product";
-import Categories from "./pages/Categories";
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         <div className="md:mt-28 mt-20"></div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="categories" element={<Categories />} />
           <Route path="/products">
             <Route index element={<Products category="furniture" />} />
             <Route

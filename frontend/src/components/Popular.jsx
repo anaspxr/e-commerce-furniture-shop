@@ -8,17 +8,11 @@ const popularProducts = [
   furnitureData[5], // Luxury Bed Frame
   furnitureData[6], // Compact Bookshelf
   furnitureData[9], // Recliner Sofa
-  furnitureData[11], // Decorative Vase
-  furnitureData[12], // Rustic TV Stand
-  furnitureData[14], // Modern Wall Art
-  furnitureData[16], // Luxury Recliner Chair
-  furnitureData[17], // Glass Coffee Table
-  furnitureData[18], // Queen Size Mattress
 ];
 
 export default function Popular() {
   return (
-    <div className="bg-orange-200 p-2">
+    <div className=" p-2">
       <h2 className="md:text-4xl text-3xl text-orange-900 my-5 text-center">
         Popular Products
       </h2>

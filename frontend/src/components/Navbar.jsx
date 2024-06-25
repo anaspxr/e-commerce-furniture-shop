@@ -8,8 +8,8 @@ import { UserContext } from "../contexts/UserContext";
 
 const menuItems = [
   {
-    title: "Categories",
-    to: "/categories",
+    title: "All Products",
+    to: "/products",
   },
   {
     title: "Home Decor",
