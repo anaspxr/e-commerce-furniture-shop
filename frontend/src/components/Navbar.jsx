@@ -9,19 +9,19 @@ import { UserContext } from "../contexts/UserContext";
 const menuItems = [
   {
     title: "Furniture",
-    to: "/furniture",
+    to: "/category/all",
   },
   {
     title: "Home Decor",
-    to: "/homedecor",
+    to: "/category/homedecor",
   },
   {
     title: "Sofas & Seatings",
-    to: "/sofas",
+    to: "/category/sofas",
   },
   {
     title: "Kitchen & dining",
-    to: "/dining",
+    to: "/category/dining",
   },
 ];
 

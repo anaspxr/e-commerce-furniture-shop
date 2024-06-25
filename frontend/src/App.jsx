@@ -17,16 +17,28 @@ function App() {
         <div className="md:mt-28 mt-20"></div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/furniture"
-            element={<Categories category="furniture" />}
-          />
-          <Route
-            path="/homedecor"
-            element={<Categories category="homedecor" />}
-          />
-          <Route path="/sofas" element={<Categories category="sofas" />} />
-          <Route path="/dining" element={<Categories category="dining" />} />
+          <Route path="/category">
+            <Route index element={<Categories category="furniture" />} />
+            <Route path="all" element={<Categories category="furniture" />} />
+            <Route
+              path="homedecor"
+              element={<Categories category="homedecor" />}
+            />
+            <Route path="sofas" element={<Categories category="sofas" />} />
+            <Route
+              path="mattresses"
+              element={<Categories category="mattresses" />}
+            />
+            <Route path="dining" element={<Categories category="dining" />} />
+            <Route
+              path="lightings"
+              element={<Categories category="lightings" />}
+            />
+            <Route
+              path="furnishings"
+              element={<Categories category="furnishings" />}
+            />
+          </Route>
           <Route path="/product" element={<Product />}>
             <Route path=":productID" element={<Product />} />
           </Route>
