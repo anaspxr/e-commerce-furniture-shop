@@ -6,7 +6,6 @@ export default function Profile() {
   if (!currentUser) {
     return <Navigate to="/login" />;
   }
-  console.log(currentUser);
   return (
     <div className="flex flex-col items-center gap-4 mb-10">
       <div className="bg-orange-200 p-5 w-96 flex flex-col items-center justify-center rounded-lg gap-5">

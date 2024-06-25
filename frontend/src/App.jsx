@@ -7,10 +7,11 @@ import Categories from "./pages/Categories";
 import Product from "./pages/Product";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
+import { UserProvider } from "./contexts/UserContext";
 
 function App() {
   return (
-    <>
+    <UserProvider>
       <BrowserRouter>
         <Navbar />
         <div className="md:mt-28 mt-20"></div>
@@ -35,7 +36,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-    </>
+    </UserProvider>
   );
 }
 
