@@ -15,7 +15,7 @@ export default function Item(props) {
         <h3 className="text-xl">{props.name}</h3>
         <div>₹{props.price}</div>
         <div>
-          <p>{props.description}</p>
+          <p className="hidden sm:block">{props.description}</p>
         </div>
         <Button>Add to Cart</Button>
       </div>
