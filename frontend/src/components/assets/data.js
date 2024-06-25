@@ -61,7 +61,7 @@ export const furnitureData = [
     image: sofa,
     description:
       "A luxurious bed frame that provides both comfort and style to your bedroom.",
-    category: "matresses",
+    category: "mattresses",
   },
   {
     id: 7,
@@ -91,7 +91,7 @@ export const furnitureData = [
     image: dining,
     description:
       "A fun and functional bunk bed designed for kids' bedrooms with safety features.",
-    category: "matresses",
+    category: "mattresses",
   },
   {
     id: 10,
@@ -180,7 +180,7 @@ export const furnitureData = [
     image: sofa,
     description:
       "A queen size mattress that provides superior comfort and support for a good night's sleep.",
-    category: "matresses",
+    category: "mattresses",
   },
   {
     id: 19,

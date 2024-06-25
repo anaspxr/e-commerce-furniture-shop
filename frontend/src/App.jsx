@@ -3,11 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import LoginSignup from "./pages/LoginSignup";
-import Categories from "./pages/Categories";
-import Product from "./pages/Product";
+import Products from "./pages/Products";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import { UserProvider } from "./contexts/UserContext";
+import Product from "./pages/Product";
+import Categories from "./pages/Categories";
 
 function App() {
   return (
@@ -17,29 +18,27 @@ function App() {
         <div className="md:mt-28 mt-20"></div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/category">
-            <Route index element={<Categories category="furniture" />} />
-            <Route path="all" element={<Categories category="furniture" />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="/products">
+            <Route index element={<Products category="furniture" />} />
             <Route
               path="homedecor"
-              element={<Categories category="homedecor" />}
+              element={<Products category="homedecor" />}
             />
-            <Route path="sofas" element={<Categories category="sofas" />} />
+            <Route path="sofas" element={<Products category="sofas" />} />
             <Route
               path="mattresses"
-              element={<Categories category="mattresses" />}
+              element={<Products category="mattresses" />}
             />
-            <Route path="dining" element={<Categories category="dining" />} />
+            <Route path="dining" element={<Products category="dining" />} />
             <Route
               path="lightings"
-              element={<Categories category="lightings" />}
+              element={<Products category="lightings" />}
             />
             <Route
               path="furnishings"
-              element={<Categories category="furnishings" />}
+              element={<Products category="furnishings" />}
             />
-          </Route>
-          <Route path="/product" element={<Product />}>
             <Route path=":productID" element={<Product />} />
           </Route>
           <Route path="/cart" element={<Cart />} />

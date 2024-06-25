@@ -8,20 +8,32 @@ import { UserContext } from "../contexts/UserContext";
 
 const menuItems = [
   {
-    title: "Furniture",
-    to: "/category/all",
+    title: "Categories",
+    to: "/categories",
   },
   {
     title: "Home Decor",
-    to: "/category/homedecor",
+    to: "/products/homedecor",
   },
   {
     title: "Sofas & Seatings",
-    to: "/category/sofas",
+    to: "/products/sofas",
   },
   {
     title: "Kitchen & dining",
-    to: "/category/dining",
+    to: "/products/dining",
+  },
+  {
+    title: "Furnishing",
+    to: "/products/furnishings",
+  },
+  {
+    title: "Lightings",
+    to: "/products/lightings",
+  },
+  {
+    title: "mattresses",
+    to: "/products/mattresses",
   },
 ];
 
