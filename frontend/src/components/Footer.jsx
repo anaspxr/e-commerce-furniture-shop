@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import logo from "./assets/logo.png";
 export default function Footer() {
   return (
-    <div>
-      <footer className="bg-orange-800 text-white p-3 text-center">
+    <div className="mt-auto">
+      <footer className="bg-orange-100 text-orange-800 p-3 text-center">
         <div className="flex items-center flex-col">
           <Link to="/">
-            <img className="max-w-52" src={logo} alt="Furnify" />
+            <img className="max-w-36" src={logo} alt="Furnify" />
           </Link>
           <p>One stop solution for all your furniture needs</p>
         </div>
