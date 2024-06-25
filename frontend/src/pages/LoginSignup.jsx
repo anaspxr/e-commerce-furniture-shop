@@ -1,16 +1,24 @@
-import { act, useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas/userScheme";
 export default function LoginSignup() {
   const [newUser, setNewUser] = useState(true);
+  const [success, setSuccess] = useState(true);
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center flex-col items-center gap-2">
+      <div
+        className={`${
+          !success && "invisible"
+        } bg-green-200 p-2 flex items-center justify-center rounded-lg transition-opacity duration-1000`}
+      >
+        <p className="text-green-900">Account created successfully!!</p>
+      </div>
+
       {newUser ? (
-        <SignUp setNewUser={setNewUser} />
+        <SignUp setSuccess={setSuccess} setNewUser={setNewUser} />
       ) : (
         <Login setNewUser={setNewUser} />
       )}
-      <div></div>
     </div>
   );
 }
@@ -51,7 +59,7 @@ function Login({ setNewUser }) {
   );
 }
 
-function SignUp({ setNewUser }) {
+function SignUp({ setSuccess, setNewUser }) {
   const {
     values,
     handleChange,
@@ -83,6 +91,11 @@ function SignUp({ setNewUser }) {
       };
       localStorage.setItem("users", JSON.stringify([...localData, newUser]));
       actions.resetForm();
+      setNewUser(false);
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
     },
   });
   return (
