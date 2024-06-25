@@ -1,7 +1,10 @@
 import { Navigate } from "react-router-dom";
 import Button from "../components/Button";
+import { UserContext } from "../contexts/UserContext";
+import { useContext } from "react";
 
 export default function Profile() {
+  const { logout } = useContext(UserContext);
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!currentUser) {
     return <Navigate to="/login" />;
@@ -14,8 +17,7 @@ export default function Profile() {
         <p className="text-lg text-orange-900">Email: {currentUser.email}</p>
         <span
           onClick={() => {
-            localStorage.removeItem("currentUser");
-            window.location.reload();
+            logout();
           }}
         >
           <Button>Log out</Button>

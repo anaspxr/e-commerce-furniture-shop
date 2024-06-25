@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas/userScheme";
 import Alerts from "../components/Alerts";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
+
 export default function LoginSignup() {
   const [newUser, setNewUser] = useState(false);
   const [alert, setAlert] = useState(null);
@@ -19,6 +21,7 @@ export default function LoginSignup() {
 }
 
 function Login({ setAlert, setNewUser }) {
+  const { login } = useContext(UserContext);
   const navigate = useNavigate();
   const { values, handleChange, handleSubmit } = useFormik({
     initialValues: {
@@ -33,7 +36,7 @@ function Login({ setAlert, setNewUser }) {
       );
       console.log(userExists);
       if (userExists) {
-        localStorage.setItem("currentUser", JSON.stringify(userExists));
+        login(userExists);
         setAlert({ message: "Login successful", type: "success" });
         setTimeout(() => {
           setAlert(null);

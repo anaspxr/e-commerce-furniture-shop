@@ -1,9 +1,11 @@
 import logo from "./assets/logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt1, HiX } from "react-icons/hi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Button from "./Button";
+import { UserContext } from "../contexts/UserContext";
+
 const menuItems = [
   {
     title: "Furniture",
@@ -24,7 +26,7 @@ const menuItems = [
 ];
 
 export default function Navbar() {
-  const userExists = JSON.parse(localStorage.getItem("currentUser"));
+  const { currentUser } = useContext(UserContext);
   const [active, setActive] = useState(0);
   const [toggle, setToggle] = useState(false);
 
@@ -65,7 +67,7 @@ export default function Navbar() {
         ))}
       </div>
       <div className="flex items-center gap-2">
-        {userExists ? (
+        {currentUser ? (
           <Link to="/profile">
             <Button>Profile</Button>
           </Link>
