@@ -1,47 +1,68 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas/userScheme";
+import Alerts from "../components/Alerts";
 export default function LoginSignup() {
-  const [newUser, setNewUser] = useState(true);
-  const [success, setSuccess] = useState(true);
+  const [newUser, setNewUser] = useState(false);
+
+  const [alert, setAlert] = useState(null);
   return (
     <div className="flex justify-center flex-col items-center gap-2">
-      <div
-        className={`${
-          !success && "invisible"
-        } bg-green-200 p-2 flex items-center justify-center rounded-lg transition-opacity duration-1000`}
-      >
-        <p className="text-green-900">Account created successfully!!</p>
-      </div>
-
+      {alert && <Alerts type={alert.type} message={alert.message} />}
       {newUser ? (
-        <SignUp setSuccess={setSuccess} setNewUser={setNewUser} />
+        <SignUp setAlert={setAlert} setNewUser={setNewUser} />
       ) : (
-        <Login setNewUser={setNewUser} />
+        <Login setAlert={setAlert} setNewUser={setNewUser} />
       )}
     </div>
   );
 }
 
-function Login({ setNewUser }) {
+function Login({ setAlert, setNewUser }) {
+  const { values, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      const localData = JSON.parse(localStorage.getItem("users")) || [];
+      const userExists = localData.find(
+        (user) =>
+          user.email === values.email && user.password === values.password
+      );
+      if (userExists) {
+        setAlert({ message: "Login successful", type: "success" });
+      } else {
+        setAlert({ message: "Invalid credentials", type: "warning" });
+      }
+    },
+  });
   return (
-    <form className="bg-orange-200 p-5 w-96 flex flex-col items-center justify-center rounded-lg mb-20">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-orange-200 p-5 w-96 flex flex-col items-center justify-center rounded-lg mb-20"
+    >
       <h1 className="text-2xl text-orange-900">Login</h1>
       <input
         className="w-full p-2 my-2"
         type="email"
         placeholder="Email"
         name="email"
-        required
+        value={values.email}
+        onChange={handleChange}
       />
       <input
         className="w-full p-2 my-2"
         type="password"
         placeholder="Password"
         name="password"
-        required
+        onChange={handleChange}
+        value={values.password}
       />
-      <button className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300">
+      <button
+        type="submit"
+        className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300"
+      >
         Login
       </button>
       <p className="text-orange-900">
@@ -59,7 +80,7 @@ function Login({ setNewUser }) {
   );
 }
 
-function SignUp({ setSuccess, setNewUser }) {
+function SignUp({ setAlert, setNewUser }) {
   const {
     values,
     handleChange,
@@ -92,16 +113,20 @@ function SignUp({ setSuccess, setNewUser }) {
       localStorage.setItem("users", JSON.stringify([...localData, newUser]));
       actions.resetForm();
       setNewUser(false);
-      setSuccess(true);
+      setAlert({
+        flag: true,
+        message: "User created successfully",
+        type: "success",
+      });
       setTimeout(() => {
-        setSuccess(false);
+        setAlert(null);
       }, 3000);
     },
   });
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-orange-200 p-5 w-96 flex flex-col items-center justify-center rounded-lg mb-20"
+      className="bg-orange-200 p-5 sm:w-[500px] w-5/6 flex flex-col items-center justify-center rounded-lg mb-20"
     >
       <h1 className="text-orange-900 text-3xl">Sign Up</h1>
       <div className="w-full my-2">
