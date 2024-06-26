@@ -18,14 +18,7 @@ export default function Popular() {
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {popularProducts.map((item) => (
-          <Item
-            key={item.id}
-            id={item.id}
-            image={item.image}
-            name={item.name}
-            price={item.price}
-            description={item.description}
-          />
+          <Item key={item.id} product={item} />
         ))}
       </div>
     </div>

@@ -6,8 +6,8 @@ export const furnitureData = [
   {
     id: 1,
     name: "Modern Sofa",
-    price: 25999,
-    discount: 10,
+    oldPrice: 25999,
+    discountPrice: 21999,
     image: sofa,
     description:
       "A stylish and comfortable modern sofa perfect for any living room.",
@@ -16,8 +16,8 @@ export const furnitureData = [
   {
     id: 2,
     name: "Classic Armchair",
-    price: 2499,
-    discount: 15,
+    oldPrice: 2499,
+    discountPrice: 1999,
     image: sofa,
     description:
       "An elegant classic armchair that adds a touch of sophistication to your space.",
@@ -26,8 +26,8 @@ export const furnitureData = [
   {
     id: 3,
     name: "Wooden Dining Table",
-    price: 18999,
-    discount: 20,
+    oldPrice: 18999,
+    discountPrice: 15999,
     image: dining,
     description:
       "A large wooden dining table that brings a rustic charm to your dining area.",
@@ -36,8 +36,8 @@ export const furnitureData = [
   {
     id: 4,
     name: "Ergonomic Office Chair",
-    price: 1299,
-    discount: 5,
+    oldPrice: 1299,
+    discountPrice: 999,
     image: decor,
     description:
       "A comfortable ergonomic office chair designed to support your back during long hours of work.",
@@ -46,8 +46,8 @@ export const furnitureData = [
   {
     id: 5,
     name: "Minimalist Coffee Table",
-    price: 5499,
-    discount: 12,
+    oldPrice: 5499,
+    discountPrice: 4999,
     image: decor,
     description:
       "A sleek and minimalist coffee table that complements modern interiors.",
@@ -56,8 +56,8 @@ export const furnitureData = [
   {
     id: 6,
     name: "Luxury Bed Frame",
-    price: 14999,
-    discount: 25,
+    oldPrice: 14999,
+    discountPrice: 12999,
     image: sofa,
     description:
       "A luxurious bed frame that provides both comfort and style to your bedroom.",
@@ -66,8 +66,8 @@ export const furnitureData = [
   {
     id: 7,
     name: "Compact Bookshelf",
-    price: 21999,
-    discount: 10,
+    oldPrice: 21999,
+    discountPrice: 18999,
     image: decor,
     description:
       "A compact and sturdy bookshelf ideal for small spaces and book lovers.",
@@ -76,8 +76,8 @@ export const furnitureData = [
   {
     id: 8,
     name: "Outdoor Patio Set",
-    price: 17999,
-    discount: 20,
+    oldPrice: 17999,
+    discountPrice: 15999,
     image: decor,
     description:
       "A durable outdoor patio set perfect for enjoying sunny days and outdoor gatherings.",
@@ -86,8 +86,8 @@ export const furnitureData = [
   {
     id: 9,
     name: "Kids Bunk Bed",
-    price: 13999,
-    discount: 18,
+    oldPrice: 13999,
+    discountPrice: 11999,
     image: dining,
     description:
       "A fun and functional bunk bed designed for kids' bedrooms with safety features.",
@@ -96,8 +96,8 @@ export const furnitureData = [
   {
     id: 10,
     name: "Recliner Sofa",
-    price: 29999,
-    discount: 15,
+    oldPrice: 29999,
+    discountPrice: 25999,
     image: sofa,
     description:
       "A plush recliner sofa that offers ultimate comfort and relaxation with adjustable settings.",
@@ -106,8 +106,8 @@ export const furnitureData = [
   {
     id: 11,
     name: "Decorative Vase",
-    price: 799,
-    discount: 5,
+    oldPrice: 799,
+    discountPrice: 699,
     image: decor,
     description:
       "A beautifully crafted decorative vase that adds elegance to any room.",
@@ -116,8 +116,8 @@ export const furnitureData = [
   {
     id: 12,
     name: "Dining Chair Set",
-    price: 4999,
-    discount: 10,
+    oldPrice: 4999,
+    discountPrice: 4499,
     image: dining,
     description:
       "A set of four comfortable dining chairs with a modern design.",
@@ -126,8 +126,8 @@ export const furnitureData = [
   {
     id: 13,
     name: "Rustic TV Stand",
-    price: 8999,
-    discount: 8,
+    oldPrice: 8999,
+    discountPrice: 7999,
     image: decor,
     description:
       "A rustic TV stand with ample storage space and a charming design.",
@@ -136,8 +136,8 @@ export const furnitureData = [
   {
     id: 14,
     name: "Elegant Floor Lamp",
-    price: 2999,
-    discount: 12,
+    oldPrice: 2999,
+    discountPrice: 2499,
     image: decor,
     description: "An elegant floor lamp that adds a warm glow to any room.",
     category: "lightings",
@@ -145,8 +145,8 @@ export const furnitureData = [
   {
     id: 15,
     name: "Modern Wall Art",
-    price: 1599,
-    discount: 7,
+    oldPrice: 7999,
+    discountPrice: 6999,
     image: decor,
     description:
       "A piece of modern wall art that brings creativity and style to your walls.",
@@ -155,8 +155,8 @@ export const furnitureData = [
   {
     id: 16,
     name: "Luxury Recliner Chair",
-    price: 17999,
-    discount: 18,
+    oldPrice: 17999,
+    discountPrice: 15999,
     image: sofa,
     description:
       "A luxurious recliner chair that offers exceptional comfort and style.",
@@ -165,8 +165,8 @@ export const furnitureData = [
   {
     id: 17,
     name: "Glass Coffee Table",
-    price: 5999,
-    discount: 10,
+    oldPrice: 5999,
+    discountPrice: 5499,
     image: decor,
     description:
       "A sleek glass coffee table that adds a modern touch to your living room.",
@@ -175,8 +175,8 @@ export const furnitureData = [
   {
     id: 18,
     name: "Queen Size Mattress",
-    price: 20999,
-    discount: 20,
+    oldPrice: 20999,
+    discountPrice: 17999,
     image: sofa,
     description:
       "A queen size mattress that provides superior comfort and support for a good night's sleep.",
@@ -185,8 +185,8 @@ export const furnitureData = [
   {
     id: 19,
     name: "Leather Office Chair",
-    price: 7999,
-    discount: 15,
+    oldPrice: 7999,
+    discountPrice: 6999,
     image: decor,
     description:
       "A stylish leather office chair designed for maximum comfort during long work hours.",
@@ -195,8 +195,8 @@ export const furnitureData = [
   {
     id: 20,
     name: "Dining Bench",
-    price: 7999,
-    discount: 12,
+    oldPrice: 7999,
+    discountPrice: 6999,
     image: dining,
     description:
       "A sturdy dining bench that offers additional seating for your dining area.",
@@ -205,8 +205,8 @@ export const furnitureData = [
   {
     id: 21,
     name: "Artistic Table Lamp",
-    price: 2499,
-    discount: 10,
+    oldPrice: 2499,
+    discountPrice: 1999,
     image: decor,
     description:
       "An artistic table lamp that adds a unique touch to your workspace or bedside table.",
@@ -215,8 +215,8 @@ export const furnitureData = [
   {
     id: 22,
     name: "Velvet Ottoman",
-    price: 3499,
-    discount: 15,
+    oldPrice: 3499,
+    discountPrice: 2999,
     image: decor,
     description:
       "A plush velvet ottoman that provides extra seating and elegance to your living room.",
@@ -225,8 +225,8 @@ export const furnitureData = [
   {
     id: 23,
     name: "Bamboo Shelf",
-    price: 6999,
-    discount: 20,
+    oldPrice: 6999,
+    discountPrice: 5999,
     image: decor,
     description:
       "A sustainable bamboo shelf that offers both storage and a natural aesthetic.",
@@ -235,8 +235,8 @@ export const furnitureData = [
   {
     id: 24,
     name: "Convertible Sofa Bed",
-    price: 22999,
-    discount: 15,
+    oldPrice: 22999,
+    discountPrice: 19999,
     image: sofa,
     description:
       "A versatile convertible sofa bed perfect for guests and small spaces.",
@@ -245,8 +245,8 @@ export const furnitureData = [
   {
     id: 25,
     name: "Crystal Chandelier",
-    price: 15999,
-    discount: 25,
+    oldPrice: 15999,
+    discountPrice: 13999,
     image: decor,
     description:
       "A luxurious crystal chandelier that adds a touch of elegance to any room.",
@@ -255,8 +255,8 @@ export const furnitureData = [
   {
     id: 26,
     name: "Children's Toy Storage",
-    price: 4999,
-    discount: 10,
+    oldPrice: 4999,
+    discountPrice: 4499,
     image: decor,
     description:
       "A practical and fun toy storage unit for organizing children's play areas.",
@@ -265,8 +265,8 @@ export const furnitureData = [
   {
     id: 27,
     name: "Vintage Bookshelf",
-    price: 9999,
-    discount: 12,
+    oldPrice: 9999,
+    discountPrice: 8999,
     image: decor,
     description:
       "A vintage bookshelf that brings a classic look to your home library or living room.",
@@ -275,8 +275,8 @@ export const furnitureData = [
   {
     id: 28,
     name: "Modern Pendant Light",
-    price: 3499,
-    discount: 10,
+    oldPrice: 3499,
+    discountPrice: 2999,
     image: decor,
     description:
       "A modern pendant light that enhances the style of your kitchen or dining area.",
@@ -285,8 +285,8 @@ export const furnitureData = [
   {
     id: 29,
     name: "Adjustable Desk Lamp",
-    price: 1999,
-    discount: 5,
+    oldPrice: 1999,
+    discountPrice: 1499,
     image: decor,
     description:
       "A sleek and adjustable desk lamp perfect for studying or working late hours.",
@@ -295,8 +295,8 @@ export const furnitureData = [
   {
     id: 30,
     name: "Comfortable Rocking Chair",
-    price: 11999,
-    discount: 18,
+    oldPrice: 11999,
+    discountPrice: 9999,
     image: decor,
     description:
       "A comfortable rocking chair that provides relaxation and a timeless look.",
