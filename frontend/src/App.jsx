@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import { UserProvider } from "./contexts/UserContext";
 import Product from "./pages/Product";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           </Routes>
 
           <Footer />
+          <ScrollToTop />
         </BrowserRouter>
       </UserProvider>
     </div>
