@@ -42,7 +42,7 @@ export default function Navbar() {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div className="fixed top-0 w-full bg-orange-50 flex justify-between p-2 shadow-md z-10">
+    <div className="fixed top-0 w-full bg-orange-100 flex justify-between p-2  z-10">
       <div className="flex items-center">
         <Link to="/">
           <img className="md:h-20 h-12" src={logo} />

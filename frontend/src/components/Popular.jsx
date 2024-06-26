@@ -12,7 +12,7 @@ const popularProducts = [
 
 export default function Popular() {
   return (
-    <div className=" p-2">
+    <div className="p-5 pb-10 bg-amber-100">
       <h2 className="md:text-4xl text-3xl text-orange-900 my-5 text-center">
         Popular Products
       </h2>

@@ -29,9 +29,6 @@ export default function Item({ product }) {
           {calculateDiscountPrice(product.oldPrice, product.discountPrice)}% off
         </p>
 
-        <div>
-          <p className="hidden md:block">{product.description}</p>
-        </div>
         <Button>Add to Cart</Button>
       </div>
     </div>
