@@ -1,7 +1,7 @@
 import logo from "./assets/logo.png";
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { HiMenuAlt1, HiX, HiChevronDown } from "react-icons/hi";
+import { HiMenuAlt1, HiX, HiChevronDown, HiSearch } from "react-icons/hi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Button from "./Button";
 import { UserContext } from "../contexts/UserContext";
@@ -43,8 +43,12 @@ export default function Navbar() {
   const { currentUser } = useContext(UserContext);
   const [toggle, setToggle] = useState(false);
 
+  function handleSearch(e) {
+    e.preventDefault();
+  }
+
   return (
-    <div className="fixed top-0 w-full bg-orange-100 flex justify-between p-2  z-10">
+    <div className="fixed top-0 w-full bg-orange-100 flex justify-between items-center p-2  z-10">
       <div className="flex items-center">
         <Link to="/">
           <img className="md:h-20 h-12" src={logo} />
@@ -74,16 +78,28 @@ export default function Navbar() {
         ))}
       </div>
       <div className="flex items-center gap-2">
+        <form onSubmit={handleSearch} className="flex">
+          <input
+            className="h-min rounded-lg p-1 max-w-32 sm:w-40 md:w-72"
+            placeholder="Search.."
+            type="text"
+          />
+          <button className="relative -m-2 -left-6 ">
+            <HiSearch className="text-orange-700 text-2xl" />
+          </button>
+        </form>
         <DropDown />
-        {currentUser ? (
-          <Link to="/profile">
-            <Button>Profile</Button>
-          </Link>
-        ) : (
-          <Link to="/login">
-            <Button>Login</Button>
-          </Link>
-        )}
+        <div className="hidden sm:block">
+          {currentUser ? (
+            <Link to="/profile">
+              <Button>Profile</Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button>Login</Button>
+            </Link>
+          )}
+        </div>
 
         <Link to="/cart">
           <MdOutlineShoppingCart className="text-4xl text-orange-900 hover:text-orange-700" />
