@@ -6,7 +6,7 @@ import { RelatedProducts, Recommend } from "../components/Recommend";
 export default function Product() {
   const { productID } = useParams();
   const product = furnitureData.find((item) => {
-    return item.id == productID;
+    return item.id === productID;
   });
 
   function calculateDiscountPrice(oldPrice, discountPrice) {

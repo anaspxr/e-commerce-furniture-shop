@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import Button from "./Button";
+import { CartContext } from "../contexts/CartContext";
+import { useContext } from "react";
 
 export default function Item({ product }) {
+  const { addToCart } = useContext(CartContext);
+
   function calculateDiscountPrice(oldPrice, discountPrice) {
     return Math.floor(((oldPrice - discountPrice) / oldPrice) * 100);
   }
@@ -29,7 +32,14 @@ export default function Item({ product }) {
           {calculateDiscountPrice(product.oldPrice, product.discountPrice)}% off
         </p>
 
-        <Button>Add to Cart</Button>
+        <button
+          onClick={() => {
+            addToCart(product.id);
+          }}
+          className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
