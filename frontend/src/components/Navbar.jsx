@@ -5,6 +5,7 @@ import { HiMenuAlt1, HiX } from "react-icons/hi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Button from "./Button";
 import { UserContext } from "../contexts/UserContext";
+import { CartContext } from "../contexts/CartContext";
 
 const menuItems = [
   {
@@ -38,6 +39,7 @@ const menuItems = [
 ];
 
 export default function Navbar() {
+  const { cartItems } = useContext(CartContext);
   const { currentUser } = useContext(UserContext);
   const [toggle, setToggle] = useState(false);
 
@@ -85,7 +87,7 @@ export default function Navbar() {
           <MdOutlineShoppingCart className="text-4xl text-orange-900 hover:text-orange-700" />
         </Link>
         <div className="w-5 h-5 flex justify-center items-center text-sm -mt-7 -ml-6 rounded-full bg-orange-600 text-white">
-          0
+          {Object.keys(cartItems).length}
         </div>
         <HiMenuAlt1
           onClick={() => {
