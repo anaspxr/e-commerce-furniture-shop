@@ -16,7 +16,7 @@ function App() {
       <UserProvider>
         <BrowserRouter>
           <Navbar />
-          <div className="md:mt-28 mt-20"></div>
+          <div className="md:pt-24 pt-16 "></div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products">

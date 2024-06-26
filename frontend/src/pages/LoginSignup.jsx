@@ -9,7 +9,7 @@ export default function LoginSignup() {
   const [newUser, setNewUser] = useState(false);
   const [alert, setAlert] = useState(null);
   return (
-    <div className="flex justify-center flex-col items-center gap-2">
+    <div className="flex justify-center flex-col items-center gap-2 h-screen">
       {alert && <Alerts type={alert.type} message={alert.message} />}
       {newUser ? (
         <SignUp setAlert={setAlert} setNewUser={setNewUser} />
