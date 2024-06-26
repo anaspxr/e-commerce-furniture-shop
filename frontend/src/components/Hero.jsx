@@ -9,7 +9,7 @@ export default function Hero() {
         <h1 className="md:text-6xl text-4xl text-orange-800">
           Welcome To Furnify..!!
         </h1>
-        <Link to="/category/all">
+        <Link to="/products">
           <div className=" mt-10">
             <Button>Shop Now..!!</Button>
           </div>

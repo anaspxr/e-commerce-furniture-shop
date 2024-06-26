@@ -1,4 +1,5 @@
 import { furnitureData } from "../components/assets/data";
+import Categories from "../components/Categories";
 import Item from "../components/Item";
 export default function Products({ category }) {
   const items =
@@ -7,7 +8,8 @@ export default function Products({ category }) {
       : furnitureData.filter((item) => item.category === category);
 
   return (
-    <div className="bg-orange-200 p-2">
+    <div className="bg-orange-200">
+      {category === "furniture" && <Categories />}
       <h2 className="md:text-4xl text-3xl text-orange-900 my-5 text-center">
         {category === "furniture" && "All Furnitures"}
         {category === "homedecor" && "Home & office decors"}
@@ -17,7 +19,7 @@ export default function Products({ category }) {
         {category === "lightings" && "Lamps & Lightings"}
         {category === "mattresses" && "Mattresses"}
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-2">
         {items.map((item) => (
           <Item key={item.id} product={item} />
         ))}

@@ -40,7 +40,7 @@ export default function Categories() {
     },
   ];
   return (
-    <div className=" flex flex-col items-center bg-orange-50">
+    <div className=" flex flex-col items-center bg-orange-50 py-10">
       <h1 className="text-3xl text-orange-900 m-10">Categories</h1>
       <div className="grid grid-cols-3  gap-2">
         {categories.map((category, i) => (
@@ -48,7 +48,7 @@ export default function Categories() {
             <img
               src={category.image}
               alt={category.name}
-              className="h-40 w-40 md:w-80 object-cover rounded-xl hover:scale-105 transition duration-300"
+              className="h-20 sm:h-40 w-40 md:w-80 object-cover rounded-xl hover:scale-105 transition duration-300"
             />
             <p className="text-orange-900 text-lg text-center">
               {category.name}
