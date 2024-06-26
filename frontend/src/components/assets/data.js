@@ -4,7 +4,7 @@ import sofa from "./sofa.jpg";
 
 export const furnitureData = [
   {
-    id: 1,
+    id: "1",
     name: "Modern Sofa",
     oldPrice: 25999,
     discountPrice: 21999,
@@ -14,7 +14,7 @@ export const furnitureData = [
     category: "sofas",
   },
   {
-    id: 2,
+    id: "2",
     name: "Classic Armchair",
     oldPrice: 2499,
     discountPrice: 1999,
@@ -24,7 +24,7 @@ export const furnitureData = [
     category: "furnishings",
   },
   {
-    id: 3,
+    id: "3",
     name: "Wooden Dining Table",
     oldPrice: 18999,
     discountPrice: 15999,
@@ -34,7 +34,7 @@ export const furnitureData = [
     category: "dining",
   },
   {
-    id: 4,
+    id: "4",
     name: "Ergonomic Office Chair",
     oldPrice: 1299,
     discountPrice: 999,
@@ -44,7 +44,7 @@ export const furnitureData = [
     category: "furnishings",
   },
   {
-    id: 5,
+    id: "5",
     name: "Minimalist Coffee Table",
     oldPrice: 5499,
     discountPrice: 4999,
@@ -54,7 +54,7 @@ export const furnitureData = [
     category: "homedecor",
   },
   {
-    id: 6,
+    id: "6",
     name: "Luxury Bed Frame",
     oldPrice: 14999,
     discountPrice: 12999,
@@ -64,7 +64,7 @@ export const furnitureData = [
     category: "mattresses",
   },
   {
-    id: 7,
+    id: "7",
     name: "Compact Bookshelf",
     oldPrice: 21999,
     discountPrice: 18999,
@@ -74,7 +74,7 @@ export const furnitureData = [
     category: "furnishings",
   },
   {
-    id: 8,
+    id: "8",
     name: "Outdoor Patio Set",
     oldPrice: 17999,
     discountPrice: 15999,
@@ -84,7 +84,7 @@ export const furnitureData = [
     category: "furnishings",
   },
   {
-    id: 9,
+    id: "9",
     name: "Kids Bunk Bed",
     oldPrice: 13999,
     discountPrice: 11999,
@@ -94,7 +94,7 @@ export const furnitureData = [
     category: "mattresses",
   },
   {
-    id: 10,
+    id: "10",
     name: "Recliner Sofa",
     oldPrice: 29999,
     discountPrice: 25999,
@@ -104,7 +104,7 @@ export const furnitureData = [
     category: "sofas",
   },
   {
-    id: 11,
+    id: "11",
     name: "Decorative Vase",
     oldPrice: 799,
     discountPrice: 699,
@@ -114,7 +114,7 @@ export const furnitureData = [
     category: "homedecor",
   },
   {
-    id: 12,
+    id: "12",
     name: "Dining Chair Set",
     oldPrice: 4999,
     discountPrice: 4499,
@@ -124,7 +124,7 @@ export const furnitureData = [
     category: "dining",
   },
   {
-    id: 13,
+    id: "13",
     name: "Rustic TV Stand",
     oldPrice: 8999,
     discountPrice: 7999,
@@ -134,7 +134,7 @@ export const furnitureData = [
     category: "furnishings",
   },
   {
-    id: 14,
+    id: "14",
     name: "Elegant Floor Lamp",
     oldPrice: 2999,
     discountPrice: 2499,
@@ -143,7 +143,7 @@ export const furnitureData = [
     category: "lightings",
   },
   {
-    id: 15,
+    id: "15",
     name: "Modern Wall Art",
     oldPrice: 7999,
     discountPrice: 6999,
@@ -153,7 +153,7 @@ export const furnitureData = [
     category: "homedecor",
   },
   {
-    id: 16,
+    id: "16",
     name: "Luxury Recliner Chair",
     oldPrice: 17999,
     discountPrice: 15999,
@@ -163,7 +163,7 @@ export const furnitureData = [
     category: "sofas",
   },
   {
-    id: 17,
+    id: "17",
     name: "Glass Coffee Table",
     oldPrice: 5999,
     discountPrice: 5499,
@@ -173,7 +173,7 @@ export const furnitureData = [
     category: "homedecor",
   },
   {
-    id: 18,
+    id: "18",
     name: "Queen Size Mattress",
     oldPrice: 20999,
     discountPrice: 17999,
@@ -193,7 +193,7 @@ export const furnitureData = [
     category: "furnishings",
   },
   {
-    id: 20,
+    id: "20",
     name: "Dining Bench",
     oldPrice: 7999,
     discountPrice: 6999,
@@ -203,7 +203,7 @@ export const furnitureData = [
     category: "dining",
   },
   {
-    id: 21,
+    id: "21",
     name: "Artistic Table Lamp",
     oldPrice: 2499,
     discountPrice: 1999,
@@ -213,7 +213,7 @@ export const furnitureData = [
     category: "lightings",
   },
   {
-    id: 22,
+    id: "22",
     name: "Velvet Ottoman",
     oldPrice: 3499,
     discountPrice: 2999,
@@ -223,7 +223,7 @@ export const furnitureData = [
     category: "furnishings",
   },
   {
-    id: 23,
+    id: "23",
     name: "Bamboo Shelf",
     oldPrice: 6999,
     discountPrice: 5999,
@@ -233,7 +233,7 @@ export const furnitureData = [
     category: "homedecor",
   },
   {
-    id: 24,
+    id: "24",
     name: "Convertible Sofa Bed",
     oldPrice: 22999,
     discountPrice: 19999,
@@ -243,7 +243,7 @@ export const furnitureData = [
     category: "sofas",
   },
   {
-    id: 25,
+    id: "25",
     name: "Crystal Chandelier",
     oldPrice: 15999,
     discountPrice: 13999,
@@ -253,7 +253,7 @@ export const furnitureData = [
     category: "lightings",
   },
   {
-    id: 26,
+    id: "26",
     name: "Children's Toy Storage",
     oldPrice: 4999,
     discountPrice: 4499,
@@ -263,7 +263,7 @@ export const furnitureData = [
     category: "furnishings",
   },
   {
-    id: 27,
+    id: "27",
     name: "Vintage Bookshelf",
     oldPrice: 9999,
     discountPrice: 8999,
@@ -273,7 +273,7 @@ export const furnitureData = [
     category: "furnishings",
   },
   {
-    id: 28,
+    id: "28",
     name: "Modern Pendant Light",
     oldPrice: 3499,
     discountPrice: 2999,
@@ -283,7 +283,7 @@ export const furnitureData = [
     category: "lightings",
   },
   {
-    id: 29,
+    id: "29",
     name: "Adjustable Desk Lamp",
     oldPrice: 1999,
     discountPrice: 1499,
@@ -293,7 +293,7 @@ export const furnitureData = [
     category: "lightings",
   },
   {
-    id: 30,
+    id: "30",
     name: "Comfortable Rocking Chair",
     oldPrice: 11999,
     discountPrice: 9999,
