@@ -107,6 +107,7 @@ export default function Navbar() {
 }
 
 function MobileHeader({ setToggle }) {
+  const { currentUser } = useContext(UserContext);
   return (
     <div className="bg-orange-100 md:hidden shadow-md w-56 absolute top-0 right-0 h-screen">
       <div className="flex justify-end p-2 h-16 items-center">
@@ -125,6 +126,17 @@ function MobileHeader({ setToggle }) {
             <>{item.title}</>
           </NavLink>
         ))}
+        <div className="flex justify-center w-full">
+          {currentUser ? (
+            <Link to="/profile">
+              <Button>Profile</Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button>Login</Button>
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

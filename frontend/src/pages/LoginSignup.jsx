@@ -9,7 +9,7 @@ export default function LoginSignup() {
   const [newUser, setNewUser] = useState(false);
   const [alert, setAlert] = useState(null);
   return (
-    <div className="flex justify-center flex-col items-center gap-2 h-screen">
+    <div className="flex justify-center flex-col items-center gap-2 my-5">
       {alert && <Alerts type={alert.type} message={alert.message} />}
       {newUser ? (
         <SignUp setAlert={setAlert} setNewUser={setNewUser} />
@@ -50,25 +50,37 @@ function Login({ setAlert, setNewUser }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-orange-200 p-5 w-96 flex flex-col items-center justify-center rounded-lg mb-20"
+      className="bg-white shadow-lg border p-5 sm:w-[500px] w-5/6 flex flex-col items-center justify-center rounded-lg mb-20"
     >
       <h1 className="text-2xl text-orange-900">Login</h1>
-      <input
-        className="w-full p-2 my-2"
-        type="email"
-        placeholder="Email"
-        name="email"
-        value={values.email}
-        onChange={handleChange}
-      />
-      <input
-        className="w-full p-2 my-2"
-        type="password"
-        placeholder="Password"
-        name="password"
-        onChange={handleChange}
-        value={values.password}
-      />
+      <div className="w-full my-2">
+        <label className="text-orange-900" htmlFor="email">
+          EMAIL
+        </label>
+        <input
+          id="email"
+          className="w-full p-2 my-2 border rounded-md border-orange-900"
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="w-full my-2">
+        <label className="text-orange-900" htmlFor="password">
+          PASSWORD
+        </label>
+        <input
+          id="password"
+          className="w-full p-2 my-2 border rounded-md border-orange-900"
+          type="password"
+          placeholder="Password"
+          name="password"
+          onChange={handleChange}
+          value={values.password}
+        />
+      </div>
       <button
         type="submit"
         className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300"
@@ -133,79 +145,42 @@ function SignUp({ setAlert, setNewUser }) {
       }, 3000);
     },
   });
+  const fields = ["name", "email", "password", "confirm"];
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-orange-200 p-5 sm:w-[500px] w-5/6 flex flex-col items-center justify-center rounded-lg mb-20"
+      className="bg-white shadow-lg border p-5 sm:w-[500px] w-5/6 flex flex-col items-center justify-center rounded-lg mb-20"
     >
       <h1 className="text-orange-900 text-3xl">Sign Up</h1>
-      <div className="w-full my-2">
-        <input
-          className={`w-full p-2 my-2 ${
-            errors.name && touched.name && " border border-red-500"
-          }`}
-          type="text"
-          placeholder="Name"
-          name="name"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={values.name}
-        />
-        {errors.name && touched.name && (
-          <p className="text-red-500">{errors.name}</p>
-        )}
-      </div>
+      {fields.map((field) => (
+        <div key={field} className="w-full my-2">
+          <label className="text-orange-800" htmlFor={field}>
+            {field.toUpperCase()}
+          </label>
+          <input
+            id={field}
+            className={`w-full p-2 my-2 border rounded-md border-orange-900 ${
+              errors[field] && touched[field] && "border border-red-500 "
+            }`}
+            type={
+              field === "email"
+                ? "email"
+                : field === "name"
+                ? "text"
+                : "password"
+            }
+            placeholder={field === "confirm" ? "Confirm Password" : field}
+            name={field}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={values[field]}
+          />
+          {errors[field] && touched[field] && (
+            <p className="text-red-500">{errors[field]}</p>
+          )}
+        </div>
+      ))}
 
-      <div className="w-full my-2">
-        <input
-          className={`w-full p-2 my-2 ${
-            errors.email && touched.email && "border border-red-500"
-          }`}
-          type="email"
-          placeholder="Email"
-          name="email"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={values.email}
-        />
-        {errors.email && touched.email && (
-          <p className="text-red-500">{errors.email}</p>
-        )}
-      </div>
-
-      <div className="w-full my-2">
-        <input
-          className={`w-full p-2 my-2 ${
-            errors.password && touched.password && "border border-red-500 "
-          }`}
-          type="password"
-          placeholder="Password"
-          name="password"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={values.password}
-        />
-        {errors.password && touched.password && (
-          <p className="text-red-500">{errors.password}</p>
-        )}
-      </div>
-
-      <div className="w-full my-2">
-        <input
-          className={`w-full p-2 my-2 ${
-            errors.confirm && touched.confirm && "border-red-500 border"
-          }`}
-          type="password"
-          placeholder="Confirm password"
-          name="confirm"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={values.confirm}
-        />
-        {errors.confirm && touched.confirm && (
-          <p className="text-red-500">{errors.confirm}</p>
-        )}
-      </div>
       <button
         disabled={isSubmitting}
         className={`${
