@@ -8,7 +8,7 @@ export default function Products({ category }) {
       : furnitureData.filter((item) => item.category === category);
 
   return (
-    <div className="bg-orange-200">
+    <div>
       {category === "furniture" && <Categories />}
       <h2 className="md:text-4xl text-3xl text-orange-900 my-5 text-center">
         {category === "furniture" && "All Furnitures"}

@@ -17,7 +17,7 @@ export default function Item({ product }) {
   }
 
   return (
-    <div className="flex flex-col  bg-white shadow-2xl overflow-hidden rounded-md">
+    <div className="flex flex-col  bg-white shadow-2xl overflow-hidden rounded-md border">
       <Link to={`/products/${product.id}`}>
         <img
           className="top-0 left-0 transition-transform duration-500 hover:scale-105 w-full h-32 lg:h-60 object-cover"
