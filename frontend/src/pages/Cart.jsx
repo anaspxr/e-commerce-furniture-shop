@@ -18,7 +18,7 @@ export default function Cart() {
 
   function handleCheckout() {
     setBuyItems(cartItems);
-    navigate("/payment");
+    navigate("/checkout");
   }
 
   return (

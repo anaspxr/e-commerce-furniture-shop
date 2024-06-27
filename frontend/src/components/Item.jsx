@@ -1,12 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 export default function Item({ product }) {
-  const { addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
+  const { addToCart, setBuyItems } = useContext(CartContext);
+  const [added, setAdded] = useState(false);
 
   function calculateDiscountPrice(oldPrice, discountPrice) {
     return Math.floor(((oldPrice - discountPrice) / oldPrice) * 100);
+  }
+
+  function handleBuyNow(id) {
+    setBuyItems({ [id]: 1 });
+    navigate("/checkout");
   }
 
   return (
@@ -40,13 +47,23 @@ export default function Item({ product }) {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => {
-              addToCart(product.id);
+              if (added) {
+                navigate("/cart");
+              } else {
+                setAdded(true);
+                addToCart(product.id);
+              }
             }}
             className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300 text-xs sm:text-sm"
           >
-            Add to Cart
+            {added ? "Go to Cart" : "Add to Cart"}
           </button>
-          <button className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300 text-xs sm:text-sm">
+          <button
+            onClick={() => {
+              handleBuyNow(product.id);
+            }}
+            className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300 text-xs sm:text-sm"
+          >
             Buy Now
           </button>
         </div>

@@ -22,3 +22,15 @@ export const signUpSchema = yup.object().shape({
     .oneOf([yup.ref("password"), null], "Passwords must match")
     .required("Required"),
 });
+
+export const addressSchema = yup.object().shape({
+  name: yup.string().required("Required"),
+  address: yup.string().required("Required"),
+  city: yup.string().required("Required"),
+  state: yup.string().required("Required"),
+  pincode: yup.string().length(6, "Enter a valid pin").required("Required"),
+  phone: yup
+    .string()
+    .min(7, "Enter a valid Phone Number.")
+    .required("Required"),
+});
