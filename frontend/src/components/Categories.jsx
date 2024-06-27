@@ -42,13 +42,13 @@ export default function Categories() {
   return (
     <div className=" flex flex-col items-center bg-orange-50 py-10">
       <h1 className="text-3xl text-orange-900 m-10">Categories</h1>
-      <div className="grid grid-cols-3  gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-3  gap-2">
         {categories.map((category, i) => (
-          <Link to={category.to} key={i} className="p-2">
+          <Link to={category.to} key={i} className="m-2">
             <img
               src={category.image}
               alt={category.name}
-              className="h-20 sm:h-40 w-40 md:w-80 object-cover rounded-md hover:scale-105 transition duration-300"
+              className="h-40 w-full object-cover rounded-md hover:scale-105 transition duration-300  shadow-md"
             />
             <p className="text-orange-900 text-lg text-center">
               {category.name}

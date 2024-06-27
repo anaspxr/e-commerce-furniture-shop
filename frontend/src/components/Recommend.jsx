@@ -29,7 +29,7 @@ export function Recommend() {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-1 sm:gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
       {randomItems.map((item) => (
         <Item key={item.id} product={item} />
       ))}
