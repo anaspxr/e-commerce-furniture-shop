@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { furnitureData } from "../components/assets/data";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-  const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
+  const navigate = useNavigate();
+  const { cartItems, addToCart, removeFromCart, setBuyItems } =
+    useContext(CartContext);
   const totalAmount = Object.keys(cartItems).reduce((acc, productID) => {
     const product = furnitureData.find((item) => item.id === productID);
     return acc + Number(product.discountPrice) * Number(cartItems[productID]);
@@ -12,6 +15,11 @@ export default function Cart() {
     const product = furnitureData.find((item) => item.id === productID);
     return acc + Number(product.oldPrice) * Number(cartItems[productID]);
   }, 0);
+
+  function handleCheckout() {
+    setBuyItems(cartItems);
+    navigate("/payment");
+  }
 
   return (
     <div className="p-5">
@@ -108,7 +116,10 @@ export default function Cart() {
                 </p>
                 <p className="text-gray-400 line-through">₹{oldAmount} </p>
               </div>
-              <button className="bg-orange-500 hover:opacity-90 text-white p-2 rounded-md mt-5">
+              <button
+                onClick={handleCheckout}
+                className="bg-orange-500 hover:opacity-90 text-white p-2 rounded-md mt-5"
+              >
                 Checkout
               </button>
             </div>
