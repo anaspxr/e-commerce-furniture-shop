@@ -19,7 +19,7 @@ export default function Products({ category }) {
         {category === "lightings" && "Lamps & Lightings"}
         {category === "mattresses" && "Mattresses"}
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1 md:gap-3 p-1 sm:p-3 lg:p-5">
         {items.map((item) => (
           <Item key={item.id} product={item} />
         ))}

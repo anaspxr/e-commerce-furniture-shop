@@ -183,7 +183,7 @@ export const furnitureData = [
     category: "mattresses",
   },
   {
-    id: 19,
+    id: "19",
     name: "Leather Office Chair",
     oldPrice: 7999,
     discountPrice: 6999,

@@ -48,7 +48,7 @@ export default function Categories() {
             <img
               src={category.image}
               alt={category.name}
-              className="h-20 sm:h-40 w-40 md:w-80 object-cover rounded-xl hover:scale-105 transition duration-300"
+              className="h-20 sm:h-40 w-40 md:w-80 object-cover rounded-md hover:scale-105 transition duration-300"
             />
             <p className="text-orange-900 text-lg text-center">
               {category.name}

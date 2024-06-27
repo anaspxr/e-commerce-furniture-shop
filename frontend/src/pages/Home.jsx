@@ -10,8 +10,8 @@ export default function Home() {
       <Categories />
       <Popular />
       <div>
-        <div className="p-5">
-          <h1 className="text-2xl text-orange-950 font-semibold mt-10">
+        <div className="p-1 sm:p-3 lg:p-5 bg-stone-50">
+          <h1 className="text-2xl text-orange-900 font-semibold my-5 ">
             Suggested for you
           </h1>
           <Recommend />
