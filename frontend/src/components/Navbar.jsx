@@ -1,11 +1,12 @@
 import logo from "./assets/logo.png";
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { HiMenuAlt1, HiX, HiChevronDown, HiSearch } from "react-icons/hi";
+import { HiMenuAlt1, HiX, HiChevronDown } from "react-icons/hi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Button from "./Button";
 import { UserContext } from "../contexts/UserContext";
 import { CartContext } from "../contexts/CartContext";
+import SearchField from "./SearchField";
 
 const menuItems = [
   {
@@ -43,10 +44,6 @@ export default function Navbar() {
   const { currentUser } = useContext(UserContext);
   const [toggle, setToggle] = useState(false);
 
-  function handleSearch(e) {
-    e.preventDefault();
-  }
-
   return (
     <div className="fixed top-0 w-full bg-orange-100 flex justify-between items-center p-2  z-10">
       <div className="flex items-center">
@@ -78,16 +75,7 @@ export default function Navbar() {
         ))}
       </div>
       <div className="flex items-center gap-2">
-        <form onSubmit={handleSearch} className="flex">
-          <input
-            className="h-min rounded-lg p-1 max-w-32 sm:w-40 md:w-72"
-            placeholder="Search.."
-            type="text"
-          />
-          <button className="relative -m-2 -left-6 ">
-            <HiSearch className="text-orange-700 text-2xl" />
-          </button>
-        </form>
+        <SearchField />
         <DropDown />
         <div className="hidden sm:block">
           {currentUser ? (
@@ -100,7 +88,6 @@ export default function Navbar() {
             </Link>
           )}
         </div>
-
         <Link to="/cart">
           <MdOutlineShoppingCart className="text-4xl text-orange-900 hover:text-orange-700" />
         </Link>
@@ -121,7 +108,7 @@ export default function Navbar() {
 
 function MobileHeader({ setToggle }) {
   return (
-    <div className="bg-orange-300 md:hidden shadow-md w-56 absolute top-0 right-0 h-screen">
+    <div className="bg-orange-100 md:hidden shadow-md w-56 absolute top-0 right-0 h-screen">
       <div className="flex justify-end p-2 h-16 items-center">
         <HiX
           onClick={() => setToggle(false)}

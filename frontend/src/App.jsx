@@ -10,6 +10,8 @@ import { UserProvider } from "./contexts/UserContext";
 import Product from "./pages/Product";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartContextProvider } from "./contexts/CartContext";
+import SearchResults from "./pages/SearchResults";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<LoginSignup />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/search/:query" element={<SearchResults />} />
+              <Route path="/payment" element={<Payment />} />
             </Routes>
 
             <Footer />

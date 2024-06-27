@@ -3,6 +3,7 @@ import { createContext, useState } from "react";
 export const CartContext = createContext();
 
 export function CartContextProvider({ children }) {
+  const [buyItems, setBuyItems] = useState({});
   const [cartItems, setCartItems] = useState({});
   function addToCart(productID) {
     setCartItems((prev) => {
@@ -25,7 +26,9 @@ export function CartContextProvider({ children }) {
   }
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, buyItems, setBuyItems }}
+    >
       {children}
     </CartContext.Provider>
   );
