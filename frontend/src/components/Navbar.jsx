@@ -42,10 +42,36 @@ const menuItems = [
 export default function Navbar() {
   const { cartItems } = useContext(CartContext);
   const { currentUser } = useContext(UserContext);
-  const [toggle, setToggle] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest("#menuButton")) setOpen(false);
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
-    <div className="fixed top-0 w-full bg-orange-100 flex justify-between items-center p-2  z-10">
+    <div
+      className={`${
+        scrolled ? "shadow-lg  py-1 bg-stone-50" : "bg-white"
+      }   fixed top-0 w-full flex justify-between items-center p-2 z-10 transition-[padding,shadow,background-color] duration-500`}
+    >
       <div className="flex items-center">
         <Link to="/">
           <img className="md:h-20 h-12" src={logo} />
@@ -74,7 +100,7 @@ export default function Navbar() {
           </NavLink>
         ))}
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 sm:gap-2">
         <SearchField />
         <DropDown />
         <div className="hidden sm:block">
@@ -88,31 +114,38 @@ export default function Navbar() {
             </Link>
           )}
         </div>
-        <Link to="/cart">
-          <MdOutlineShoppingCart className="text-4xl text-orange-900 hover:text-orange-700" />
-        </Link>
-        <div className="w-5 h-5 flex justify-center items-center text-sm -mt-7 -ml-6 rounded-full bg-orange-600 text-white">
-          {Object.keys(cartItems).length}
+        <div className="flex">
+          <Link to="/cart">
+            <MdOutlineShoppingCart className="text-3xl text-orange-900 hover:text-orange-700" />
+          </Link>
+          <div className="w-4 h-4 flex justify-center items-center text-sm -ml-4 -mt-1 rounded-full bg-orange-600 text-white">
+            {Object.keys(cartItems).length}
+          </div>
         </div>
         <HiMenuAlt1
+          id="menuButton"
           onClick={() => {
-            setToggle(true);
+            setOpen(true);
           }}
           className="text-3xl cursor-pointer md:hidden text-orange-900 hover:text-orange-700"
         />
       </div>
-      {toggle && <MobileHeader setToggle={setToggle} />}
+      <MobileHeader open={open} setOpen={setOpen} />
     </div>
   );
 }
 
-function MobileHeader({ setToggle }) {
+function MobileHeader({ open, setOpen }) {
   const { currentUser } = useContext(UserContext);
   return (
-    <div className="bg-orange-100 md:hidden shadow-md w-56 absolute top-0 right-0 h-screen">
+    <div
+      className={`bg-stone-100 md:hidden shadow-md w-56 absolute top-0 right-0 h-screen transition-transform duration-500 ${
+        open ? "translate-x-0" : "translate-x-full"
+      }`}
+    >
       <div className="flex justify-end p-2 h-16 items-center">
         <HiX
-          onClick={() => setToggle(false)}
+          onClick={() => setOpen(false)}
           className="text-3xl cursor-pointer text-orange-900 hover:text-orange-700"
         />
       </div>
@@ -145,19 +178,26 @@ function MobileHeader({ setToggle }) {
 function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
-    document.addEventListener("click", () => {
-      setIsOpen(false);
-    });
+    const handleClickOutside = (e) => {
+      if (!e.target.closest("#categoryButton")) setIsOpen(false);
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
   }, []);
   return (
-    <div className="hidden md:inline-block 2xl:hidden relative text-left ">
+    <div
+      id="categoryButton"
+      className="hidden md:inline-block 2xl:hidden relative text-left "
+    >
       <div>
         <button
           onClick={(e) => {
             e.stopPropagation();
             setIsOpen(!isOpen);
           }}
-          className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-orange-900 shadow-sm ring-1 ring-inset ring-orange-200 hover:bg-gray-50"
+          className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-orange-900 shadow-sm ring-1 ring-inset ring-stone-200 hover:bg-gray-50"
         >
           Categories
           <HiChevronDown className="-mr-1 h-5 w-5 text-gray-400" />

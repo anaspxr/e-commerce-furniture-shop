@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 justify-around items-center p-5 gap-2 2xl:px-52">
       <div>
-        <h1 className="md:text-6xl text-4xl xl:text-8xl text-orange-800">
+        <h1 className="md:text-6xl text-4xl xl:text-8xl text-orange-800 my-1">
           Furnify
         </h1>
         <p className="text-lg text-orange-900">
