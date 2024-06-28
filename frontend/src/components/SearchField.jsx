@@ -39,7 +39,7 @@ export default function SearchField() {
     <div>
       <form onSubmit={handleSearch} className="flex">
         <input
-          className="h-min rounded-md p-1 max-w-32 sm:w-40 md:w-72"
+          className="h-min rounded-md p-1 w-full outline-none"
           placeholder="Search.."
           type="text"
           onChange={handleChange}

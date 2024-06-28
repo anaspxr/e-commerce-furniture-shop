@@ -1,5 +1,5 @@
 import logo from "./assets/logo.png";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt1, HiX, HiChevronDown } from "react-icons/hi";
 import { MdOutlineShoppingCart } from "react-icons/md";
@@ -52,7 +52,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <div className="xl:flex items-center gap-3 hidden">
+      <div className="2xl:flex items-center gap-5 hidden text-orange-950">
         {menuItems.map((item, i) => (
           <NavLink
             end
@@ -144,18 +144,21 @@ function MobileHeader({ setToggle }) {
 
 function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    document.addEventListener("click", () => {
+      setIsOpen(false);
+    });
+  }, []);
   return (
-    <div
-      className="hidden md:inline-block xl:hidden relative text-left "
-      onMouseOver={() => {
-        setIsOpen(true);
-      }}
-      onMouseLeave={() => {
-        setIsOpen(false);
-      }}
-    >
+    <div className="hidden md:inline-block 2xl:hidden relative text-left ">
       <div>
-        <button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-orange-900 shadow-sm ring-1 ring-inset ring-orange-200 hover:bg-gray-50">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsOpen(!isOpen);
+          }}
+          className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-orange-900 shadow-sm ring-1 ring-inset ring-orange-200 hover:bg-gray-50"
+        >
           Categories
           <HiChevronDown className="-mr-1 h-5 w-5 text-gray-400" />
         </button>
