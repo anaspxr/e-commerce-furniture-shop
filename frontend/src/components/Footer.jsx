@@ -20,24 +20,6 @@ export default function Footer() {
             <p>Email: furnify@mail.com </p>
             <p>&copy; 2021 Furnify</p>
           </div>
-
-          <div className="mt-4">
-            <h2 className="text-xl text-orange-900">Company</h2>
-            <ul>
-              <li>
-                <Link to="/about">About Us</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact Us</Link>
-              </li>
-              <li>
-                <Link to="/products">Terms and Conditions</Link>
-              </li>
-              <li>
-                <Link to="/cart">Privacy Policy</Link>
-              </li>
-            </ul>
-          </div>
           <div className="mt-4">
             <h2 className="text-xl text-orange-900">Quick Links</h2>
             <ul>
@@ -45,7 +27,7 @@ export default function Footer() {
                 <Link to="/">Scroll to Top </Link>
               </li>
               <li>
-                <Link to="/produts">Categories</Link>
+                <Link to="/products">Categories</Link>
               </li>
               <li>
                 <Link to="/products">Products</Link>
@@ -56,7 +38,25 @@ export default function Footer() {
             </ul>
           </div>
           <div className="mt-4">
-            <h2 className="text-xl text-orange-900">Connect With Us</h2>
+            <h2 className="text-xl text-orange-900">Company</h2>
+            <ul>
+              <li>
+                <Link to="/">About Us</Link>
+              </li>
+              <li>
+                <Link to="/">Contact Us</Link>
+              </li>
+              <li>
+                <Link to="/">Terms and Conditions</Link>
+              </li>
+              <li>
+                <Link to="/">Privacy Policy</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-4">
+            <h2 className="text-xl text-orange-950">Connect With Us</h2>
             <ul className="flex gap-3 text-2xl">
               <li className="hover:text-orange-700">
                 <a href="https://www.facebook.com">

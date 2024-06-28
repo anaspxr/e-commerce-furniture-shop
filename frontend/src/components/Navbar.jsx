@@ -165,14 +165,14 @@ function DropDown() {
       </div>
       <div
         className={`${isOpen ? "block" : "hidden"}
-         absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in`}
+         absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 `}
       >
         <div className="py-1">
           {menuItems.map((item, i) => (
             <NavLink
               key={i}
               to={item.to}
-              className="block px-4 py-2 text-sm text-orange-800 hover:bg-orange-50"
+              className="block px-4 py-2 text-sm text-orange-900 hover:bg-orange-50"
               role="menuitem"
             >
               {item.title}

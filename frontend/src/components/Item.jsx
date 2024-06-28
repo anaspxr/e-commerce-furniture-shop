@@ -1,9 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Item({ product }) {
   const navigate = useNavigate();
+  const { currentUser } = useContext(UserContext);
   const { addToCart, setBuyItems, cartItems } = useContext(CartContext);
   const added = Object.keys(cartItems).includes(product.id);
 
@@ -12,6 +14,10 @@ export default function Item({ product }) {
   }
 
   function handleBuyNow(id) {
+    if (!currentUser) {
+      navigate("/login");
+      return;
+    }
     setBuyItems({ [id]: 1 });
     navigate("/checkout");
   }
@@ -33,7 +39,7 @@ export default function Item({ product }) {
           >
             {product.name}
           </Link>
-          <div className=" flex flex-wrap gap-5">
+          <div className=" flex flex-wrap gap-x-5">
             <span className="text-orange-600"> ₹{product.discountPrice}</span>
             <span className="text-gray-400 line-through">
               ₹{product.oldPrice}

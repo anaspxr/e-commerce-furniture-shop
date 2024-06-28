@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { furnitureData } from "../components/assets/data";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Cart() {
   const navigate = useNavigate();
+  const { currentUser } = useContext(UserContext);
   const { cartItems, addToCart, removeFromCart, setBuyItems } =
     useContext(CartContext);
   const totalAmount = Object.keys(cartItems).reduce((acc, productID) => {
@@ -17,6 +19,10 @@ export default function Cart() {
   }, 0);
 
   function handleCheckout() {
+    if (!currentUser) {
+      navigate("/login");
+      return;
+    }
     setBuyItems(cartItems);
     navigate("/checkout");
   }
@@ -101,7 +107,7 @@ export default function Cart() {
             })}
           </div>
           <hr className="border-2" />
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div className="text-gray-600">
               <p>Retail Total:{oldAmount}</p>
               <p>Discount:{oldAmount - totalAmount}</p>
@@ -109,7 +115,7 @@ export default function Cart() {
               <p className="text-green-500">Total:{totalAmount + 200} </p>
             </div>
 
-            <div className="flex justify-end gap-5">
+            <div className="flex flex-col">
               <div className="mt-5">
                 <p className="text-green-500 text-xl">
                   Total: ₹{totalAmount + 200}
@@ -120,7 +126,7 @@ export default function Cart() {
                 onClick={handleCheckout}
                 className="bg-orange-500 hover:opacity-90 text-white p-2 rounded-md mt-5"
               >
-                Checkout
+                {currentUser ? "Checkout" : "Login to Checkout"}
               </button>
             </div>
           </div>
