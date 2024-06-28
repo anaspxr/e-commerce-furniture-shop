@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 export default function Item({ product }) {
   const navigate = useNavigate();
-  const { addToCart, setBuyItems } = useContext(CartContext);
-  const [added, setAdded] = useState(false);
+  const { addToCart, setBuyItems, cartItems } = useContext(CartContext);
+  const added = Object.keys(cartItems).includes(product.id);
 
   function calculateDiscountPrice(oldPrice, discountPrice) {
     return Math.floor(((oldPrice - discountPrice) / oldPrice) * 100);
@@ -29,7 +29,7 @@ export default function Item({ product }) {
         <div>
           <Link
             to={`/products/${product.id}`}
-            className="text-xl text-orange-900 hover:text-orange-600"
+            className="sm:text-lg lg:text-xl text-orange-900 hover:text-orange-600"
           >
             {product.name}
           </Link>
@@ -47,12 +47,7 @@ export default function Item({ product }) {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => {
-              if (added) {
-                navigate("/cart");
-              } else {
-                setAdded(true);
-                addToCart(product.id);
-              }
+              added ? navigate("/cart") : addToCart(product.id);
             }}
             className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300 text-xs sm:text-sm"
           >
