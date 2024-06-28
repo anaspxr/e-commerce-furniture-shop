@@ -2,9 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import { furnitureData } from "../components/assets/data";
-import { useFormik } from "formik";
-import { addressSchema } from "../schemas/userScheme";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import Address from "../components/Address";
 
 export default function Checkout() {
   useEffect(() => {
@@ -16,7 +15,9 @@ export default function Checkout() {
   const navigate = useNavigate();
   const { buyItems, setBuyItems, setCartItems } = useContext(CartContext);
   const [progress, setProgress] = useState("items");
-  const [address, setAddress] = useState({});
+  const [address, setAddress] = useState(
+    JSON.parse(localStorage.getItem("currentUser"))?.address || {}
+  );
 
   const totalAmount = Object.keys(buyItems).reduce((acc, productID) => {
     const product = furnitureData.find((item) => item.id === productID);
@@ -162,67 +163,6 @@ function Items({ buyItems, setBuyItems }) {
           </div>
         );
       })}
-    </div>
-  );
-}
-
-function Address({ setAddress }) {
-  const { values, handleChange, handleSubmit, errors, handleBlur, touched } =
-    useFormik({
-      initialValues: {
-        name: "",
-        address: "",
-        city: "",
-        state: "",
-        pincode: "",
-        phone: "",
-      },
-      validationSchema: addressSchema,
-      onSubmit: (values) => {
-        setAddress(values);
-        setSubmitted(true);
-      },
-    });
-
-  const fields = ["name", "address", "city", "state", "pincode", "phone"];
-
-  const [submitted, setSubmitted] = useState(false);
-
-  return (
-    <div>
-      <h1 className="text-xl text-center text-orange-900">Address</h1>
-      <div className="m-auto max-w-3xl p-2">
-        <form className="flex flex-col gap-2">
-          {fields.map((field) => (
-            <div key={field}>
-              <label htmlFor={field}>{field.toUpperCase()}</label>
-              <input
-                className={`w-full p-2 my-2 border rounded-sm ${
-                  errors[field] && touched[field] && " border border-red-500"
-                }`}
-                id={field}
-                type="text"
-                placeholder={field}
-                name={field}
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values[field]}
-              />
-              {errors[field] && touched[field] && (
-                <p className="text-red-500">{errors[field]}</p>
-              )}
-            </div>
-          ))}
-        </form>
-        <button
-          disabled={submitted}
-          type="submit"
-          onClick={handleSubmit}
-          className="bg-orange-500 hover:opacity-90 text-white p-2 rounded-md mt-5 h-fit disabled:bg-opacity-70 "
-        >
-          {submitted ? "Address confirmed" : "Confirm"}
-        </button>
-      </div>
     </div>
   );
 }
