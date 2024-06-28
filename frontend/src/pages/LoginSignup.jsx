@@ -40,7 +40,7 @@ function Login({ setAlert, setNewUser }) {
         setAlert({ message: "Login successful", type: "success" });
         setTimeout(() => {
           setAlert(null);
-          navigate("/profile");
+          navigate(-1);
         }, 1000);
       } else {
         setAlert({ message: "Invalid credentials", type: "warning" });
