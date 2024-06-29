@@ -44,6 +44,7 @@ export default function SearchField() {
     <div>
       <form onSubmit={handleSearch} className="flex">
         <input
+          autoComplete="off"
           id="search-container"
           className="h-7 p-1 w-full outline-none border-b border-orange-900 bg-transparent"
           placeholder="Search.."
