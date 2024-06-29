@@ -1,17 +1,24 @@
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import LoginSignup from "./pages/LoginSignup";
 import Products from "./pages/Products";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
-import { UserProvider } from "./contexts/UserContext";
+import { UserContext, UserProvider } from "./contexts/UserContext";
 import Product from "./pages/Product";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartContextProvider } from "./contexts/CartContext";
 import SearchResults from "./pages/SearchResults";
 import Checkout from "./pages/Checkout";
+import { useContext } from "react";
 
 function App() {
   return (
@@ -47,9 +54,11 @@ function App() {
               </Route>
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<LoginSignup />} />
-              <Route path="/profile" element={<Profile />} />
               <Route path="/search/:query" element={<SearchResults />} />
-              <Route path="/checkout" element={<Checkout />} />
+              <Route element={<PrivateRoutes />}>
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/checkout" element={<Checkout />} />
+              </Route>
             </Routes>
 
             <Footer />
@@ -59,6 +68,11 @@ function App() {
       </UserProvider>
     </div>
   );
+}
+
+function PrivateRoutes() {
+  const { currentUser } = useContext(UserContext);
+  return currentUser ? <Outlet /> : <Navigate to="/login" />;
 }
 
 export default App;

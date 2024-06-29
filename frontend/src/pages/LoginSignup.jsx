@@ -21,7 +21,7 @@ export default function LoginSignup() {
 }
 
 function Login({ setAlert, setNewUser }) {
-  const { login } = useContext(UserContext);
+  const { login, currentUser } = useContext(UserContext);
   const navigate = useNavigate();
   const { values, handleChange, handleSubmit } = useFormik({
     initialValues: {
@@ -47,6 +47,9 @@ function Login({ setAlert, setNewUser }) {
       }
     },
   });
+  if (currentUser) {
+    navigate("/profile");
+  }
   return (
     <form
       onSubmit={handleSubmit}

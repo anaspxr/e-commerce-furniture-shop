@@ -3,7 +3,9 @@ import { createContext, useState, useEffect } from "react";
 const UserContext = createContext();
 
 export default function UserProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser")) || null
+  );
   useEffect(() => {
     const userExists = JSON.parse(localStorage.getItem("currentUser"));
     if (userExists) {

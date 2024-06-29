@@ -1,4 +1,3 @@
-import { Navigate } from "react-router-dom";
 import Button from "../components/Button";
 import { UserContext } from "../contexts/UserContext";
 import { useContext, useState } from "react";
@@ -18,10 +17,6 @@ export default function Profile() {
     };
     localStorage.setItem("currentUser", JSON.stringify(updatedUser));
     setCurrentUser(updatedUser);
-  }
-
-  if (!currentUser) {
-    return <Navigate to="/login" />;
   }
 
   return (
