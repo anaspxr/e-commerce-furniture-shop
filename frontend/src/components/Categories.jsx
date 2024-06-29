@@ -40,7 +40,10 @@ export default function Categories() {
     },
   ];
   return (
-    <div className=" flex flex-col items-center bg-orange-50 py-10">
+    <div
+      id="categories"
+      className=" flex flex-col items-center bg-orange-50 py-10"
+    >
       <h1 className="text-3xl text-orange-900 m-10">Categories</h1>
       <div className="grid grid-cols-2 md:grid-cols-3  gap-2">
         {categories.map((category, i) => (

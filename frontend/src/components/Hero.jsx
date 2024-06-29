@@ -20,7 +20,7 @@ export default function Hero() {
           <Link to="/products">
             <Button>Shop Now</Button>
           </Link>
-          <Link to="/products">
+          <Link to="/#categories">
             <Button>Browse Categories</Button>
           </Link>
         </div>

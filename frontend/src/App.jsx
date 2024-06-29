@@ -19,6 +19,7 @@ import { CartContextProvider } from "./contexts/CartContext";
 import SearchResults from "./pages/SearchResults";
 import Checkout from "./pages/Checkout";
 import { useContext } from "react";
+import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
 
             <Footer />
             <ScrollToTop />
+            <ScrollToHashElement />
           </BrowserRouter>
         </CartContextProvider>
       </UserProvider>

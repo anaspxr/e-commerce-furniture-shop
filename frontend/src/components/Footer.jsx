@@ -27,10 +27,10 @@ export default function Footer() {
                 <Link to="/">Scroll to Top </Link>
               </li>
               <li>
-                <Link to="/products">Categories</Link>
+                <Link to="/products">Products</Link>
               </li>
               <li>
-                <Link to="/products">Products</Link>
+                <Link to="/#categories">Categories</Link>
               </li>
               <li>
                 <Link to="/cart">Cart</Link>
