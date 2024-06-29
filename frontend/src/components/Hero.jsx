@@ -7,7 +7,7 @@ export default function Hero() {
     <div className="grid grid-cols-1 md:grid-cols-2 justify-around items-center p-5 gap-2 2xl:px-52">
       <div>
         <h1 className="md:text-6xl text-4xl xl:text-8xl text-orange-800 my-1">
-          Furnify
+          Comfort Craft
         </h1>
         <p className="text-lg text-orange-900">
           One stop solution for all your furniture needs

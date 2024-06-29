@@ -14,11 +14,11 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="flex items-start flex-col">
             <Link to="/">
-              <img className="max-w-36" src={logo} alt="Furnify" />
+              <img className="max-w-36" src={logo} alt="Comfort Craft" />
             </Link>
             <p>One stop solution for all your furniture needs</p>
-            <p>Email: furnify@mail.com </p>
-            <p>&copy; 2021 Furnify</p>
+            <p>Email: comfortcraft@mail.com </p>
+            <p>&copy; 2021 Comfort Craft</p>
           </div>
           <div className="mt-4">
             <h2 className="text-xl text-orange-900">Quick Links</h2>

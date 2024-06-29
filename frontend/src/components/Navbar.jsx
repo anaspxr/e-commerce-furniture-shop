@@ -1,4 +1,6 @@
 import logo from "./assets/logo.png";
+import logoSmall from "./assets/logo-small.png";
+
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt1, HiX, HiChevronDown } from "react-icons/hi";
@@ -69,21 +71,36 @@ export default function Navbar() {
   return (
     <div
       className={`${
-        scrolled ? "shadow-lg  py-1 md:py-0 bg-stone-50" : "bg-white"
+        scrolled ? "shadow-lg  py-1  bg-stone-50" : "bg-white"
       }   fixed top-0 w-full flex justify-between items-center p-2 z-10 transition-[padding,shadow,background-color] duration-500`}
     >
-      <div className="flex items-center">
-        <Link to="/">
+      <div
+        onClick={() => {
+          window.scrollTo(0, 0);
+        }}
+        className="flex items-center"
+      >
+        <Link className="hidden sm:block" to="/">
           <img
             className={`h-12 ${
-              scrolled ? "md:h-[70px]" : "md:h-20 "
+              scrolled ? "md:h-12" : "md:h-14 "
             } transition-[height] duration-700 `}
             src={logo}
+            alt="Comfort Craft"
+          />
+        </Link>
+        <Link className="sm:hidden" to="/">
+          <img
+            className={`h-9 ${
+              scrolled ? "md:h-14" : "md:h-16 "
+            } transition-[height] duration-700 `}
+            src={logoSmall}
+            alt="Comfort Craft"
           />
         </Link>
       </div>
 
-      <div className="2xl:flex items-center gap-5 hidden text-wood-950">
+      <div className="2xl:flex items-center gap-5 hidden text-orange-950">
         {menuItems.map((item, i) => (
           <NavLink
             end
@@ -97,7 +114,7 @@ export default function Navbar() {
                 <>
                   {item.title}
                   {isActive && (
-                    <hr className="border-none rounded-sm h-1 bg-wood-900 w-5/6" />
+                    <hr className="border-none rounded-sm h-1 bg-orange-900 w-5/6" />
                   )}
                 </>
               );
@@ -121,9 +138,9 @@ export default function Navbar() {
         </div>
         <div className="flex">
           <Link to="/cart">
-            <MdOutlineShoppingCart className="text-3xl text-wood-900 hover:text-wood-700" />
+            <MdOutlineShoppingCart className="text-3xl text-orange-900 hover:text-orange-700" />
           </Link>
-          <div className="w-4 h-4 flex justify-center items-center text-sm -ml-4 -mt-1 rounded-full bg-wood-600 text-white">
+          <div className="w-4 h-4 flex justify-center items-center text-sm -ml-4 -mt-1 rounded-full bg-orange-600 text-white">
             {Object.keys(cartItems).length}
           </div>
         </div>
@@ -132,7 +149,7 @@ export default function Navbar() {
           onClick={() => {
             setOpen(true);
           }}
-          className="text-3xl cursor-pointer md:hidden text-wood-900 hover:text-wood-700"
+          className="text-3xl cursor-pointer md:hidden text-orange-900 hover:text-orange-700"
         />
       </div>
       <MobileHeader open={open} setOpen={setOpen} />
@@ -151,14 +168,14 @@ function MobileHeader({ open, setOpen }) {
       <div className="flex justify-end p-2 h-16 items-center">
         <HiX
           onClick={() => setOpen(false)}
-          className="text-3xl cursor-pointer text-wood-900 hover:text-wood-700"
+          className="text-3xl cursor-pointer text-orange-900 hover:text-orange-700"
         />
       </div>
-      <div className="flex flex-col items-start text-wood-900 gap-2">
+      <div className="flex flex-col items-start text-orange-900 gap-2">
         {menuItems.map((item, i) => (
           <NavLink
             key={i}
-            className="flex flex-col justify-center items-center border-b-2 border-wood-800 w-full p-2 hover:bg-wood-200"
+            className="flex flex-col justify-center items-center border-b-2 border-orange-800 w-full p-2 hover:bg-orange-200"
             to={item.to}
           >
             <>{item.title}</>
@@ -202,7 +219,7 @@ function DropDown() {
             e.stopPropagation();
             setIsOpen(!isOpen);
           }}
-          className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-wood-900 shadow-sm ring-1 ring-inset ring-stone-200 hover:bg-gray-50"
+          className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-orange-900 shadow-sm ring-1 ring-inset ring-stone-200 hover:bg-gray-50"
         >
           Categories
           <HiChevronDown className="-mr-1 h-5 w-5 text-gray-400" />
@@ -217,7 +234,7 @@ function DropDown() {
             <NavLink
               key={i}
               to={item.to}
-              className="block px-4 py-2 text-sm text-wood-900 hover:bg-wood-50"
+              className="block px-4 py-2 text-sm text-orange-900 hover:bg-orange-50"
               role="menuitem"
             >
               {item.title}
