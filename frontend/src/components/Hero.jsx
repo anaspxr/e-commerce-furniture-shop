@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 justify-around items-center p-5 gap-2 2xl:px-52">
-      <div>
-        <h1 className="md:text-6xl text-4xl xl:text-8xl text-orange-800 my-1">
+    <div className="grid md:grid-cols-2 items-center p-5 gap-2 md:px-20 2xl:px-52">
+      <div className="md:-mt-10">
+        <h1 className="md:text-6xl text-4xl xl:text-8xl 2xl:text-9xl text-orange-800 my-1 font-bold">
           Comfort Craft
         </h1>
         <p className="text-lg text-orange-900">
@@ -25,8 +25,9 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-
-      <img src={heroImage} alt="" />
+      <div className="flex justify-center">
+        <img className="max-w-md md:max-w-full " src={heroImage} alt="" />
+      </div>
     </div>
   );
 }

@@ -23,8 +23,13 @@ export default function Footer() {
           <div className="mt-4">
             <h2 className="text-xl text-orange-900">Quick Links</h2>
             <ul>
-              <li>
-                <Link to="/">Scroll to Top </Link>
+              <li
+                className="cursor-pointer"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
+              >
+                Scroll to Top
               </li>
               <li>
                 <Link to="/products">Products</Link>

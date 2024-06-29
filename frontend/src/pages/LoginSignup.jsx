@@ -86,7 +86,7 @@ function Login({ setAlert, setNewUser }) {
       </div>
       <button
         type="submit"
-        className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300"
+        className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 transition duration-300 w-full my-4"
       >
         Login
       </button>
@@ -188,8 +188,8 @@ function SignUp({ setAlert, setNewUser }) {
         disabled={isSubmitting}
         className={`${
           isSubmitting ? "bg-opacity-50" : ""
-        }bg-orange-700 text-white px-2 py-1 rounded-md
-         hover:bg-orange-600 transition duration-300`}
+        }bg-orange-700 text-white p-2 rounded-md
+         hover:bg-orange-600 transition duration-300 w-full my-4`}
         type="submit"
       >
         {isSubmitting ? "Loading..." : "Sign Up"}

@@ -183,12 +183,18 @@ function MobileHeader({ open, setOpen }) {
         ))}
         <div className="flex justify-center w-full">
           {currentUser ? (
-            <Link to="/profile">
-              <Button>Profile</Button>
+            <Link
+              to="/profile"
+              className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 transition duration-300 w-full my-4 text-center"
+            >
+              Profile
             </Link>
           ) : (
-            <Link to="/login">
-              <Button>Login</Button>
+            <Link
+              to="/login"
+              className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 transition duration-300 w-full my-2 text-center"
+            >
+              Login
             </Link>
           )}
         </div>
