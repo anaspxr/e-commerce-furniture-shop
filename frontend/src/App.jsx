@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
   Outlet,
+  useLocation,
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
@@ -18,7 +19,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { CartContextProvider } from "./contexts/CartContext";
 import SearchResults from "./pages/SearchResults";
 import Checkout from "./pages/Checkout";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
 
 function App() {
@@ -73,8 +74,19 @@ function App() {
 }
 
 function PrivateRoutes() {
-  const { currentUser } = useContext(UserContext);
-  return currentUser ? <Outlet /> : <Navigate to="/login" />;
-}
+  const { currentUser, setRedirectPath } = useContext(UserContext);
+  const location = useLocation();
 
+  useEffect(() => {
+    if (!currentUser) {
+      setRedirectPath(location.pathname);
+    }
+  }, [currentUser, location.pathname, setRedirectPath]);
+
+  if (!currentUser) {
+    return <Navigate to="/login" />;
+  }
+
+  return <Outlet />;
+}
 export default App;

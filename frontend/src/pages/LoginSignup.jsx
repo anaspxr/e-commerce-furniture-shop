@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas/userScheme";
 import Alerts from "../components/Alerts";
@@ -8,6 +8,13 @@ import { UserContext } from "../contexts/UserContext";
 export default function LoginSignup() {
   const [newUser, setNewUser] = useState(false);
   const [alert, setAlert] = useState(null);
+  const { currentUser, redirectPath } = useContext(UserContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (currentUser) {
+      navigate(redirectPath);
+    }
+  }, [currentUser, navigate, redirectPath]);
   return (
     <div className="flex justify-center flex-col items-center gap-2 my-5">
       {alert && <Alerts type={alert.type} message={alert.message} />}
@@ -21,8 +28,7 @@ export default function LoginSignup() {
 }
 
 function Login({ setAlert, setNewUser }) {
-  const { login, currentUser } = useContext(UserContext);
-  const navigate = useNavigate();
+  const { login } = useContext(UserContext);
   const { values, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: "",
@@ -34,22 +40,14 @@ function Login({ setAlert, setNewUser }) {
         (user) =>
           user.email === values.email && user.password === values.password
       );
-      console.log(userExists);
       if (userExists) {
         login(userExists);
-        setAlert({ message: "Login successful", type: "success" });
-        setTimeout(() => {
-          setAlert(null);
-          navigate(-1);
-        }, 1000);
       } else {
         setAlert({ message: "Invalid credentials", type: "warning" });
       }
     },
   });
-  if (currentUser) {
-    navigate("/profile");
-  }
+
   return (
     <form
       onSubmit={handleSubmit}

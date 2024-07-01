@@ -3,6 +3,7 @@ import { createContext, useState, useEffect } from "react";
 const UserContext = createContext();
 
 export default function UserProvider({ children }) {
+  const [redirectPath, setRedirectPath] = useState("/");
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || null
   );
@@ -24,7 +25,9 @@ export default function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={{ currentUser, login, logout }}>
+    <UserContext.Provider
+      value={{ currentUser, login, logout, redirectPath, setRedirectPath }}
+    >
       {children}
     </UserContext.Provider>
   );
