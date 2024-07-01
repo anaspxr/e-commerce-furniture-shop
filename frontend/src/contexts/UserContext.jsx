@@ -4,29 +4,29 @@ const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const [redirectPath, setRedirectPath] = useState("/");
-  const [currentUser, setCurrentUser] = useState(
+  const [currentUserEmail, setCurrentUserEmail] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || null
   );
   useEffect(() => {
     const userExists = JSON.parse(localStorage.getItem("currentUser"));
     if (userExists) {
-      setCurrentUser(userExists);
+      setCurrentUserEmail(userExists);
     }
   }, []);
 
   function login(user) {
     localStorage.setItem("currentUser", JSON.stringify(user));
-    setCurrentUser(user);
+    setCurrentUserEmail(user);
   }
 
   function logout() {
     localStorage.removeItem("currentUser");
-    setCurrentUser(null);
+    setCurrentUserEmail(null);
   }
 
   return (
     <UserContext.Provider
-      value={{ currentUser, login, logout, redirectPath, setRedirectPath }}
+      value={{ currentUserEmail, login, logout, redirectPath, setRedirectPath }}
     >
       {children}
     </UserContext.Provider>

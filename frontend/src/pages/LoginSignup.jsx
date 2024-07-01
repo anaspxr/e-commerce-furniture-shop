@@ -8,13 +8,13 @@ import { UserContext } from "../contexts/UserContext";
 export default function LoginSignup() {
   const [newUser, setNewUser] = useState(false);
   const [alert, setAlert] = useState(null);
-  const { currentUser, redirectPath } = useContext(UserContext);
+  const { currentUserEmail, redirectPath } = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
-    if (currentUser) {
+    if (currentUserEmail) {
       navigate(redirectPath);
     }
-  }, [currentUser, navigate, redirectPath]);
+  }, [currentUserEmail, navigate, redirectPath]);
   return (
     <div className="flex justify-center flex-col items-center gap-2 my-5">
       {alert && <Alerts type={alert.type} message={alert.message} />}
@@ -35,13 +35,10 @@ function Login({ setAlert, setNewUser }) {
       password: "",
     },
     onSubmit: (values) => {
-      const localData = JSON.parse(localStorage.getItem("users")) || [];
-      const userExists = localData.find(
-        (user) =>
-          user.email === values.email && user.password === values.password
-      );
+      const localData = JSON.parse(localStorage.getItem("users")) || {};
+      const userExists = localData[values.email]?.password === values.password;
       if (userExists) {
-        login(userExists);
+        login(values.email);
       } else {
         setAlert({ message: "Invalid credentials", type: "warning" });
       }
@@ -121,19 +118,32 @@ function SignUp({ setAlert, setNewUser }) {
     },
     validationSchema: signUpSchema,
     onSubmit: (values, actions) => {
-      const localData = JSON.parse(localStorage.getItem("users")) || [];
-      const userExists = localData.find((user) => user.email === values.email);
+      const localData = JSON.parse(localStorage.getItem("users")) || {};
+      const userExists = localData[values.email];
       if (userExists) {
         actions.setFieldError("email", "Email already exists");
         actions.setSubmitting(false);
         return;
       }
       const newUser = {
-        name: values.name,
-        email: values.email,
-        password: values.password,
+        [values.email]: {
+          name: values.name,
+          password: values.password,
+          address: {
+            name: values.name,
+            address: "",
+            city: "",
+            state: "",
+            pincode: "",
+            phone: "",
+          },
+          cart: {},
+        },
       };
-      localStorage.setItem("users", JSON.stringify([...localData, newUser]));
+      localStorage.setItem(
+        "users",
+        JSON.stringify({ ...localData, ...newUser })
+      );
       actions.resetForm();
       setNewUser(false);
       setAlert({
