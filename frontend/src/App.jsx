@@ -78,8 +78,10 @@ function App() {
 }
 
 function PrivateRoutes({ adminOnly = false }) {
-  const { currentUserEmail, setRedirectPath } = useContext(UserContext);
+  const { currentUserEmail, setRedirectPath, isAdmin } =
+    useContext(UserContext);
   const location = useLocation();
+  console.log(isAdmin);
   useEffect(() => {
     if (!currentUserEmail) {
       setRedirectPath(location.pathname);

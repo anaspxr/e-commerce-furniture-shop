@@ -36,7 +36,10 @@ function Login({ setAlert, setNewUser }) {
     },
     onSubmit: (values) => {
       const localData = JSON.parse(localStorage.getItem("users")) || {};
-      const userExists = localData[values.email]?.password === values.password;
+      const userExists =
+        localData[values.email]?.password === values.password ||
+        (values.email === import.meta.env.VITE_ADMIN_EMAIL &&
+          values.password === import.meta.env.VITE_ADMIN_PASSWORD);
       if (userExists) {
         login(values.email);
       } else {

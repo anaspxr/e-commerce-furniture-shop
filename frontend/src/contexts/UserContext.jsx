@@ -26,7 +26,13 @@ export default function UserProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ currentUserEmail, login, logout, redirectPath, setRedirectPath }}
+      value={{
+        currentUserEmail,
+        login,
+        logout,
+        redirectPath,
+        setRedirectPath,
+      }}
     >
       {children}
     </UserContext.Provider>
