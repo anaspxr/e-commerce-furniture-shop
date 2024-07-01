@@ -133,14 +133,16 @@ export default function Navbar() {
         <SearchField />
         <DropDown />
 
-        <div className="flex">
-          <Link to="/cart">
-            <MdOutlineShoppingCart className="text-3xl text-orange-900 hover:text-orange-700" />
-          </Link>
-          <div className="w-4 h-4 flex justify-center items-center text-sm -ml-4 -mt-1 rounded-full bg-orange-600 text-white">
-            {Object.keys(cartItems).length}
+        {currentUserEmail && (
+          <div className="flex">
+            <Link to="/cart">
+              <MdOutlineShoppingCart className="text-3xl text-orange-900 hover:text-orange-700" />
+            </Link>
+            <div className="w-4 h-4 flex justify-center items-center text-sm -ml-4 -mt-1 rounded-full bg-orange-600 text-white">
+              {Object.keys(cartItems).length}
+            </div>
           </div>
-        </div>
+        )}
         {currentUserEmail ? (
           <div>
             <CgProfile
@@ -190,7 +192,6 @@ export default function Navbar() {
 }
 
 function MobileHeader({ menuOpen, setMenuOpen }) {
-  const { currentUserEmail } = useContext(UserContext);
   return (
     <div
       className={` bg-stone-100 md:hidden shadow-md w-56 absolute top-0 right-0 h-screen transition-transform duration-500 ${
