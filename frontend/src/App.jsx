@@ -21,6 +21,7 @@ import SearchResults from "./pages/SearchResults";
 import Checkout from "./pages/Checkout";
 import { useContext, useEffect } from "react";
 import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -61,6 +62,9 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/checkout" element={<Checkout />} />
               </Route>
+              <Route element={<PrivateRoutes adminOnly />}>
+                <Route path="/admin" element={<Admin />} />
+              </Route>
             </Routes>
 
             <Footer />
@@ -73,7 +77,7 @@ function App() {
   );
 }
 
-function PrivateRoutes() {
+function PrivateRoutes({ adminOnly = false }) {
   const { currentUserEmail, setRedirectPath } = useContext(UserContext);
   const location = useLocation();
   useEffect(() => {
@@ -84,6 +88,10 @@ function PrivateRoutes() {
 
   if (!currentUserEmail) {
     return <Navigate to="/login" />;
+  }
+
+  if (adminOnly && currentUserEmail !== import.meta.env.VITE_ADMIN_EMAIL) {
+    return <Navigate to="/" />;
   }
 
   return <Outlet />;
