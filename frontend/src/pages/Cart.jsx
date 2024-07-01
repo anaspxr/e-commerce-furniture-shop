@@ -6,7 +6,7 @@ import { UserContext } from "../contexts/UserContext";
 
 export default function Cart() {
   const navigate = useNavigate();
-  const { currentUser } = useContext(UserContext);
+  const { currentUserEmail } = useContext(UserContext);
   const { cartItems, addToCart, removeFromCart, setBuyItems } =
     useContext(CartContext);
   const totalAmount = Object.keys(cartItems).reduce((acc, productID) => {
@@ -19,7 +19,7 @@ export default function Cart() {
   }, 0);
 
   function handleCheckout() {
-    if (!currentUser) {
+    if (!currentUserEmail) {
       navigate("/login");
       return;
     }
@@ -126,7 +126,7 @@ export default function Cart() {
                 onClick={handleCheckout}
                 className="bg-orange-500 hover:opacity-90 text-white p-2 rounded-md mt-5"
               >
-                {currentUser ? "Checkout" : "Login to Checkout"}
+                {currentUserEmail ? "Checkout" : "Login to Checkout"}
               </button>
             </div>
           </div>

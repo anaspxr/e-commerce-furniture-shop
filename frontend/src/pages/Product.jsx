@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
 export default function Product() {
-  const { currentUser } = useContext(UserContext);
+  const { currentUserEmail } = useContext(UserContext);
   const { setBuyItems, addToCart, cartItems } = useContext(CartContext);
   const { productID } = useParams();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function Product() {
     navigate("/checkout");
   }
   function handleAddToCart() {
-    if (!currentUser) {
+    if (!currentUserEmail) {
       navigate("/login");
       return;
     }

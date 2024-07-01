@@ -43,7 +43,7 @@ const menuItems = [
 
 export default function Navbar() {
   const { cartItems } = useContext(CartContext);
-  const { currentUser } = useContext(UserContext);
+  const { currentUserEmail } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -126,7 +126,7 @@ export default function Navbar() {
         <SearchField />
         <DropDown />
         <div className="hidden sm:block">
-          {currentUser ? (
+          {currentUserEmail ? (
             <Link to="/profile">
               <Button>Profile</Button>
             </Link>
@@ -158,7 +158,7 @@ export default function Navbar() {
 }
 
 function MobileHeader({ open, setOpen }) {
-  const { currentUser } = useContext(UserContext);
+  const { currentUserEmail } = useContext(UserContext);
   return (
     <div
       className={`bg-stone-100 md:hidden shadow-md w-56 absolute top-0 right-0 h-screen transition-transform duration-500 ${
@@ -182,7 +182,7 @@ function MobileHeader({ open, setOpen }) {
           </NavLink>
         ))}
         <div className="flex justify-center w-full">
-          {currentUser ? (
+          {currentUserEmail ? (
             <Link
               to="/profile"
               className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 transition duration-300 w-full my-4 text-center"

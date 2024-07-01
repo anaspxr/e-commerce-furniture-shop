@@ -74,16 +74,16 @@ function App() {
 }
 
 function PrivateRoutes() {
-  const { currentUser, setRedirectPath } = useContext(UserContext);
+  const { currentUserEmail, setRedirectPath } = useContext(UserContext);
   const location = useLocation();
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUserEmail) {
       setRedirectPath(location.pathname);
     }
-  }, [currentUser, location.pathname, setRedirectPath]);
+  }, [currentUserEmail, location.pathname, setRedirectPath]);
 
-  if (!currentUser) {
+  if (!currentUserEmail) {
     return <Navigate to="/login" />;
   }
 

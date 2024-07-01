@@ -1,9 +1,13 @@
 import { useFormik } from "formik";
 import { addressSchema } from "../schemas/userScheme";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Address({ setAddress }) {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const { currentUserEmail } = useContext(UserContext);
+  const currentUser = JSON.parse(localStorage.getItem("users"))[
+    currentUserEmail
+  ];
   const initialValues = currentUser.address || {
     name: currentUser.name,
     address: "",

@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 export default function SearchResults() {
   const { query } = useParams();
-  console.log(query);
   const results = furnitureData.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
