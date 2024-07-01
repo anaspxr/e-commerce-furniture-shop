@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/UserContext";
 
 export default function Item({ product }) {
   const navigate = useNavigate();
-  const { currentUserEmail } = useContext(UserContext);
+  const { currentUserEmail, setRedirectPath } = useContext(UserContext);
   const { addToCart, setBuyItems, cartItems } = useContext(CartContext);
   const added = Object.keys(cartItems).includes(product.id);
 
@@ -14,15 +14,12 @@ export default function Item({ product }) {
   }
 
   function handleBuyNow(id) {
-    if (!currentUserEmail) {
-      navigate("/login");
-      return;
-    }
     setBuyItems({ [id]: 1 });
     navigate("/checkout");
   }
   function handleAddToCart() {
     if (!currentUserEmail) {
+      setRedirectPath("/");
       navigate("/login");
       return;
     }

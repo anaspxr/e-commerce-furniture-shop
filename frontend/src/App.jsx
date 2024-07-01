@@ -54,10 +54,10 @@ function App() {
                 />
                 <Route path=":productID" element={<Product />} />
               </Route>
-              <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<LoginSignup />} />
               <Route path="/search/:query" element={<SearchResults />} />
               <Route element={<PrivateRoutes />}>
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/checkout" element={<Checkout />} />
               </Route>
@@ -76,7 +76,6 @@ function App() {
 function PrivateRoutes() {
   const { currentUserEmail, setRedirectPath } = useContext(UserContext);
   const location = useLocation();
-
   useEffect(() => {
     if (!currentUserEmail) {
       setRedirectPath(location.pathname);

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
 export default function Product() {
-  const { currentUserEmail } = useContext(UserContext);
+  const { currentUserEmail, setRedirectPath } = useContext(UserContext);
   const { setBuyItems, addToCart, cartItems } = useContext(CartContext);
   const { productID } = useParams();
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ export default function Product() {
   }
   function handleAddToCart() {
     if (!currentUserEmail) {
+      setRedirectPath("/products/" + productID);
       navigate("/login");
       return;
     }
