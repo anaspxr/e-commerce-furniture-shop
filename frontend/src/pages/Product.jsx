@@ -4,8 +4,10 @@ import { RelatedProducts, Recommend } from "../components/Recommend";
 import { CartContext } from "../contexts/CartContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Product() {
+  const { currentUser } = useContext(UserContext);
   const { setBuyItems, addToCart, cartItems } = useContext(CartContext);
   const { productID } = useParams();
   const navigate = useNavigate();
@@ -20,6 +22,15 @@ export default function Product() {
   function handleBuyNow(id) {
     setBuyItems({ [id]: 1 });
     navigate("/checkout");
+  }
+  function handleAddToCart() {
+    if (!currentUser) {
+      navigate("/login");
+      return;
+    }
+    {
+      added ? navigate("/cart") : addToCart(product.id);
+    }
   }
 
   return (
@@ -64,9 +75,7 @@ export default function Product() {
             </div>
             <div className="flex justify-center gap-10 mt-5">
               <button
-                onClick={() => {
-                  added ? navigate("/cart") : addToCart(productID);
-                }}
+                onClick={handleAddToCart}
                 className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300"
               >
                 {added ? "Go to Cart" : "Add to Cart"}

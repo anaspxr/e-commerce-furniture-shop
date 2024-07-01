@@ -21,6 +21,15 @@ export default function Item({ product }) {
     setBuyItems({ [id]: 1 });
     navigate("/checkout");
   }
+  function handleAddToCart() {
+    if (!currentUser) {
+      navigate("/login");
+      return;
+    }
+    {
+      added ? navigate("/cart") : addToCart(product.id);
+    }
+  }
 
   return (
     <div className="flex flex-col  bg-white shadow-2xl overflow-hidden rounded-md border">
@@ -52,9 +61,7 @@ export default function Item({ product }) {
         </div>
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={() => {
-              added ? navigate("/cart") : addToCart(product.id);
-            }}
+            onClick={handleAddToCart}
             className="bg-orange-700 text-white px-2 py-1 rounded-md hover:bg-orange-600 transition duration-300 text-xs sm:text-sm"
           >
             {added ? "Go to Cart" : "Add to Cart"}
