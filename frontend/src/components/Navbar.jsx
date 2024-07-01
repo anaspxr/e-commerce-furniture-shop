@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt1, HiX, HiChevronDown } from "react-icons/hi";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
 import Button from "./Button";
 import { UserContext } from "../contexts/UserContext";
 import { CartContext } from "../contexts/CartContext";
@@ -43,9 +44,10 @@ const menuItems = [
 
 export default function Navbar() {
   const { cartItems } = useContext(CartContext);
-  const { currentUserEmail } = useContext(UserContext);
-  const [open, setOpen] = useState(false);
+  const { currentUserEmail, logout } = useContext(UserContext);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   useEffect(() => {
     function handleScroll() {
@@ -61,7 +63,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (!e.target.closest("#menuButton")) setOpen(false);
+      if (!e.target.closest("#profileButton")) {
+        setProfileOpen(false);
+      }
+      if (!e.target.closest("#menuButton")) {
+        setMenuOpen(false);
+      }
     };
     document.addEventListener("click", handleClickOutside);
     return () => {
@@ -125,17 +132,7 @@ export default function Navbar() {
       <div className="flex items-center gap-1 sm:gap-2">
         <SearchField />
         <DropDown />
-        <div className="hidden sm:block">
-          {currentUserEmail ? (
-            <Link to="/profile">
-              <Button>Profile</Button>
-            </Link>
-          ) : (
-            <Link to="/login">
-              <Button>Login</Button>
-            </Link>
-          )}
-        </div>
+
         <div className="flex">
           <Link to="/cart">
             <MdOutlineShoppingCart className="text-3xl text-orange-900 hover:text-orange-700" />
@@ -144,30 +141,65 @@ export default function Navbar() {
             {Object.keys(cartItems).length}
           </div>
         </div>
+        {currentUserEmail ? (
+          <div>
+            <CgProfile
+              id="profileButton"
+              onClick={(e) => {
+                e.stopPropagation();
+                setProfileOpen(!profileOpen);
+              }}
+              className="text-3xl text-orange-900 hover:text-orange-700 cursor-pointer"
+            />
+            <div
+              className={`${
+                profileOpen ? "flex" : "hidden"
+              } absolute flex-col p-2 gap-2 right-0 z-10 mt-2 w-56 origin-top-right mr-2 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5`}
+            >
+              <p className="text-sm">
+                Logged in as{" "}
+                <span className="text-orange-900">{currentUserEmail}</span>
+              </p>
+              <div className="flex flex-wrap gap-1">
+                <Link to="/profile">
+                  <Button>Profile</Button>
+                </Link>
+                <div onClick={logout}>
+                  <Button>Logout</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Link to="/login">
+            <Button>Login</Button>
+          </Link>
+        )}
+
         <HiMenuAlt1
           id="menuButton"
           onClick={() => {
-            setOpen(true);
+            setMenuOpen(true);
           }}
           className="text-3xl cursor-pointer md:hidden text-orange-900 hover:text-orange-700"
         />
       </div>
-      <MobileHeader open={open} setOpen={setOpen} />
+      <MobileHeader menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     </div>
   );
 }
 
-function MobileHeader({ open, setOpen }) {
+function MobileHeader({ menuOpen, setMenuOpen }) {
   const { currentUserEmail } = useContext(UserContext);
   return (
     <div
-      className={`bg-stone-100 md:hidden shadow-md w-56 absolute top-0 right-0 h-screen transition-transform duration-500 ${
-        open ? "translate-x-0" : "translate-x-full"
+      className={` bg-stone-100 md:hidden shadow-md w-56 absolute top-0 right-0 h-screen transition-transform duration-500 ${
+        menuOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
       <div className="flex justify-end p-2 h-16 items-center">
         <HiX
-          onClick={() => setOpen(false)}
+          onClick={() => setMenuOpen(false)}
           className="text-3xl cursor-pointer text-orange-900 hover:text-orange-700"
         />
       </div>
@@ -181,23 +213,6 @@ function MobileHeader({ open, setOpen }) {
             <>{item.title}</>
           </NavLink>
         ))}
-        <div className="flex justify-center w-full">
-          {currentUserEmail ? (
-            <Link
-              to="/profile"
-              className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 transition duration-300 w-full my-4 text-center"
-            >
-              Profile
-            </Link>
-          ) : (
-            <Link
-              to="/login"
-              className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 transition duration-300 w-full my-2 text-center"
-            >
-              Login
-            </Link>
-          )}
-        </div>
       </div>
     </div>
   );
@@ -221,8 +236,7 @@ function DropDown() {
     >
       <div>
         <button
-          onClick={(e) => {
-            e.stopPropagation();
+          onClick={() => {
             setIsOpen(!isOpen);
           }}
           className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-orange-900 shadow-sm ring-1 ring-inset ring-stone-200 hover:bg-gray-50"
