@@ -2,11 +2,10 @@ import UsersList from "../../components/private/UsersList";
 import useFetch from "../../utils/usefetch";
 
 export default function Admin() {
-  const { data, loading, error } = useFetch("http://localhost:800/users");
+  const { data, loading, error } = useFetch("http://localhost:3000/users");
   return (
-    <div>
-      <h1>Admin</h1>
-      {error && <p>{error}</p>}
+    <div className=" w-full">
+      {error && <p>{error.message}</p>}
       {loading && <p>Loading...</p>}
       {data && <UsersList users={data} />}
     </div>
