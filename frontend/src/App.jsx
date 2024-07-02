@@ -24,6 +24,7 @@ import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
 import Admin from "./pages/Admin/Admin";
 import ProductDetails from "./pages/Admin/ProductDetails";
 import UserDetails from "./pages/Admin/UserDetails";
+import AdminContainer from "./components/private/AdminContainer";
 
 function App() {
   return (
@@ -44,46 +45,58 @@ function ContentsWrapper() {
   const isAdminPage = location.pathname.includes("/admin");
   return (
     <>
-      {!isAdminPage && (
+      {!isAdminPage ? (
         <>
           <Navbar />
           <div className="md:pt-24 pt-16 "></div>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products">
+              <Route index element={<Products category="furniture" />} />
+              <Route
+                path="homedecor"
+                element={<Products category="homedecor" />}
+              />
+              <Route path="sofas" element={<Products category="sofas" />} />
+              <Route
+                path="mattresses"
+                element={<Products category="mattresses" />}
+              />
+              <Route path="dining" element={<Products category="dining" />} />
+              <Route
+                path="lightings"
+                element={<Products category="lightings" />}
+              />
+              <Route
+                path="furnishings"
+                element={<Products category="furnishings" />}
+              />
+              <Route path=":productID" element={<Product />} />
+            </Route>
+            <Route path="/login" element={<LoginSignup />} />
+            <Route path="/search/:query" element={<SearchResults />} />
+            <Route element={<PrivateRoutes />}>
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/checkout" element={<Checkout />} />
+            </Route>
+          </Routes>
+          {!isAdminPage && <Footer />}
         </>
+      ) : (
+        <AdminContainer>
+          <Routes>
+            <Route element={<PrivateRoutes adminOnly />}>
+              <Route path="/admin">
+                <Route index element={<Admin />} />
+                <Route path="products" element={<ProductDetails />} />
+                <Route path="users" element={<UserDetails />} />
+              </Route>
+            </Route>
+          </Routes>
+        </AdminContainer>
       )}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products">
-          <Route index element={<Products category="furniture" />} />
-          <Route path="homedecor" element={<Products category="homedecor" />} />
-          <Route path="sofas" element={<Products category="sofas" />} />
-          <Route
-            path="mattresses"
-            element={<Products category="mattresses" />}
-          />
-          <Route path="dining" element={<Products category="dining" />} />
-          <Route path="lightings" element={<Products category="lightings" />} />
-          <Route
-            path="furnishings"
-            element={<Products category="furnishings" />}
-          />
-          <Route path=":productID" element={<Product />} />
-        </Route>
-        <Route path="/login" element={<LoginSignup />} />
-        <Route path="/search/:query" element={<SearchResults />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/checkout" element={<Checkout />} />
-        </Route>
-        <Route element={<PrivateRoutes adminOnly />}>
-          <Route path="/admin">
-            <Route index element={<Admin />} />
-            <Route path="products" element={<ProductDetails />} />
-            <Route path="users" element={<UserDetails />} />
-          </Route>
-        </Route>
-      </Routes>
-      {!isAdminPage && <Footer />}
       <ScrollToTop />
       <ScrollToHashElement />
     </>
