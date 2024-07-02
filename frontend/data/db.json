@@ -1,0 +1,28 @@
+{
+  "user": {
+    "anaspappadan@gmail.com": {
+      "password": "anaspappadan",
+      "name": "Anas Pappadan",
+      "address": "Kerala, India",
+      "cart": {},
+      "orders": {},
+      "isAdmin": false
+    },
+    "sahadzanu@gmail.com": {
+      "password": "sahadzanu",
+      "name": "Sahad Zanu",
+      "address": "Kerala, India",
+      "cart": {},
+      "orders": {},
+      "isAdmin": false
+    },
+    "comfortcraft@gmail.com": {
+      "password": "comfortcraft",
+      "name": "Admin",
+      "address": "Kerala, India",
+      "cart": {},
+      "orders": {},
+      "isAdmin": true
+    }
+  }
+}
