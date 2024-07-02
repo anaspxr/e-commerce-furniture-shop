@@ -21,7 +21,9 @@ import SearchResults from "./pages/SearchResults";
 import Checkout from "./pages/Checkout";
 import { useContext, useEffect } from "react";
 import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
-import Admin from "./pages/Admin";
+import Admin from "./pages/Admin/Admin";
+import ProductDetails from "./pages/Admin/ProductDetails";
+import UserDetails from "./pages/Admin/UserDetails";
 
 function App() {
   return (
@@ -29,47 +31,7 @@ function App() {
       <UserProvider>
         <CartContextProvider>
           <BrowserRouter>
-            <Navbar />
-            <div className="md:pt-24 pt-16 "></div>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products">
-                <Route index element={<Products category="furniture" />} />
-                <Route
-                  path="homedecor"
-                  element={<Products category="homedecor" />}
-                />
-                <Route path="sofas" element={<Products category="sofas" />} />
-                <Route
-                  path="mattresses"
-                  element={<Products category="mattresses" />}
-                />
-                <Route path="dining" element={<Products category="dining" />} />
-                <Route
-                  path="lightings"
-                  element={<Products category="lightings" />}
-                />
-                <Route
-                  path="furnishings"
-                  element={<Products category="furnishings" />}
-                />
-                <Route path=":productID" element={<Product />} />
-              </Route>
-              <Route path="/login" element={<LoginSignup />} />
-              <Route path="/search/:query" element={<SearchResults />} />
-              <Route element={<PrivateRoutes />}>
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/checkout" element={<Checkout />} />
-              </Route>
-              <Route element={<PrivateRoutes adminOnly />}>
-                <Route path="/admin" element={<Admin />} />
-              </Route>
-            </Routes>
-
-            <Footer />
-            <ScrollToTop />
-            <ScrollToHashElement />
+            <ContentsWrapper />
           </BrowserRouter>
         </CartContextProvider>
       </UserProvider>
@@ -77,11 +39,60 @@ function App() {
   );
 }
 
-function PrivateRoutes({ adminOnly = false }) {
-  const { currentUserEmail, setRedirectPath, isAdmin } =
-    useContext(UserContext);
+function ContentsWrapper() {
   const location = useLocation();
-  console.log(isAdmin);
+  const isAdminPage = location.pathname.includes("/admin");
+  return (
+    <>
+      {!isAdminPage && (
+        <>
+          <Navbar />
+          <div className="md:pt-24 pt-16 "></div>
+        </>
+      )}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products">
+          <Route index element={<Products category="furniture" />} />
+          <Route path="homedecor" element={<Products category="homedecor" />} />
+          <Route path="sofas" element={<Products category="sofas" />} />
+          <Route
+            path="mattresses"
+            element={<Products category="mattresses" />}
+          />
+          <Route path="dining" element={<Products category="dining" />} />
+          <Route path="lightings" element={<Products category="lightings" />} />
+          <Route
+            path="furnishings"
+            element={<Products category="furnishings" />}
+          />
+          <Route path=":productID" element={<Product />} />
+        </Route>
+        <Route path="/login" element={<LoginSignup />} />
+        <Route path="/search/:query" element={<SearchResults />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Route>
+        <Route element={<PrivateRoutes adminOnly />}>
+          <Route path="/admin">
+            <Route index element={<Admin />} />
+            <Route path="products" element={<ProductDetails />} />
+            <Route path="users" element={<UserDetails />} />
+          </Route>
+        </Route>
+      </Routes>
+      {!isAdminPage && <Footer />}
+      <ScrollToTop />
+      <ScrollToHashElement />
+    </>
+  );
+}
+
+function PrivateRoutes({ adminOnly = false }) {
+  const { currentUserEmail, setRedirectPath } = useContext(UserContext);
+  const location = useLocation();
   useEffect(() => {
     if (!currentUserEmail) {
       setRedirectPath(location.pathname);
@@ -92,10 +103,11 @@ function PrivateRoutes({ adminOnly = false }) {
     return <Navigate to="/login" />;
   }
 
-  if (adminOnly && currentUserEmail !== import.meta.env.VITE_ADMIN_EMAIL) {
+  if (adminOnly && currentUserEmail !== "comfortcraftadmin@gmail.com") {
     return <Navigate to="/" />;
   }
 
   return <Outlet />;
 }
+
 export default App;
