@@ -38,8 +38,8 @@ function Login({ setAlert, setNewUser }) {
       const localData = JSON.parse(localStorage.getItem("users")) || {};
       const userExists =
         localData[values.email]?.password === values.password ||
-        (values.email === import.meta.env.VITE_ADMIN_EMAIL &&
-          values.password === import.meta.env.VITE_ADMIN_PASSWORD);
+        (values.email === "comfortcraftadmin@gmail.com" &&
+          values.password === "comfortcraft");
       if (userExists) {
         login(values.email);
       } else {
