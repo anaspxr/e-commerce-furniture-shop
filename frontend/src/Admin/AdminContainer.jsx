@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import icon from "../assets/logo-small.png";
+import icon from "../components/assets/logo-small.png";
 import { Link, useLocation } from "react-router-dom";
 import { RiMenu2Line } from "react-icons/ri";
 import { FaUsers, FaBagShopping } from "react-icons/fa6";
@@ -9,7 +9,7 @@ import {
   MdAdminPanelSettings,
 } from "react-icons/md";
 import { PiSignOutFill } from "react-icons/pi";
-import { UserContext } from "../../contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Admin({ children }) {
   const location = useLocation();

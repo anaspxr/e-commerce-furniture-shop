@@ -21,10 +21,10 @@ import SearchResults from "./pages/SearchResults";
 import Checkout from "./pages/Checkout";
 import { useContext, useEffect } from "react";
 import ScrollToHashElement from "@cascadia-code/scroll-to-hash-element";
-import Admin from "./pages/Admin/Admin";
-import ProductDetails from "./pages/Admin/ProductDetails";
-import UserDetails from "./pages/Admin/UserDetails";
-import AdminContainer from "./components/private/AdminContainer";
+import Admin from "./Admin/AdminHome";
+import ProductsPage from "./Admin/ProductsPage";
+import UsersPage from "./Admin/UsersPage";
+import AdminContainer from "./Admin/AdminContainer";
 
 function App() {
   return (
@@ -90,8 +90,8 @@ function ContentsWrapper() {
             <Route element={<PrivateRoutes adminOnly />}>
               <Route path="/admin">
                 <Route index element={<Admin />} />
-                <Route path="products" element={<ProductDetails />} />
-                <Route path="users" element={<UserDetails />} />
+                <Route path="products" element={<ProductsPage />} />
+                <Route path="users" element={<UsersPage />} />
               </Route>
             </Route>
           </Routes>
