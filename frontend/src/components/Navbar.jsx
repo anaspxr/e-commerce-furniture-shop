@@ -1,8 +1,8 @@
 import logo from "./assets/logo.png";
 import logoSmall from "./assets/logo-small.png";
-
+import { furnitureData } from "./assets/data";
 import { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { HiMenuAlt1, HiX, HiChevronDown } from "react-icons/hi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
@@ -48,6 +48,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleScroll() {
@@ -130,7 +131,17 @@ export default function Navbar() {
         ))}
       </div>
       <div className="flex items-center gap-1 sm:gap-2">
-        <SearchField />
+        <SearchField
+          searchData={furnitureData}
+          handleSearch={(value) => {
+            if (value === "") {
+              return;
+            }
+            navigate(`/search/${value}`);
+          }}
+          searchItems={["name", "category"]}
+          handleClick={(item) => navigate(`/products/${item.id}`)}
+        />
         <DropDown />
 
         {currentUserEmail && (

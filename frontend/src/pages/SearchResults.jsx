@@ -1,12 +1,11 @@
 import Item from "../components/Item";
 import { furnitureData } from "../components/assets/data";
 import { useParams } from "react-router-dom";
+import getSearchResults from "../utils/getSearchResults";
 
 export default function SearchResults() {
   const { query } = useParams();
-  const results = furnitureData.filter((item) =>
-    item.name.toLowerCase().includes(query.toLowerCase())
-  );
+  const results = getSearchResults(furnitureData, query, ["name", "category"]);
   return (
     <div>
       <div className="p-2 sm:p-3 lg:p-5 pb-10 bg-amber-100">

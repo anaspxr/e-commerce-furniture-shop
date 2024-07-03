@@ -1,33 +1,35 @@
 import { useEffect, useState } from "react";
 import { HiSearch } from "react-icons/hi";
-import { furnitureData } from "./assets/data";
-import { Link, useNavigate } from "react-router-dom";
+import getSearchResults from "../utils/getSearchResults.js";
 
-export default function SearchField() {
-  const navigate = useNavigate();
+//? this component accepts 4 props: searchData, handleSearch,handleCKick,searchItems
+// searchData is the data to be searched
+// handleSearch is a function that gets the search value after the form is submitted
+// handleClick is a function that gets the clicked item and what to do with it
+// searchItems is an array of key names of properties of searchData to search
+
+export default function SearchField({
+  searchData,
+  handleSearch,
+  handleClick,
+  searchItems,
+}) {
   const [value, setValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  function handleSearch(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    if (value === "") {
-      return;
-    }
-    navigate(`/search/${value}`);
+    handleSearch(value);
   }
 
   function handleChange(e) {
+    setValue(e.target.value);
     if (e.target.value === "") {
       setSearchResults([]);
       return;
     }
-    setSearchResults(
-      furnitureData.filter((item) =>
-        item.name.toLowerCase().includes(e.target.value.toLowerCase())
-      )
-    );
-    setValue(e.target.value);
+    setSearchResults(getSearchResults(searchData, e.target.value, searchItems));
   }
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function SearchField() {
 
   return (
     <div>
-      <form onSubmit={handleSearch} className="flex">
+      <form onSubmit={handleSubmit} className="flex">
         <input
           autoComplete="off"
           id="search-container"
@@ -56,12 +58,22 @@ export default function SearchField() {
           <HiSearch className="text-orange-900 text-2xl" />
         </button>
       </form>
-      {searchResults.length > 0 && isOpen && (
-        <div className="h-52 overflow-y-scroll py-2 mt-2 rounded-md bg-stone-100 shadow-md absolute">
+
+      {isOpen && value.length > 0 && (
+        <div className="min-w-60 h-52 overflow-y-scroll py-2 mt-2 rounded-md bg-stone-100 shadow-md absolute">
+          {searchResults.length === 0 && (
+            <p className="p-1">No results found!!</p>
+          )}
           {searchResults.map((item) => (
-            <Link key={item.id} to={`/products/${item.id}`}>
-              <p className="p-1 hover:bg-orange-100">{item.name}</p>
-            </Link>
+            <button
+              className="w-full p-1 text-left hover:bg-stone-200"
+              key={item.id}
+              onClick={() => {
+                handleClick(item);
+              }}
+            >
+              {item.name}
+            </button>
           ))}
         </div>
       )}
