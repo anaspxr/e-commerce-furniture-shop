@@ -1,6 +1,17 @@
 {
   "users": [
     {
+      "id": "1",
+      "email": "comfortcraft@gmail.com",
+      "password": "comfortcraft",
+      "name": "Admin",
+      "address": "Kerala, India",
+      "cart": {},
+      "orders": {},
+      "isAdmin": true
+    },
+    {
+      "id": "2",
       "email": "anaspappadan@gmail.com",
       "password": "anaspappadan",
       "name": "Anas Pappadan",
@@ -10,6 +21,7 @@
       "isAdmin": false
     },
     {
+      "id": "3",
       "email": "sahadzanu@gmail.com",
       "password": "sahadzanu",
       "name": "Sahad Zanu",
@@ -17,15 +29,6 @@
       "cart": {},
       "orders": {},
       "isAdmin": false
-    },
-    {
-      "email": "comfortcraft@gmail.com",
-      "password": "comfortcraft",
-      "name": "Admin",
-      "address": "Kerala, India",
-      "cart": {},
-      "orders": {},
-      "isAdmin": true
     }
   ],
   "products": [

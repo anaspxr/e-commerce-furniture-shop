@@ -52,14 +52,16 @@ export default function Admin({ children }) {
         }  bg-slate-100 border-r border-slate-200 sm:translate-x-0`}
       >
         <div className="h-full px-3 overflow-y-auto ">
-          <p className="text-slate-900 text-center text-xl font-semibold sm:text-2xl border-b py-2 mb-5">
+          <p className=" text-slate-900 text-center text-xl font-semibold sm:text-2xl border-b py-2 mb-5">
             Admin
-            <MdKeyboardDoubleArrowLeft
+            <button
               onClick={() => {
                 setIsOpen(false);
               }}
-              className="cursor-pointer float-right text-2xl hover:bg-slate-200 rounded-md hover:text-slate-600 sm:hidden"
-            />
+              className="p-2 relative -right-16 top-1 text-2xl hover:bg-slate-200 rounded-md hover:text-slate-600 sm:hidden"
+            >
+              <MdKeyboardDoubleArrowLeft />
+            </button>
           </p>
           <ul className="space-y-2 font-medium">
             {navItems.map((item, index) => (
