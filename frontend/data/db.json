@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "1",
-      "email": "comfortcraft@gmail.com",
+      "email": "comfortcraftadmin@gmail.com",
       "password": "comfortcraft",
       "name": "Admin",
       "address": "Kerala, India",
@@ -13,21 +13,131 @@
     {
       "id": "2",
       "email": "anaspappadan@gmail.com",
-      "password": "anaspappadan",
-      "name": "Anas Pappadan",
+      "password": "anas",
+      "name": "Anas",
       "address": "Kerala, India",
       "cart": {},
+      "orders": {},
+      "isAdmin": true
+    },
+    {
+      "id": "3",
+      "email": "rafnas@gmail.com",
+      "password": "rafnas",
+      "name": "Rafnas",
+      "address": "Kerala, India",
+      "cart": { "1": 2, "4": 5, "25": 1 },
       "orders": {},
       "isAdmin": false
     },
     {
-      "id": "3",
+      "id": "4",
       "email": "sahadzanu@gmail.com",
       "password": "sahadzanu",
       "name": "Sahad Zanu",
       "address": "Kerala, India",
       "cart": {},
+      "orders": { "6": 3, "19": 1 },
+      "isAdmin": false
+    },
+    {
+      "id": "5",
+      "email": "arunkumar@gmail.com",
+      "password": "arun123",
+      "name": "Arun Kumar",
+      "address": "Kerala, India",
+      "cart": { "3": 2, "7": 1 },
       "orders": {},
+      "isAdmin": false
+    },
+    {
+      "id": "6",
+      "email": "mariyajohn@gmail.com",
+      "password": "mariya123",
+      "name": "Mariya John",
+      "address": "Kerala, India",
+      "cart": {},
+      "orders": { "12": 2, "20": 1 },
+      "isAdmin": false
+    },
+    {
+      "id": "7",
+      "email": "rameshn@gmail.com",
+      "password": "ramesh123",
+      "name": "Ramesh Nair",
+      "address": "Kerala, India",
+      "cart": { "5": 3 },
+      "orders": { "8": 1 },
+      "isAdmin": false
+    },
+    {
+      "id": "8",
+      "email": "devi@gmail.com",
+      "password": "devi123",
+      "name": "Devi",
+      "address": "Kerala, India",
+      "cart": {},
+      "orders": { "15": 1, "22": 2 },
+      "isAdmin": false
+    },
+    {
+      "id": "9",
+      "email": "vishnu@gmail.com",
+      "password": "vishnu123",
+      "name": "Vishnu",
+      "address": "Kerala, India",
+      "cart": { "10": 2 },
+      "orders": {},
+      "isAdmin": false
+    },
+    {
+      "id": "10",
+      "email": "anjali@gmail.com",
+      "password": "anjali123",
+      "name": "Anjali",
+      "address": "Kerala, India",
+      "cart": { "11": 1, "14": 3 },
+      "orders": {},
+      "isAdmin": false
+    },
+    {
+      "id": "11",
+      "email": "ajith@gmail.com",
+      "password": "ajith123",
+      "name": "Ajith",
+      "address": "Kerala, India",
+      "cart": {},
+      "orders": { "18": 2 },
+      "isAdmin": false
+    },
+    {
+      "id": "12",
+      "email": "sneha@gmail.com",
+      "password": "sneha123",
+      "name": "Sneha",
+      "address": "Kerala, India",
+      "cart": { "21": 1, "23": 2 },
+      "orders": {},
+      "isAdmin": false
+    },
+    {
+      "id": "13",
+      "email": "naveen@gmail.com",
+      "password": "naveen123",
+      "name": "Naveen",
+      "address": "Kerala, India",
+      "cart": { "17": 3 },
+      "orders": { "24": 1 },
+      "isAdmin": false
+    },
+    {
+      "id": "14",
+      "email": "keerthi@gmail.com",
+      "password": "keerthi123",
+      "name": "Keerthi",
+      "address": "Kerala, India",
+      "cart": {},
+      "orders": { "26": 2 },
       "isAdmin": false
     }
   ],
