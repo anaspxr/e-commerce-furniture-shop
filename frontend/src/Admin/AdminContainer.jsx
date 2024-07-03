@@ -7,6 +7,7 @@ import {
   MdSpaceDashboard,
   MdLocalShipping,
   MdAdminPanelSettings,
+  MdKeyboardDoubleArrowLeft,
 } from "react-icons/md";
 import { PiSignOutFill } from "react-icons/pi";
 import { UserContext } from "../contexts/UserContext";
@@ -32,7 +33,7 @@ export default function Admin({ children }) {
             type="button"
             className="inline-flex items-center p-2 text-sm text-slate-950 hover:text-slate-800 rounded-lg sm:hidden hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-200 "
           >
-            <RiMenu2Line className="text-3xl" />
+            <RiMenu2Line className="text-3xl hover:text-slate-600" />
           </button>
           <Link to="/" className="flex ms-2 md:me-24">
             <img src={icon} className="h-8 me-3" alt="FlowBite Logo" />
@@ -42,7 +43,7 @@ export default function Admin({ children }) {
           </Link>
         </div>
         <div className="flex items-center ms-3">
-          <MdAdminPanelSettings className="text-4xl text-slate-900" />
+          <MdAdminPanelSettings className="text-4xl text-slate-900 " />
         </div>
       </div>
       <div
@@ -53,6 +54,12 @@ export default function Admin({ children }) {
         <div className="h-full px-3 overflow-y-auto ">
           <p className="text-slate-900 text-center text-xl font-semibold sm:text-2xl border-b py-2 mb-5">
             Admin
+            <MdKeyboardDoubleArrowLeft
+              onClick={() => {
+                setIsOpen(false);
+              }}
+              className="cursor-pointer float-right text-2xl hover:bg-slate-200 rounded-md hover:text-slate-600 sm:hidden"
+            />
           </p>
           <ul className="space-y-2 font-medium">
             {navItems.map((item, index) => (
