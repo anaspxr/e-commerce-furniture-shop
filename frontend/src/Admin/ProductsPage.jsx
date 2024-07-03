@@ -2,7 +2,9 @@ import { useEffect, useReducer, useState } from "react";
 import useFetch from "../utils/useFetch";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import SearchField from "../components/SearchField";
+import getSearchResults from "../utils/getSearchResults";
 export default function ProductsPage() {
   const {
     data: products,
@@ -10,27 +12,40 @@ export default function ProductsPage() {
     error,
   } = useFetch("http://localhost:3000/products");
 
-  const [results, setResults] = useReducer(reducer, null);
-  useEffect(() => {
-    setResults({ type: "price", payload: 0 });
-  }, [products]);
+  const navigate = useNavigate();
+  const [displayProducts, setDisplayProducts] = useState(products);
 
-  function reducer(_, action) {
-    if (action.type === "category") {
-      return products.filter((product) => product.category === action.payload);
-    } else return products;
+  function handleSearch(value) {
+    setDisplayProducts(getSearchResults(products, value, ["name", "category"]));
   }
   return (
     <div>
-      <div>
-        <h1 className="text-3xl">Products</h1>
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error.message}</p>}
-        {products && <Filter setResults={setResults} />}
+      <div className="flex items-end justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold">Products</h1>
+          {loading && <p>Loading...</p>}
+          {error && <p>Error: {error.message}</p>}
+        </div>
+        {products && (
+          <div className="flex items-end justify-end flex-wrap">
+            <SearchField
+              searchData={products}
+              searchItems={["name", "category"]}
+              handleSearch={handleSearch}
+              handleClick={(product) => {
+                navigate(`/admin/products/${product.id}`);
+              }}
+            />
+            <Filter
+              setDisplayProducts={setDisplayProducts}
+              products={products}
+            />
+          </div>
+        )}
       </div>
-      {results && (
+      {displayProducts && (
         <div className="mt-5 grid lg:grid-cols-2 gap-2">
-          {results.map((product) => (
+          {displayProducts.map((product) => (
             <div
               key={product.id}
               className="bg-slate-100 flex items-center border-b justify-between p-1 px-10 rounded-sm"
@@ -64,22 +79,38 @@ export default function ProductsPage() {
   );
 }
 
-function Filter({ setResults }) {
-  const [category, setCategory] = useState("");
+function Filter({ setDisplayProducts, products }) {
+  const [filterOption, setFilterOption] = useState("all");
+  const [results, setResults] = useReducer(reducer, null);
+  useEffect(() => {
+    setResults({ type: "price", payload: 0 });
+  }, [products]);
 
-  function handleFilter() {
-    setResults({ type: "category", payload: category });
+  function reducer(_, action) {
+    if (action.type === "category") {
+      if (action.payload === "all" || action.payload === "") return products;
+      return products.filter((product) => product.category === action.payload);
+    } else return products;
   }
+  function handleFilter() {
+    console.log(filterOption);
+    setResults({ type: "category", payload: filterOption });
+  }
+
+  useEffect(() => {
+    setDisplayProducts(results);
+  }, [results, setDisplayProducts]);
+
   return (
-    <div className="bg-slate-200 shadow-xl border p-2 rounded-md mt-5 w-60">
-      <div className="flex justify-between mb-1">
-        <label htmlFor="category">Category:</label>
+    <div className="max-w-48 bg-slate-200 shadow-xl border p-2 rounded-md mt-5 w-60 text-sm">
+      <div className="mb-1">
+        <label htmlFor="category">Category: </label>
         <select
           className="rounded-md"
           name="category"
           id="category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          value={filterOption}
+          onChange={(e) => setFilterOption(e.target.value)}
         >
           <option value="">All</option>
           <option value="homedecor">Home Decor</option>
