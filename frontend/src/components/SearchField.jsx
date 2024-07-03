@@ -24,6 +24,7 @@ export default function SearchField({
   }
 
   function handleChange(e) {
+    !isOpen && setIsOpen(true);
     setValue(e.target.value);
     if (e.target.value === "") {
       setSearchResults([]);
