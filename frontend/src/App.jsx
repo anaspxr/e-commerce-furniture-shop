@@ -25,6 +25,7 @@ import Admin from "./Admin/AdminHome";
 import ProductsPage from "./Admin/ProductsPage";
 import UsersPage from "./Admin/UsersPage";
 import AdminContainer from "./Admin/AdminContainer";
+import ProductEditPage from "./Admin/ProductEditPage";
 
 function App() {
   return (
@@ -91,6 +92,7 @@ function ContentsWrapper() {
               <Route path="/admin">
                 <Route index element={<Admin />} />
                 <Route path="products" element={<ProductsPage />} />
+                <Route path="products/:id" element={<ProductEditPage />} />
                 <Route path="users" element={<UsersPage />} />
               </Route>
             </Route>
