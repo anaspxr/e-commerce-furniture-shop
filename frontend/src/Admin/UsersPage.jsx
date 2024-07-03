@@ -1,5 +1,7 @@
 import { useState } from "react";
 import useFetch from "../utils/useFetch";
+import SearchField from "../components/SearchField";
+import getSearchResults from "../utils/getSearchResults";
 
 export default function UsersPage() {
   const {
@@ -54,17 +56,30 @@ export default function UsersPage() {
 }
 
 function UsersList({ users, setSelectedUser }) {
+  const [displayUsers, setDisplayUsers] = useState(users);
   const [toggle, setToggle] = useState(false);
+  function handleSearch(value) {
+    setDisplayUsers(getSearchResults(users, value, ["name", "email"]));
+  }
   return (
     <div>
-      <button
-        className="bg-slate-500 text-white rounded-md p-1 text-sm my-3 hover:bg-opacity-90"
-        onClick={() => setToggle(!toggle)}
-      >
-        {toggle ? "Show Users" : "Show Admins"}
-      </button>
+      <div className="flex justify-end items-center gap-2">
+        <SearchField
+          searchData={users}
+          handleSearch={handleSearch}
+          searchItems={["name", "email"]}
+          handleClick={(user) => setSelectedUser(user)}
+        />
+        <button
+          className="bg-slate-500 text-white rounded-md p-1 text-sm my-3 hover:bg-opacity-90"
+          onClick={() => setToggle(!toggle)}
+        >
+          {toggle ? "Show Users" : "Show Admins"}
+        </button>
+      </div>
       <ul className="flex flex-col justify-between space-y-2">
-        {users
+        {displayUsers.length === 0 && <p>No results found</p>}
+        {displayUsers
           .filter((user) => (toggle ? user.isAdmin : !user.isAdmin))
           .map((user) => (
             <li
