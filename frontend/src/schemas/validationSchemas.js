@@ -1,8 +1,5 @@
 import * as yup from "yup";
 
-const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-// min 6 characters, at least one uppercase letter, one lowercase letter, and one number
-
 export const signUpSchema = yup.object().shape({
   name: yup.string().required("Required"),
   email: yup
@@ -11,11 +8,8 @@ export const signUpSchema = yup.object().shape({
     .required("Required"),
   password: yup
     .string()
-    .min(6)
-    .matches(passRegex, {
-      message:
-        "Minimum 6 characters, at least one uppercase letter, one lowercase letter, and one number",
-    })
+    .min(6, "Minimum 6 characters")
+    .max(16, "Maximum 16 characters")
     .required("Required"),
   confirm: yup
     .string()
@@ -33,4 +27,12 @@ export const addressSchema = yup.object().shape({
     .string()
     .min(7, "Enter a valid Phone Number.")
     .required("Required"),
+});
+
+export const productSchema = yup.object().shape({
+  name: yup.string().required("Required"),
+  category: yup.string().required("Required"),
+  price: yup.number().required("Required"),
+  description: yup.string().required("Required"),
+  image: yup.string().required("Required"),
 });
