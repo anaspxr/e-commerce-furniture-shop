@@ -14,7 +14,7 @@ async function handleAdd(data, type) {
   return response;
 }
 
-async function handleEdit(data, id, type) {
+async function handleEdit(data, type, id) {
   const response = await fetch(`http://localhost:3000/${type}/${id}`, {
     method: "PUT",
     headers: {
