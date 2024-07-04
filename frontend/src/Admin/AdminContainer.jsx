@@ -5,7 +5,6 @@ import { RiMenu2Line } from "react-icons/ri";
 import { FaUsers, FaBagShopping } from "react-icons/fa6";
 import {
   MdSpaceDashboard,
-  MdLocalShipping,
   MdAdminPanelSettings,
   MdKeyboardDoubleArrowLeft,
 } from "react-icons/md";
@@ -18,7 +17,6 @@ export default function Admin({ children }) {
     { name: "Dashboard", icon: <MdSpaceDashboard />, link: "admin" },
     { name: "Users", icon: <FaUsers />, link: "admin/users" },
     { name: "Products", icon: <FaBagShopping />, link: "admin/products" },
-    { name: "Orders", icon: <MdLocalShipping />, link: "admin/orders" },
   ];
   const [isOpen, setIsOpen] = useState(false);
   const { logout, currentUserEmail } = useContext(UserContext);
