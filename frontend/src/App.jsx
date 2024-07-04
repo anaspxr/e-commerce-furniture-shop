@@ -47,6 +47,7 @@ function ContentsWrapper() {
   return (
     <>
       {!isAdminPage ? (
+        // If not an admin page, render the normal app
         <>
           <Navbar />
           <div className="md:pt-24 pt-16 "></div>
@@ -83,9 +84,10 @@ function ContentsWrapper() {
               <Route path="/checkout" element={<Checkout />} />
             </Route>
           </Routes>
-          {!isAdminPage && <Footer />}
+          <Footer />
         </>
       ) : (
+        // If on admin page, render the admin page with admin navbar
         <AdminContainer>
           <Routes>
             <Route element={<PrivateRoutes adminOnly />}>

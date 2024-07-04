@@ -5,6 +5,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import SearchField from "../components/SearchField";
 import getSearchResults from "../utils/getSearchResults";
+import { handleDelete } from "../utils/serverUtils";
 export default function ProductsPage() {
   const {
     data: products,
@@ -67,7 +68,15 @@ export default function ProductsPage() {
                 >
                   Edit <FaRegEdit />
                 </Link>
-                <button className="bg-red-700 text-white px-2 py-1 rounded-md flex items-center gap-1 hover:bg-opacity-85">
+                <button
+                  onClick={() => {
+                    handleDelete(product.id, "products");
+                    setDisplayProducts((prev) =>
+                      prev.filter((p) => p.id !== product.id)
+                    );
+                  }}
+                  className="bg-red-700 text-white px-2 py-1 rounded-md flex items-center gap-1 hover:bg-opacity-85"
+                >
                   Delete <MdOutlineDelete />
                 </button>
               </div>
