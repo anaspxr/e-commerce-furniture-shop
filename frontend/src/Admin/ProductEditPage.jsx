@@ -27,6 +27,23 @@ export default function ProductEditPage() {
     }
   }, [id, products]);
 
+  function handleFinalSubmit() {
+    if (id === "addproduct") {
+      const newProduct = { ...preview, id: Date.now().toString() };
+      handleAdd(newProduct, "products");
+      setPreview(null);
+    } else {
+      if (
+        JSON.stringify(preview) !==
+        JSON.stringify(products.find((product) => product.id === preview.id))
+      ) {
+        handleEdit(preview, "products", preview.id);
+      } else {
+        alert("You have not made any changes");
+      }
+    }
+  }
+
   return (
     <div>
       <p className="font-semibold text-2xl my-3 text-center">
@@ -54,24 +71,7 @@ export default function ProductEditPage() {
             <p>Description: {preview.description}</p>
 
             <button
-              onClick={() => {
-                if (id === "addproduct") {
-                  const newProduct = { ...preview, id: Date.now().toString() };
-                  handleAdd(newProduct, "products");
-                  setPreview(null);
-                } else {
-                  if (
-                    JSON.stringify(preview) !==
-                    JSON.stringify(
-                      products.find((product) => product.id === preview.id)
-                    )
-                  ) {
-                    handleEdit(preview, "products", preview.id);
-                  } else {
-                    alert("You have not made any changes");
-                  }
-                }
-              }}
+              onClick={handleFinalSubmit}
               className="bg-slate-500 hover:opacity-90 text-white p-2 rounded-md my-3 h-fit"
             >
               {id === "addproduct" ? "Add Product" : "Update Product"}

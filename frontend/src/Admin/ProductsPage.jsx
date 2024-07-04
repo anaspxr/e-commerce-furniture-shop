@@ -80,7 +80,9 @@ export default function ProductsPage() {
                 </Link>
                 <button
                   onClick={() => {
-                    handleDelete(product.id, "products");
+                    window.confirm(
+                      "Are you sure you want to delete this item?"
+                    ) && handleDelete(product.id, "products");
                     setDisplayProducts((prev) =>
                       prev.filter((p) => p.id !== product.id)
                     );
