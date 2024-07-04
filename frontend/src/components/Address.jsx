@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { addressSchema } from "../schemas/userScheme";
+import { addressSchema } from "../schemas/validationSchemas";
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 

@@ -7,9 +7,9 @@ async function handleAdd(data, type) {
     body: JSON.stringify(data),
   });
   if (response.ok) {
-    console.log("Added");
+    alert("Added new product successfully!");
   } else {
-    console.log("Error");
+    alert("Error");
   }
   return response;
 }
@@ -23,9 +23,9 @@ async function handleEdit(data, id, type) {
     body: JSON.stringify(data),
   });
   if (response.ok) {
-    console.log("Edited");
+    alert("Edited product successfully!");
   } else {
-    console.log("Error");
+    alert("Error");
   }
   return response;
 }
@@ -35,9 +35,9 @@ async function handleDelete(id, type) {
     method: "DELETE",
   });
   if (response.ok) {
-    console.log("Deleted");
+    alert("Deleted product successfully!");
   } else {
-    console.log("Error");
+    alert("Error");
   }
   return response;
 }

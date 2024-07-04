@@ -32,7 +32,8 @@ export const addressSchema = yup.object().shape({
 export const productSchema = yup.object().shape({
   name: yup.string().required("Required"),
   category: yup.string().required("Required"),
-  price: yup.number().required("Required"),
+  discountPrice: yup.number().required("Required"),
+  oldPrice: yup.number().required("Required"),
   description: yup.string().required("Required"),
   image: yup.string().required("Required"),
 });

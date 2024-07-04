@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
-import { signUpSchema } from "../schemas/userScheme";
+import { signUpSchema } from "../schemas/validationSchemas";
 import Alerts from "../components/Alerts";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
