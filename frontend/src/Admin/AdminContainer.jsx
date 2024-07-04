@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import icon from "../components/assets/logo-small.png";
 import { Link, useLocation } from "react-router-dom";
 import { RiMenu2Line } from "react-icons/ri";
@@ -21,7 +21,21 @@ export default function Admin({ children }) {
     { name: "Orders", icon: <MdLocalShipping />, link: "admin/orders" },
   ];
   const [isOpen, setIsOpen] = useState(false);
-  const { logout } = useContext(UserContext);
+  const { logout, currentUserEmail } = useContext(UserContext);
+  const [rightIconOpen, setRightIconOpen] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      if (e.target.closest("#rightIcon")) {
+        return;
+      }
+      setRightIconOpen(false);
+    });
+
+    return () => {
+      document.removeEventListener("click", () => {});
+    };
+  });
   return (
     <>
       <div className="flex items-center bg-slate-100 justify-between fixed top-0 z-50 w-full  border-b border-slate-200 px-3 py-3 lg:px-5 lg:pl-3 shadow-md">
@@ -35,15 +49,45 @@ export default function Admin({ children }) {
           >
             <RiMenu2Line className="text-3xl hover:text-slate-600" />
           </button>
-          <Link to="/" className="flex ms-2 md:me-24">
+          <Link to="/admin" className="flex ms-2 md:me-24">
             <img src={icon} className="h-8 me-3" alt="FlowBite Logo" />
             <span className="text-orange-950 self-center text-xl font-semibold sm:text-2xl whitespace-nowrap ">
-              Comfort Craft
+              Admin
             </span>
           </Link>
         </div>
-        <div className="flex items-center ms-3">
-          <MdAdminPanelSettings className="text-4xl text-slate-900 " />
+        <button
+          id="rightIcon"
+          onClick={() => {
+            setRightIconOpen(!rightIconOpen);
+          }}
+          className="flex items-center ms-3 hover:text-slate-500"
+        >
+          <p className="hidden sm:block">{currentUserEmail}</p>
+          <MdAdminPanelSettings className="text-4xl" />
+        </button>
+
+        <div
+          className={`${
+            rightIconOpen ? "block" : "hidden"
+          } absolute top-16 right-2 bg-slate-100 border border-slate-200 rounded-md shadow-lg`}
+        >
+          <div className="space-y-2 font-medium">
+            <Link
+              to="/"
+              className=" flex items-center p-2 text-slate-950 rounded-lg  hover:bg-slate-200  group"
+            >
+              Leave Admin page
+            </Link>
+
+            <p
+              className="cursor-pointer flex items-center p-2 text-slate-950 rounded-lg  hover:bg-slate-200  group"
+              onClick={logout}
+            >
+              <PiSignOutFill />
+              <span className="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+            </p>
+          </div>
         </div>
       </div>
       <div
@@ -52,17 +96,15 @@ export default function Admin({ children }) {
         }  bg-slate-100 border-r border-slate-200 sm:translate-x-0`}
       >
         <div className="h-full px-3 overflow-y-auto ">
-          <p className=" text-slate-900 text-center text-xl font-semibold sm:text-2xl border-b py-2 mb-5">
-            Admin
-            <button
-              onClick={() => {
-                setIsOpen(false);
-              }}
-              className="p-2 relative -right-16 top-1 text-2xl hover:bg-slate-200 rounded-md hover:text-slate-600 sm:hidden"
-            >
-              <MdKeyboardDoubleArrowLeft />
-            </button>
-          </p>
+          <button
+            onClick={() => {
+              setIsOpen(false);
+            }}
+            className="w-full p-2 flex justify-end text-2xl hover:bg-slate-200 rounded-md hover:text-slate-600 sm:hidden"
+          >
+            <MdKeyboardDoubleArrowLeft />
+          </button>
+
           <ul className="space-y-2 font-medium">
             {navItems.map((item, index) => (
               <li key={index}>
