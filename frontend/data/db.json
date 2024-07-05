@@ -287,7 +287,35 @@
         "pincode": "123455",
         "phone": "151515590"
       },
-      "cart": {},
+      "cart": {
+        "2": 2,
+        "4": 2,
+        "6": 2,
+        "24": 1,
+        "27": 2
+      },
+      "orders": {},
+      "isAdmin": false
+    },
+    {
+      "id": "1720183156614",
+      "name": "Anas2@gmail.com",
+      "email": "Anas2@gmail.com",
+      "password": "Anas2@gmail.com",
+      "address": {
+        "name": "Anas2@gmail.com",
+        "address": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "phone": ""
+      },
+      "cart": {
+        "6": 1,
+        "10": 1,
+        "15": 1,
+        "23": 1
+      },
       "orders": {},
       "isAdmin": false
     }

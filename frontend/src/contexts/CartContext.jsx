@@ -6,11 +6,21 @@ export const CartContext = createContext();
 export function CartContextProvider({ children }) {
   const [buyItems, setBuyItems] = useState({});
   const { currentUser } = useContext(UserContext);
-  const [cartItems, setCartItems] = useState(
-    currentUser
-      ? JSON.parse(localStorage.getItem("users"))[currentUser]?.cart || {}
-      : {}
-  );
+  const [cartItems, setCartItems] = useState({});
+
+  useEffect(() => {
+    async function getCartItems() {
+      if (currentUser) {
+        const response = await fetch(
+          `http://localhost:3000/users/${currentUser.id}`
+        );
+        const data = await response.json();
+        setCartItems(data.cart);
+      }
+    }
+    getCartItems();
+  }, [currentUser]);
+
   function addToCart(productID) {
     setCartItems((prev) => {
       if (prev[productID]) {
@@ -35,15 +45,18 @@ export function CartContextProvider({ children }) {
     if (!currentUser || Object.keys(cartItems).length === 0) {
       return;
     }
-    const localData = JSON.parse(localStorage.getItem("users"));
-    localStorage.setItem(
-      "users",
-      JSON.stringify({
-        ...localData,
-        [currentUser]: { ...localData[currentUser], cart: cartItems },
-      })
-    );
+    async function updateCart() {
+      await fetch(`http://localhost:3000/users/${currentUser.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cart: cartItems }),
+      });
+    }
+    updateCart();
   }, [cartItems, currentUser]);
+
   useEffect(() => {
     if (!currentUser) {
       setCartItems({});
