@@ -5,7 +5,14 @@
       "email": "comfortcraftadmin@gmail.com",
       "password": "comfortcraft",
       "name": "Admin",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Admin",
+        "address": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "phone": ""
+      },
       "cart": {},
       "orders": {},
       "isAdmin": true
@@ -15,7 +22,14 @@
       "email": "anaspappadan@gmail.com",
       "password": "anas",
       "name": "Anas",
-      "address": "Kerala, India",
+      "address": {
+        "name": "ANAS P",
+        "address": "pappadan house",
+        "city": "manjeri",
+        "state": "kerala",
+        "pincode": "626242",
+        "phone": "9909837987"
+      },
       "cart": {},
       "orders": {},
       "isAdmin": true
@@ -25,7 +39,14 @@
       "email": "rafnas@gmail.com",
       "password": "rafnas",
       "name": "Rafnas",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Rafnas",
+        "address": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "phone": ""
+      },
       "cart": { "1": 2, "4": 5, "25": 1 },
       "orders": {},
       "isAdmin": false
@@ -35,7 +56,14 @@
       "email": "sahadzanu@gmail.com",
       "password": "sahadzanu",
       "name": "Sahad Zanu",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Sahad Zanu",
+        "address": "zanu house",
+        "city": "kozhikode",
+        "state": "kerala",
+        "pincode": "673001",
+        "phone": "9947632387"
+      },
       "cart": {},
       "orders": { "6": 3, "19": 1 },
       "isAdmin": false
@@ -45,7 +73,14 @@
       "email": "arunkumar@gmail.com",
       "password": "arun123",
       "name": "Arun Kumar",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Arun Kumar",
+        "address": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "phone": ""
+      },
       "cart": { "3": 2, "7": 1 },
       "orders": {},
       "isAdmin": false
@@ -55,7 +90,14 @@
       "email": "mariyajohn@gmail.com",
       "password": "mariya123",
       "name": "Mariya John",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Mariya John",
+        "address": "john villa",
+        "city": "trivandrum",
+        "state": "kerala",
+        "pincode": "695001",
+        "phone": "9845678932"
+      },
       "cart": {},
       "orders": { "12": 2, "20": 1 },
       "isAdmin": false
@@ -65,7 +107,14 @@
       "email": "rameshn@gmail.com",
       "password": "ramesh123",
       "name": "Ramesh Nair",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Ramesh Nair",
+        "address": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "phone": ""
+      },
       "cart": { "5": 3 },
       "orders": { "8": 1 },
       "isAdmin": false
@@ -75,7 +124,14 @@
       "email": "devi@gmail.com",
       "password": "devi123",
       "name": "Devi",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Devi",
+        "address": "devi home",
+        "city": "thrissur",
+        "state": "kerala",
+        "pincode": "680001",
+        "phone": "9898765432"
+      },
       "cart": {},
       "orders": { "15": 1, "22": 2 },
       "isAdmin": false
@@ -85,7 +141,14 @@
       "email": "vishnu@gmail.com",
       "password": "vishnu123",
       "name": "Vishnu",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Vishnu",
+        "address": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "phone": ""
+      },
       "cart": { "10": 2 },
       "orders": {},
       "isAdmin": false
@@ -95,7 +158,14 @@
       "email": "anjali@gmail.com",
       "password": "anjali123",
       "name": "Anjali",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Anjali",
+        "address": "anjali residence",
+        "city": "ernakulam",
+        "state": "kerala",
+        "pincode": "682001",
+        "phone": "9887766554"
+      },
       "cart": { "11": 1, "14": 3 },
       "orders": {},
       "isAdmin": false
@@ -105,7 +175,14 @@
       "email": "ajith@gmail.com",
       "password": "ajith123",
       "name": "Ajith",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Ajith",
+        "address": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "phone": ""
+      },
       "cart": {},
       "orders": { "18": 2 },
       "isAdmin": false
@@ -115,7 +192,14 @@
       "email": "sneha@gmail.com",
       "password": "sneha123",
       "name": "Sneha",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Sneha",
+        "address": "sneha villa",
+        "city": "malappuram",
+        "state": "kerala",
+        "pincode": "676505",
+        "phone": "9876543210"
+      },
       "cart": { "21": 1, "23": 2 },
       "orders": {},
       "isAdmin": false
@@ -125,7 +209,14 @@
       "email": "naveen@gmail.com",
       "password": "naveen123",
       "name": "Naveen",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Naveen",
+        "address": "",
+        "city": "",
+        "state": "",
+        "pincode": "",
+        "phone": ""
+      },
       "cart": { "17": 3 },
       "orders": { "24": 1 },
       "isAdmin": false
@@ -135,7 +226,14 @@
       "email": "keerthi@gmail.com",
       "password": "keerthi123",
       "name": "Keerthi",
-      "address": "Kerala, India",
+      "address": {
+        "name": "Keerthi",
+        "address": "keerthi cottage",
+        "city": "palakkad",
+        "state": "kerala",
+        "pincode": "678001",
+        "phone": "9865432109"
+      },
       "cart": {},
       "orders": { "26": 2 },
       "isAdmin": false

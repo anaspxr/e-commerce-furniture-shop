@@ -25,6 +25,19 @@ export default function UsersPage() {
         <div className="bg-slate-200 p-3 rounded-md text-slate-600">
           <h2 className="text-xl  font-semibold">{selectedUser.name}</h2>
           <p>{selectedUser.email}</p>
+          <p>
+            Address:{" "}
+            {selectedUser.address.address
+              ? `${selectedUser.address.address}, ${selectedUser.address.city}, ${selectedUser.address.pincode}`
+              : "User not updated their address"}
+          </p>
+          <p>
+            Phone:
+            {selectedUser.address.phone
+              ? selectedUser.address.phone
+              : "User not updated their phone number"}
+          </p>
+
           {products ? (
             <div>
               <p className="font-bold">Orders:</p>
@@ -33,7 +46,7 @@ export default function UsersPage() {
 
                 return (
                   <p key={productID}>
-                    {product.name} x {selectedUser.orders[productID]}{" "}
+                    {product.name} x {selectedUser.orders[productID]}
                   </p>
                 );
               })}
