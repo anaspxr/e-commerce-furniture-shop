@@ -5,10 +5,10 @@ export const CartContext = createContext();
 
 export function CartContextProvider({ children }) {
   const [buyItems, setBuyItems] = useState({});
-  const { currentUserEmail } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const [cartItems, setCartItems] = useState(
-    currentUserEmail
-      ? JSON.parse(localStorage.getItem("users"))[currentUserEmail]?.cart || {}
+    currentUser
+      ? JSON.parse(localStorage.getItem("users"))[currentUser]?.cart || {}
       : {}
   );
   function addToCart(productID) {
@@ -32,7 +32,7 @@ export function CartContextProvider({ children }) {
   }
 
   useEffect(() => {
-    if (!currentUserEmail || Object.keys(cartItems).length === 0) {
+    if (!currentUser || Object.keys(cartItems).length === 0) {
       return;
     }
     const localData = JSON.parse(localStorage.getItem("users"));
@@ -40,21 +40,20 @@ export function CartContextProvider({ children }) {
       "users",
       JSON.stringify({
         ...localData,
-        [currentUserEmail]: { ...localData[currentUserEmail], cart: cartItems },
+        [currentUser]: { ...localData[currentUser], cart: cartItems },
       })
     );
-  }, [cartItems, currentUserEmail]);
+  }, [cartItems, currentUser]);
   useEffect(() => {
-    if (!currentUserEmail) {
+    if (!currentUser) {
       setCartItems({});
     }
     setCartItems(
-      currentUserEmail
-        ? JSON.parse(localStorage.getItem("users"))[currentUserEmail]?.cart ||
-            {}
+      currentUser
+        ? JSON.parse(localStorage.getItem("users"))[currentUser]?.cart || {}
         : {}
     );
-  }, [currentUserEmail]);
+  }, [currentUser]);
 
   return (
     <CartContext.Provider

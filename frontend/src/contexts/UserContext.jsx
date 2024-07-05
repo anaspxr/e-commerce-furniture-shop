@@ -4,34 +4,43 @@ const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const [redirectPath, setRedirectPath] = useState("/");
-  const [currentUserEmail, setCurrentUserEmail] = useState(
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || null
   );
+
   useEffect(() => {
     const userExists = JSON.parse(localStorage.getItem("currentUser"));
     if (userExists) {
-      setCurrentUserEmail(userExists);
+      setCurrentUser(userExists);
     }
   }, []);
 
+  useEffect(() => {
+    if (currentUser) {
+      setIsAdmin(currentUser.isAdmin);
+    }
+  }, [currentUser]);
+
   function login(user) {
     localStorage.setItem("currentUser", JSON.stringify(user));
-    setCurrentUserEmail(user);
+    setCurrentUser(user);
   }
 
   function logout() {
     localStorage.removeItem("currentUser");
-    setCurrentUserEmail(null);
+    setCurrentUser(null);
   }
 
   return (
     <UserContext.Provider
       value={{
-        currentUserEmail,
+        currentUser,
         login,
         logout,
         redirectPath,
         setRedirectPath,
+        isAdmin,
       }}
     >
       {children}

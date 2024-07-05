@@ -8,7 +8,7 @@ import { ProductContext } from "../contexts/ProductContext";
 
 export default function Product() {
   const { products, loading, error } = useContext(ProductContext);
-  const { currentUserEmail, setRedirectPath } = useContext(UserContext);
+  const { currentUser, setRedirectPath } = useContext(UserContext);
   const { setBuyItems, addToCart, cartItems } = useContext(CartContext);
   const { productID } = useParams();
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function Product() {
     navigate("/checkout");
   }
   function handleAddToCart() {
-    if (!currentUserEmail) {
+    if (!currentUser) {
       setRedirectPath("/products/" + productID);
       navigate("/login");
       return;

@@ -45,7 +45,7 @@ const menuItems = [
 export default function Navbar() {
   const { cartItems } = useContext(CartContext);
   const { products } = useContext(ProductContext);
-  const { currentUserEmail, logout } = useContext(UserContext);
+  const { currentUser, logout } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -145,7 +145,7 @@ export default function Navbar() {
         />
         <DropDown />
 
-        {currentUserEmail && (
+        {currentUser && (
           <div className="flex">
             <Link to="/cart">
               <MdOutlineShoppingCart className="text-3xl text-orange-900 hover:text-orange-700" />
@@ -155,7 +155,7 @@ export default function Navbar() {
             </div>
           </div>
         )}
-        {currentUserEmail ? (
+        {currentUser ? (
           <div>
             <CgProfile
               id="profileButton"
@@ -172,7 +172,7 @@ export default function Navbar() {
             >
               <p className="text-sm">
                 Logged in as{" "}
-                <span className="text-orange-900">{currentUserEmail}</span>
+                <span className="text-orange-900">{currentUser.email}</span>
               </p>
               <div className="flex flex-wrap gap-1">
                 <Link to="/profile">
