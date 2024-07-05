@@ -19,7 +19,7 @@ export default function Admin({ children }) {
     { name: "Products", icon: <FaBagShopping />, link: "admin/products" },
   ];
   const [isOpen, setIsOpen] = useState(false);
-  const { logout, currentUserEmail } = useContext(UserContext);
+  const { logout, currentUser } = useContext(UserContext);
   const [rightIconOpen, setRightIconOpen] = useState(false);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function Admin({ children }) {
           }}
           className="flex items-center ms-3 hover:text-slate-500"
         >
-          <p className="hidden sm:block">{currentUserEmail}</p>
+          <p className="hidden sm:block">{currentUser.email}</p>
           <MdAdminPanelSettings className="text-4xl" />
         </button>
 

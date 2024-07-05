@@ -8,13 +8,13 @@ import { UserContext } from "../contexts/UserContext";
 export default function LoginSignup() {
   const [newUser, setNewUser] = useState(false);
   const [alert, setAlert] = useState(null);
-  const { currentUserEmail, redirectPath } = useContext(UserContext);
+  const { currentUser, redirectPath } = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
-    if (currentUserEmail) {
+    if (currentUser) {
       navigate(redirectPath);
     }
-  }, [currentUserEmail, navigate, redirectPath]);
+  }, [currentUser, navigate, redirectPath]);
   return (
     <div className="flex justify-center flex-col items-center gap-2 my-5">
       {alert && <Alerts type={alert.type} message={alert.message} />}

@@ -111,19 +111,19 @@ function ContentsWrapper() {
 }
 
 function PrivateRoutes({ adminOnly = false }) {
-  const { currentUserEmail, setRedirectPath } = useContext(UserContext);
+  const { isAdmin, currentUser, setRedirectPath } = useContext(UserContext);
   const location = useLocation();
   useEffect(() => {
-    if (!currentUserEmail) {
+    if (!currentUser) {
       setRedirectPath(location.pathname);
     }
-  }, [currentUserEmail, location.pathname, setRedirectPath]);
+  }, [currentUser, location.pathname, setRedirectPath]);
 
-  if (!currentUserEmail) {
+  if (!currentUser) {
     return <Navigate to="/login" />;
   }
 
-  if (adminOnly && currentUserEmail !== "comfortcraftadmin@gmail.com") {
+  if (adminOnly && !isAdmin) {
     return <Navigate to="/" />;
   }
 

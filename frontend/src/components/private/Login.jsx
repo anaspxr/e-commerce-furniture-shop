@@ -23,7 +23,12 @@ export default function Login({ setAlert, setNewUser }) {
             user.email === values.email && user.password === values.password
         );
         if (user) {
-          login(values.email);
+          login({
+            email: user.email,
+            name: user.name,
+            isAdmin: user.isAdmin,
+            id: user.id,
+          });
         } else {
           setAlert({ message: "Invalid credentials", type: "warning" });
         }
