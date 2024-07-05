@@ -1,25 +1,51 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useFormik } from "formik";
 
 export default function Login({ setAlert, setNewUser }) {
   const { login } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const { values, handleChange, handleSubmit } = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      const localData = JSON.parse(localStorage.getItem("users")) || {};
-      const userExists =
-        localData[values.email]?.password === values.password ||
-        (values.email === "comfortcraftadmin@gmail.com" &&
-          values.password === "comfortcraft");
-      if (userExists) {
-        login(values.email);
-      } else {
-        setAlert({ message: "Invalid credentials", type: "warning" });
+    onSubmit: async (values) => {
+      setLoading(true);
+      try {
+        const response = await fetch("http://localhost:3000/users");
+        if (!response.ok) {
+          throw new Error("Failed to fetch");
+        }
+        const users = await response.json();
+        const user = users.find(
+          (user) =>
+            user.email === values.email && user.password === values.password
+        );
+        if (user) {
+          login(values.email);
+        } else {
+          setAlert({ message: "Invalid credentials", type: "warning" });
+        }
+      } catch (error) {
+        setAlert({
+          message: "Failed to fetch" + error.message,
+          type: "warning",
+        });
+        setLoading(false);
       }
+      setLoading(false);
+
+      // const localData = JSON.parse(localStorage.getItem("users")) || {};
+      // const userExists =
+      //   localData[values.email]?.password === values.password ||
+      //   (values.email === "comfortcraftadmin@gmail.com" &&
+      //     values.password === "comfortcraft");
+      // if (userExists) {
+      //   login(values.email);
+      // } else {
+      //   setAlert({ message: "Invalid credentials", type: "warning" });
+      // }
     },
   });
 
@@ -58,13 +84,14 @@ export default function Login({ setAlert, setNewUser }) {
         />
       </div>
       <button
+        disabled={loading}
         type="submit"
         className="bg-orange-700 text-white p-2 rounded-md hover:bg-orange-600 transition duration-300 w-full my-4"
       >
-        Login
+        {loading ? "Loading..." : "Login"}
       </button>
       <p className="text-orange-900">
-        Do not have an account?{" "}
+        Do not have an account?
         <span
           onClick={() => {
             setNewUser(true);
@@ -72,7 +99,7 @@ export default function Login({ setAlert, setNewUser }) {
           className="text-orange-700 underline cursor-pointer hover:text-orange-500"
         >
           Sign up
-        </span>{" "}
+        </span>
       </p>
     </form>
   );
