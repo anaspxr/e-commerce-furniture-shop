@@ -18,17 +18,24 @@ export default function SignUp({ setAlert, setNewUser }) {
       confirm: "",
     },
     validationSchema: signUpSchema,
-    onSubmit: (values, actions) => {
-      const localData = JSON.parse(localStorage.getItem("users")) || {};
-      const userExists = localData[values.email];
-      if (userExists) {
-        actions.setFieldError("email", "Email already exists");
-        actions.setSubmitting(false);
-        return;
-      }
-      const newUser = {
-        [values.email]: {
+    onSubmit: async (values, actions) => {
+      try {
+        const response = await fetch("http://localhost:3000/users");
+        const users = await response.json();
+
+        const userExists = users.find((user) => user.email === values.email);
+        if (userExists) {
+          // if the email already exists in the database, return
+          actions.setFieldError("email", "Email already exists");
+          actions.setSubmitting(false);
+          return;
+        }
+
+        // make a newUser object to store the new user in server
+        const newUser = {
+          id: Date.now().toString(),
           name: values.name,
+          email: values.email,
           password: values.password,
           address: {
             name: values.name,
@@ -39,22 +46,44 @@ export default function SignUp({ setAlert, setNewUser }) {
             phone: "",
           },
           cart: {},
-        },
-      };
-      localStorage.setItem(
-        "users",
-        JSON.stringify({ ...localData, ...newUser })
-      );
-      actions.resetForm();
-      setNewUser(false);
-      setAlert({
-        flag: true,
-        message: "User created successfully",
-        type: "success",
-      });
-      setTimeout(() => {
-        setAlert(null);
-      }, 3000);
+          orders: {},
+          isAdmin: false,
+        };
+
+        const postResponse = await fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        });
+
+        if (!postResponse.ok) {
+          setAlert({
+            flag: true,
+            message: "User created successfully",
+            type: "success",
+          });
+        }
+        actions.resetForm();
+        setNewUser(false);
+        setAlert({
+          flag: true,
+          message: "User created successfully",
+          type: "success",
+        });
+        setTimeout(() => {
+          setAlert(null);
+        }, 3000);
+      } catch (error) {
+        setAlert({
+          message: "Something went wrong..",
+          type: "warning",
+        });
+        setTimeout(() => {
+          setAlert(null);
+        }, 3000);
+      }
     },
   });
   const fields = ["name", "email", "password", "confirm"];
