@@ -45,7 +45,7 @@ const menuItems = [
 export default function Navbar() {
   const { cartItems } = useContext(CartContext);
   const { products } = useContext(ProductContext);
-  const { currentUser, logout } = useContext(UserContext);
+  const { currentUser, logout, isAdmin } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -145,7 +145,7 @@ export default function Navbar() {
         />
         <DropDown />
 
-        {currentUser && (
+        {currentUser && !isAdmin && (
           <div className="flex">
             <Link to="/cart">
               <MdOutlineShoppingCart className="text-3xl text-orange-900 hover:text-orange-700" />
@@ -171,13 +171,19 @@ export default function Navbar() {
               } absolute flex-col p-2 gap-2 right-0 z-10 mt-2 w-56 origin-top-right mr-2 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5`}
             >
               <p className="text-sm">
-                Logged in as{" "}
-                <span className="text-orange-900">{currentUser.email}</span>
+                Logged in as
+                <span className="text-orange-900"> {currentUser.email}</span>
               </p>
               <div className="flex flex-wrap gap-1">
-                <Link to="/profile">
-                  <Button>Profile</Button>
-                </Link>
+                {isAdmin ? (
+                  <Link to="/admin">
+                    <Button>Admin Panel</Button>
+                  </Link>
+                ) : (
+                  <Link to="/profile">
+                    <Button>Profile</Button>
+                  </Link>
+                )}
                 <div onClick={logout}>
                   <Button>Logout</Button>
                 </div>

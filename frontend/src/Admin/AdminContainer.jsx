@@ -61,7 +61,7 @@ export default function Admin({ children }) {
           }}
           className="flex items-center ms-3 hover:text-slate-500"
         >
-          <p className="hidden sm:block">{currentUser.email}</p>
+          <p className="hidden sm:block">{currentUser?.email}</p>
           <MdAdminPanelSettings className="text-4xl" />
         </button>
 

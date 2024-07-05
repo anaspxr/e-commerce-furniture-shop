@@ -295,9 +295,9 @@
   "products": [
     {
       "id": "1",
-      "name": "Modern Sofa",
-      "oldPrice": 25999,
-      "discountPrice": 21999,
+      "name": "Sofa",
+      "oldPrice": 26002,
+      "discountPrice": 19999,
       "image": "https://cdn.pixabay.com/photo/2018/03/29/09/29/furniture-3271762_1280.jpg",
       "description": "A stylish and comfortable modern sofa perfect for any living room.",
       "category": "sofas"

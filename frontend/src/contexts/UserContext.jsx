@@ -4,10 +4,9 @@ const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const [redirectPath, setRedirectPath] = useState("/");
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("currentUser")) || null
-  );
+  const currentUserExists = JSON.parse(localStorage.getItem("currentUser"));
+  const [isAdmin, setIsAdmin] = useState(currentUserExists?.isAdmin || false);
+  const [currentUser, setCurrentUser] = useState(currentUserExists || null);
 
   useEffect(() => {
     const userExists = JSON.parse(localStorage.getItem("currentUser"));
