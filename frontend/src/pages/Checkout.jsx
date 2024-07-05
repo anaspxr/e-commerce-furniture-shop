@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Address from "../components/Address";
 import { ProductContext } from "../contexts/ProductContext";
+import useFetch from "../utils/useFetch";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Checkout() {
   useEffect(() => {
@@ -16,9 +18,6 @@ export default function Checkout() {
   const { products, loading, error } = useContext(ProductContext);
   const { buyItems, setBuyItems, setCartItems } = useContext(CartContext);
   const [progress, setProgress] = useState("items");
-  const [address, setAddress] = useState(
-    JSON.parse(localStorage.getItem("currentUser"))?.address || {}
-  );
 
   const totalAmount = Object.keys(buyItems).reduce((acc, productID) => {
     const product = products?.find((item) => item.id === productID);
@@ -53,10 +52,8 @@ export default function Checkout() {
           {progress === "items" && (
             <Items buyItems={buyItems} setBuyItems={setBuyItems} />
           )}
-          {progress === "address" && <Address setAddress={setAddress} />}
-          {progress === "payment" && (
-            <Payment items={buyItems} address={address} />
-          )}
+          {progress === "address" && <Address />}
+          {progress === "payment" && <Payment items={buyItems} />}
           <hr className="border-2 mx-16" />
           <div className="m-auto flex justify-between gap-5 p-10 max-w-3xl items-center">
             <div className="text-gray-600">
@@ -88,7 +85,6 @@ export default function Checkout() {
                   onClick={() => {
                     setProgress("payment");
                   }}
-                  disabled={Object.keys(address).length === 0}
                   className="disabled:bg-opacity-50 bg-orange-500 hover:opacity-90 text-white p-2 rounded-md mt-5 h-fit md:text-base text-xs disabled:cursor-not-allowed"
                 >
                   Proceed to Payment
@@ -102,7 +98,6 @@ export default function Checkout() {
                     setBuyItems({});
                     navigate("/");
                   }}
-                  disabled={Object.keys(address).length === 0}
                   className="disabled:bg-opacity-50 bg-orange-500 hover:opacity-90 text-white p-2 rounded-md mt-5 h-fit md:text-base text-xs disabled:cursor-not-allowed"
                 >
                   Pay ₹{totalAmount + 200}
@@ -177,33 +172,45 @@ function Items({ buyItems, setBuyItems }) {
   );
 }
 
-function Payment({ items, address }) {
+function Payment({ items }) {
   const { products } = useContext(ProductContext);
+  const { currentUser } = useContext(UserContext);
+  const { data, loading, error } = useFetch(
+    `http://localhost:3000/users/${currentUser.id}`
+  );
+  const address = data?.address;
   return (
     <div className="m-auto max-w-3xl p-5 text-orange-900">
       <h1 className="text-2xl py-3">Payment</h1>
-      <p className="text-xl">Your address</p>
-      <p>{address.name}</p>
-      <p>
-        {address.address},{address.city},{address.state},{address.pincode}
-      </p>
-      <p>{address.phone}</p>
-      <h3 className="text-xl py-5">Items</h3>
-      <div className="flex flex-col gap-2">
-        {Object.keys(items).map((productID) => {
-          const product = products?.find((item) => item.id === productID);
-          return (
-            <>
-              {products && (
-                <div key={productID} className="flex justify-between">
-                  <p>{product.name}</p>
-                  <p>Quantity: {items[productID]}</p>
-                </div>
-              )}
-            </>
-          );
-        })}
-      </div>
+
+      {loading && <p>Loading...</p>}
+      {error && <p>{error.message}</p>}
+      {data && (
+        <>
+          <p className="text-xl">Your address</p>
+          <p>{address.name}</p>
+          <p>
+            {address.address},{address.city},{address.state},{address.pincode}
+          </p>
+          <p>{address.phone}</p>
+          <h3 className="text-xl py-5">Items</h3>
+          <div className="flex flex-col gap-2">
+            {Object.keys(items).map((productID) => {
+              const product = products?.find((item) => item.id === productID);
+              return (
+                <>
+                  {products && (
+                    <div key={productID} className="flex justify-between">
+                      <p>{product.name}</p>
+                      <p>Quantity: {items[productID]}</p>
+                    </div>
+                  )}
+                </>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 }
