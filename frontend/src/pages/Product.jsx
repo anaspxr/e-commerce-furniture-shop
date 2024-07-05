@@ -1,20 +1,23 @@
 import { useParams } from "react-router-dom";
-import { furnitureData } from "../components/assets/data";
 import { RelatedProducts, Recommend } from "../components/Recommend";
 import { CartContext } from "../contexts/CartContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { ProductContext } from "../contexts/ProductContext";
 
 export default function Product() {
+  const { products, loading, error } = useContext(ProductContext);
   const { currentUserEmail, setRedirectPath } = useContext(UserContext);
   const { setBuyItems, addToCart, cartItems } = useContext(CartContext);
   const { productID } = useParams();
   const navigate = useNavigate();
   const added = Object.keys(cartItems).includes(productID);
-  const product = furnitureData.find((item) => {
-    return item.id === productID;
-  });
+  const product =
+    products &&
+    products.find((item) => {
+      return item.id === productID;
+    });
 
   function calculateDiscountPrice(oldPrice, discountPrice) {
     return Math.floor(((oldPrice - discountPrice) / oldPrice) * 100);
@@ -36,11 +39,14 @@ export default function Product() {
 
   return (
     <>
-      {!product ? (
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
+      {!error && !loading && !product && (
         <h1 className="text-red-500 text-center text-xl ">
           Product not found!!
         </h1>
-      ) : (
+      )}
+      {product && (
         <>
           <div className="p-10 ">
             <div className="flex justify-center items-center ">
