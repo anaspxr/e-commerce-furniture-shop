@@ -1,6 +1,5 @@
 import logo from "./assets/logo.png";
 import logoSmall from "./assets/logo-small.png";
-import { furnitureData } from "./assets/data";
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { HiMenuAlt1, HiX, HiChevronDown } from "react-icons/hi";
@@ -10,6 +9,7 @@ import Button from "./Button";
 import { UserContext } from "../contexts/UserContext";
 import { CartContext } from "../contexts/CartContext";
 import SearchField from "./SearchField";
+import { ProductContext } from "../contexts/ProductContext";
 
 const menuItems = [
   {
@@ -44,6 +44,7 @@ const menuItems = [
 
 export default function Navbar() {
   const { cartItems } = useContext(CartContext);
+  const { products } = useContext(ProductContext);
   const { currentUserEmail, logout } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -132,7 +133,7 @@ export default function Navbar() {
       </div>
       <div className="flex items-center gap-1 sm:gap-2">
         <SearchField
-          searchData={furnitureData}
+          searchData={products}
           handleSearch={(value) => {
             if (value === "") {
               return;

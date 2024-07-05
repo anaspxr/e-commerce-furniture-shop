@@ -4,9 +4,11 @@ export default function getSearchResults(data, query, searchItems) {
   if (query === "") {
     return [];
   }
-  return data.filter((item) =>
-    searchItems.some((searchItem) =>
-      item[searchItem].toLowerCase().includes(query.toLowerCase())
-    )
-  );
+  return data
+    ? data.filter((item) =>
+        searchItems.some((searchItem) =>
+          item[searchItem].toLowerCase().includes(query.toLowerCase())
+        )
+      )
+    : [];
 }
