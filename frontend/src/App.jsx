@@ -26,16 +26,19 @@ import ProductsPage from "./Admin/ProductsPage";
 import UsersPage from "./Admin/UsersPage";
 import AdminContainer from "./Admin/AdminContainer";
 import ProductEditPage from "./Admin/ProductEditPage";
+import ProductContextProvider from "./contexts/ProductContext";
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <UserProvider>
-        <CartContextProvider>
-          <BrowserRouter>
-            <ContentsWrapper />
-          </BrowserRouter>
-        </CartContextProvider>
+        <ProductContextProvider>
+          <CartContextProvider>
+            <BrowserRouter>
+              <ContentsWrapper />
+            </BrowserRouter>
+          </CartContextProvider>
+        </ProductContextProvider>
       </UserProvider>
     </div>
   );
