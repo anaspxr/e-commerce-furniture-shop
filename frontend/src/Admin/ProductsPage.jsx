@@ -59,7 +59,7 @@ export default function ProductsPage() {
           {displayProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-slate-100 flex items-center border-b justify-between p-1 px-10 rounded-sm"
+              className="bg-slate-200 flex items-center border-b justify-between p-1 px-10 rounded-sm shadow-md"
             >
               <div>
                 <p className="text-xl font-semibold">{product.name}</p>
@@ -68,8 +68,9 @@ export default function ProductsPage() {
                   alt="product image"
                   className="h-16 object-cover w-28 rounded-sm"
                 />
-                <p className="text-gray-500">Price: {product.discountPrice}</p>
-                <p className="text-gray-400">Old Price: {product.oldPrice} </p>
+                <p className="text-gray-600">Price: {product.discountPrice}</p>
+                <p className="text-gray-500">Old Price: {product.oldPrice} </p>
+                <p className="text-gray-600">Category: {product.category} </p>
               </div>
               <div className="flex flex-col gap-1">
                 <Link

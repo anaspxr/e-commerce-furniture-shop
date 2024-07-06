@@ -20,7 +20,7 @@ export default function UsersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Users</h1>
+      <h1 className="text-2xl font-semibold text-slate-700">Users</h1>
       {selectedUser && (
         <div className="bg-slate-200 p-3 rounded-md text-slate-600">
           <h2 className="text-xl  font-semibold">{selectedUser.name}</h2>
@@ -97,7 +97,7 @@ function UsersList({ users, setSelectedUser }) {
           .map((user) => (
             <li
               key={user.id}
-              className="flex justify-between sm p-2 bg-gray-100 rounded-md"
+              className="flex justify-between sm p-2 bg-gray-200 rounded-md"
             >
               <div>
                 <p className="text-slate-500">{user.name}</p>
@@ -110,7 +110,7 @@ function UsersList({ users, setSelectedUser }) {
               </div>
               {!toggle && (
                 <button
-                  className="text-blue-500 w-40 p-1 rounded-md hover:bg-slate-200"
+                  className="text-blue-500 w-40 p-1 rounded-md hover:bg-slate-300"
                   onClick={() => {
                     window.scrollTo(0, 0);
                     setSelectedUser(user);

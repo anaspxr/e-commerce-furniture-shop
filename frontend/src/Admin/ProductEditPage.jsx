@@ -65,8 +65,8 @@ export default function ProductEditPage() {
             </div>
 
             <p className="text-lg">{preview.name}</p>
-            <p className="text-lg">{preview.discountPrice}</p>
-            <p>Old Price: {preview.oldPrice}</p>
+            <p className="text-lg">₹{preview.discountPrice}</p>
+            <p>Old Price: ₹{preview.oldPrice}</p>
             <p>Category: {preview.category}</p>
             <p>Description: {preview.description}</p>
 
@@ -128,7 +128,7 @@ function ProductForm({ preview, setPreview }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-lg m-auto flex flex-col bg-slate-200 text-slate-900 shadow-md p-5 rounded-sm"
+      className="max-w-lg m-auto flex flex-col bg-slate-200 text-slate-900 shadow-md p-5 rounded-md"
     >
       {formInputs.map((field) => {
         return (
@@ -141,7 +141,7 @@ function ProductForm({ preview, setPreview }) {
               value={values[field.name]}
               onChange={handleChange}
               type={field.type}
-              className="p-1 border border-slate-400 rounded-sm"
+              className="p-2 border border-slate-400 rounded-md"
             />
             <p className="text-red-600 text-sm">
               {errors[field.name] && touched[field.name] && errors[field.name]}

@@ -36,7 +36,7 @@ export default function Admin({ children }) {
   });
   return (
     <>
-      <div className="flex items-center bg-slate-100 justify-between fixed top-0 z-50 w-full  border-b border-slate-200 px-3 py-3 lg:px-5 lg:pl-3 shadow-md">
+      <div className="flex items-center bg-slate-300 justify-between fixed top-0 z-50 w-full  border-b border-slate-400 px-3 py-3 lg:px-5 lg:pl-3 shadow-md">
         <div className="flex items-center justify-start rtl:justify-end">
           <button
             onClick={() => {
@@ -68,18 +68,18 @@ export default function Admin({ children }) {
         <div
           className={`${
             rightIconOpen ? "block" : "hidden"
-          } absolute top-16 right-2 bg-slate-100 border border-slate-200 rounded-md shadow-lg`}
+          } absolute top-16 right-2 bg-slate-200 border border-slate-200 rounded-md shadow-lg`}
         >
           <div className="space-y-2 font-medium">
             <Link
               to="/"
-              className=" flex items-center p-2 text-slate-950 rounded-lg  hover:bg-slate-200  group"
+              className=" flex items-center p-2 text-slate-950 rounded-lg  hover:bg-slate-300  group"
             >
               Leave Admin page
             </Link>
 
             <p
-              className="cursor-pointer flex items-center p-2 text-slate-950 rounded-lg  hover:bg-slate-200  group"
+              className="cursor-pointer flex items-center p-2 text-slate-950 rounded-lg  hover:bg-slate-300  group"
               onClick={logout}
             >
               <PiSignOutFill />
@@ -91,14 +91,14 @@ export default function Admin({ children }) {
       <div
         className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
           !isOpen && "-translate-x-full"
-        }  bg-slate-100 border-r border-slate-200 sm:translate-x-0`}
+        }  bg-slate-300 border-r border-slate-400 sm:translate-x-0`}
       >
-        <div className="h-full px-3 overflow-y-auto ">
+        <div className="h-full px-3 overflow-y-auto">
           <button
             onClick={() => {
               setIsOpen(false);
             }}
-            className="w-full p-2 flex justify-end text-2xl hover:bg-slate-200 rounded-md hover:text-slate-600 sm:hidden"
+            className="w-full mb-2 p-2 flex justify-end text-2xl hover:bg-slate-200 rounded-md hover:text-slate-600 sm:hidden"
           >
             <MdKeyboardDoubleArrowLeft />
           </button>
@@ -109,7 +109,7 @@ export default function Admin({ children }) {
                 <Link
                   to={item.link}
                   className={`${
-                    location === item.link && "bg-white"
+                    location.pathname === "/" + item.link && "bg-slate-200"
                   } flex items-center p-2 text-slate-950 rounded-lg  hover:bg-slate-200  group`}
                 >
                   {item.icon}
