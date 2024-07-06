@@ -51,34 +51,42 @@ export default function ProductEditPage() {
       </p>
       {loading && <p>Loading...</p>}
       {error && <p>network error..</p>}
-      {showForm && <ProductForm preview={preview} setPreview={setPreview} />}
-      {preview && (
-        <div id="preview">
-          <div className="flex flex-col items-center bg-slate-200 my-2 p-2">
-            <p className="text-xl">Preview</p>
-            <div className="w-1/2 h-64 bg-slate-100 shadow-md rounded-md">
-              <img
-                src={preview.image}
-                alt="product image"
-                className="object-cover w-full h-full rounded-md"
-              />
-            </div>
-
-            <p className="text-lg">{preview.name}</p>
-            <p className="text-lg">₹{preview.discountPrice}</p>
-            <p>Old Price: ₹{preview.oldPrice}</p>
-            <p>Category: {preview.category}</p>
-            <p>Description: {preview.description}</p>
-
-            <button
-              onClick={handleFinalSubmit}
-              className="bg-slate-500 hover:opacity-90 text-white p-2 rounded-md my-3 h-fit"
-            >
-              {id === "addproduct" ? "Add Product" : "Update Product"}
-            </button>
-          </div>
+      <div className="grid lg:grid-cols-2 gap-2 items-center">
+        <div>
+          {showForm && (
+            <ProductForm preview={preview} setPreview={setPreview} />
+          )}
         </div>
-      )}
+        {preview && (
+          <div id="preview">
+            <div className="flex flex-col items-center bg-slate-200 my-2 p-2 rounded-md">
+              <p className="text-xl">Preview</p>
+              <div className=" h-64 bg-slate-100 shadow-md rounded-md">
+                <img
+                  src={preview.image}
+                  alt="product image"
+                  className="object-cover w-full h-full rounded-md"
+                />
+              </div>
+
+              <p className="text-lg">{preview.name}</p>
+              <p className="text-lg">₹{preview.discountPrice}</p>
+              <p>Old Price: ₹{preview.oldPrice}</p>
+              <p>Category: {preview.category}</p>
+              <p>Description: {preview.description}</p>
+
+              <button
+                onClick={handleFinalSubmit}
+                className="bg-slate-500 hover:opacity-90 text-white p-2 rounded-md my-3 h-fit"
+              >
+                {id === "addproduct"
+                  ? "Confirm Add Product"
+                  : "Confirm Update Product"}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
       {!showForm && !loading && !error && (
         <p className="text-center">Not found!!</p>
       )}
