@@ -35,6 +35,13 @@ export function CartContextProvider({ children }) {
       if (prev[productID] === 1) {
         const newCartItems = { ...prev };
         delete newCartItems[productID];
+        fetch(`http://localhost:3000/users/${currentUser.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ cart: newCartItems }),
+        });
         return newCartItems;
       }
       return { ...prev, [productID]: prev[productID] - 1 };
@@ -56,17 +63,6 @@ export function CartContextProvider({ children }) {
     }
     updateCart();
   }, [cartItems, currentUser]);
-
-  useEffect(() => {
-    if (!currentUser) {
-      setCartItems({});
-    }
-    setCartItems(
-      currentUser
-        ? JSON.parse(localStorage.getItem("users"))[currentUser]?.cart || {}
-        : {}
-    );
-  }, [currentUser]);
 
   return (
     <CartContext.Provider
