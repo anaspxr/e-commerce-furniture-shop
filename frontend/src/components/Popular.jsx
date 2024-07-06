@@ -6,12 +6,12 @@ export default function Popular() {
   const { products, loading, error } = useContext(ProductContext) || [];
   const popularProducts = products
     ? [
-        products[0],
-        products[2],
-        products[4],
-        products[5],
-        products[6],
-        products[9],
+        products[3],
+        products[8],
+        products[10],
+        products[12],
+        products[14],
+        products[26],
       ]
     : null;
   return (

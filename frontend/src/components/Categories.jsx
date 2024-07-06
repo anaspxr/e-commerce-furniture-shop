@@ -23,7 +23,7 @@ export default function Categories() {
     {
       name: "Furnishing",
       image:
-        "https://cdn.pixabay.com/photo/2015/04/18/13/23/living-garniture-728733_1280.jpg",
+        "https://media.licdn.com/dms/image/C561BAQHm8kScK_qjNg/company-background_10000/0/1631040871144/noble_house_home_furnishings_llc_cover?e=2147483647&v=beta&t=aJMgH1BmiEJk0chBP8E6MpJMCLpgpX3WrucOwuHzlW0",
       to: "/products/furnishings",
     },
     {

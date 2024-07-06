@@ -2,7 +2,7 @@
 // the search item is an array of properties to search for in the data
 export default function getSearchResults(data, query, searchItems) {
   if (query === "") {
-    return [];
+    return data;
   }
   return data
     ? data.filter((item) =>
