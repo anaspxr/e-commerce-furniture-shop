@@ -22,7 +22,7 @@ export default function UsersPage() {
     <div>
       <h1 className="text-2xl font-semibold text-slate-700">Users</h1>
       {selectedUser && (
-        <div className="bg-slate-200 p-3 rounded-md text-slate-600">
+        <div className="flex flex-col gap-2 bg-slate-200 border shadow-lg rounded-md w-fit m-auto p-5 text-slate-600">
           <h2 className="text-xl  font-semibold">{selectedUser.name}</h2>
           <p>{selectedUser.email}</p>
           <p>
@@ -41,13 +41,19 @@ export default function UsersPage() {
           {products ? (
             <div>
               <p className="font-bold">Orders:</p>
+              {Object.keys(selectedUser.orders).length === 0 && "No orders"}
               {Object.keys(selectedUser.orders).map((productID) => {
                 const product = products.find((item) => item.id === productID);
 
                 return (
-                  <p key={productID}>
-                    {product.name} x {selectedUser.orders[productID]}
-                  </p>
+                  <>
+                    <p key={productID}>
+                      {product.name} x {selectedUser.orders[productID].quantity}
+                    </p>
+                    <p className="text-slate-500 mb-2">
+                      Status: {selectedUser.orders[productID].status}{" "}
+                    </p>
+                  </>
                 );
               })}
             </div>

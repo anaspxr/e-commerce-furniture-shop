@@ -51,7 +51,7 @@ export default function ProductEditPage() {
       </p>
       {loading && <p>Loading...</p>}
       {error && <p>network error..</p>}
-      <div className="grid lg:grid-cols-2 gap-2 items-center">
+      <div className={`grid lg:${preview && "grid-cols-2"} gap-2 items-center`}>
         <div>
           {showForm && (
             <ProductForm preview={preview} setPreview={setPreview} />
