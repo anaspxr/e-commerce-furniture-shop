@@ -13,7 +13,11 @@
         "pincode": "",
         "phone": ""
       },
-      "cart": {},
+      "cart": {
+        "2": 2,
+        "6": 2,
+        "24": 1
+      },
       "orders": {},
       "isAdmin": true
     },
@@ -70,7 +74,10 @@
       },
       "cart": {},
       "orders": {
-        "6": 3,
+        "6": {
+          "quantity": 1,
+          "status": "Delivered"
+        },
         "19": 1
       },
       "isAdmin": false
@@ -110,8 +117,14 @@
       },
       "cart": {},
       "orders": {
-        "12": 2,
-        "20": 1
+        "12": {
+          "quantity": 2,
+          "status": "Out For delivery"
+        },
+        "20": {
+          "quantity": 1,
+          "status": "Shipping"
+        }
       },
       "isAdmin": false
     },
@@ -151,8 +164,14 @@
       },
       "cart": {},
       "orders": {
-        "15": 1,
-        "22": 2
+        "15": {
+          "quantity": 1,
+          "status": "Delivered"
+        },
+        "22": {
+          "quantity": 2,
+          "status": "Processing"
+        }
       },
       "isAdmin": false
     },
@@ -210,7 +229,10 @@
       },
       "cart": {},
       "orders": {
-        "18": 2
+        "18": {
+          "quantity": 3,
+          "status": "Out For delivery"
+        }
       },
       "isAdmin": false
     },
@@ -251,7 +273,10 @@
         "17": 3
       },
       "orders": {
-        "24": 1
+        "24": {
+          "quantity": 1,
+          "status": "Delivered"
+        }
       },
       "isAdmin": false
     },
@@ -270,7 +295,10 @@
       },
       "cart": {},
       "orders": {
-        "26": 2
+        "26": {
+          "quantity": 2,
+          "status": "Processing"
+        }
       },
       "isAdmin": false
     },
@@ -289,10 +317,8 @@
       },
       "cart": {
         "2": 2,
-        "4": 2,
         "6": 2,
-        "24": 1,
-        "27": 2
+        "24": 1
       },
       "orders": {},
       "isAdmin": false
