@@ -83,10 +83,11 @@ export default function ProductsPage() {
                   onClick={() => {
                     window.confirm(
                       "Are you sure you want to delete this item?"
-                    ) && handleDelete(product.id, "products");
-                    setDisplayProducts((prev) =>
-                      prev.filter((p) => p.id !== product.id)
-                    );
+                    ) &&
+                      handleDelete(product.id, "products") &&
+                      setDisplayProducts((prev) =>
+                        prev.filter((p) => p.id !== product.id)
+                      );
                   }}
                   className="bg-red-700 text-white px-2 py-1 rounded-md flex items-center gap-1 hover:bg-opacity-85"
                 >

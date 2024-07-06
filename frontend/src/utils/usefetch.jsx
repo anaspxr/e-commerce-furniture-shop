@@ -20,7 +20,8 @@ export default function useFetch(url) {
         setLoading(false);
       }
     }
-    setTimeout(fetchData, 1000); // Simulate network delay
+    fetchData();
+    // setTimeout(fetchData, 1000); // Simulate network delay
   }, [url]);
   return { data, loading, error };
 }
