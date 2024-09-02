@@ -2,6 +2,10 @@
 
 A comprehensive e-commerce website for furniture.
 
+note📝:
+- *This was the initial stage of my project where i used context for state management and json server*.
+- *I have improved the functionalities of this project with redux and backend integration and it can be found in [this repository](https://github.com/anaspxr/e-commerce-with-redux)*
+
 ## Overview
 
 This project is an e-commerce platform where users can browse, search, and purchase various furniture items. It features:
